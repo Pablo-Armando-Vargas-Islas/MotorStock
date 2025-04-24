@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 
-const RegistroDatos = () => {
+const RegsitroGastos = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <div className="w-full flex justify-between items-center px-4">
@@ -11,4 +11,4 @@ const RegistroDatos = () => {
   )
 }
 
-export default RegistroDatos
+export default RegsitroGastos

@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sidebar"
 import { User2, ChevronUp, TruckElectric } from "lucide-react"
 import { items } from "./AdminSidebar.data"
+import { ModeToggle } from "../mode-toggle"
 
 export function AdminSidebar() {
   return (
@@ -36,6 +37,13 @@ export function AdminSidebar() {
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
+            </SidebarMenu>
+            <SidebarMenu>
+              <SidebarMenuItem className="mt-2">
+                <SidebarMenuButton asChild>
+                  <ModeToggle />
+                </SidebarMenuButton>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

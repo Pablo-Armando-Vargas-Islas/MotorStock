@@ -15,10 +15,10 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  user      String    @unique  
-  password  String    
-  role      Role      @default(SEGUROS)
+  id       String @id @default(uuid())
+  user     String @unique
+  password String
+  role     Role   @default(SEGUROS)
 }
 
 enum Role {
@@ -28,41 +28,43 @@ enum Role {
 }
 
 model Vehiculo {
-  id          Int       @id @default(autoincrement())
-  placa       String    @unique
-  marca       String
-  tipo        String
-  color       String
-  modelo      Int
-  serie       String    @unique
-  motor       String?
-  proyecto    String?
-  ubicacion   String?
+  id            Int     @id @default(autoincrement())
+  placa         String  @unique
+  marca         String
+  tipo          String
+  color         String
+  modelo        Int
+  serie         String  @unique
+  motor         String?
+  proyecto      String?
+  ubicacion     String?
   placaAnterior String?
-  comentario  String?
+  comentario    String?
 
   // Relaciones
-  seguros     Seguro[]
-  gastos      Gasto[]
-  facturas    Factura[]
-  
+  seguros  Seguro[]
+  gastos   Gasto[]
+  facturas Factura[]
+
   // Index
   @@index([placa])
   @@index([serie])
   @@index([proyecto])
 }
 
+// seguro -> gastos | gastos -> contador
+
 model Seguro {
-  id          Int       @id @default(autoincrement())
-  vehiculoId  Int
-  compania    CompaniaSeguro
-  precio      Float
-  fechaInicio DateTime
+  id               Int            @id @default(autoincrement())
+  vehiculoId       Int
+  compania         CompaniaSeguro
+  precio           Float
+  fechaInicio      DateTime
   fechaVencimiento DateTime
-  responsable String?
+  responsable      String?
 
   // Relaciones
-  vehiculo    Vehiculo  @relation(fields: [vehiculoId], references: [id])
+  vehiculo Vehiculo @relation(fields: [vehiculoId], references: [id])
 }
 
 enum CompaniaSeguro {
@@ -72,27 +74,27 @@ enum CompaniaSeguro {
 }
 
 model Gasto {
-  id          Int       @id @default(autoincrement())
-  folio       String    @unique
-  fecha       DateTime
-  razonSocial String    // RZ en el Excel
-  banco       String?
-  tdc         String?   // Tarjeta de crédito
-  proveedor   String
-  concepto    String
-  referencia  String?
-  documento   String?
-  proyecto    String?
-  responsable String
+  id            Int      @id @default(autoincrement())
+  folio         String   @unique
+  fecha         DateTime
+  razonSocial   String // RZ en el Excel
+  banco         String?
+  tdc           String? // Tarjeta de crédito
+  proveedor     String
+  concepto      String
+  referencia    String?
+  documento     String?
+  proyecto      String?
+  responsable   String
   transferencia String?
-  entrada     Float?
-  salida      Float?
-  saldo       Float?
-  vehiculoId  Int?
+  entrada       Float?
+  salida        Float?
+  saldo         Float?
+  vehiculoId    Int?
 
   // Relaciones
-  vehiculo    Vehiculo? @relation(fields: [vehiculoId], references: [id])
-  facturas    Factura[]
+  vehiculo Vehiculo? @relation(fields: [vehiculoId], references: [id])
+  facturas Factura[]
 
   // Index
   @@index([folio])
@@ -101,43 +103,43 @@ model Gasto {
 }
 
 model Factura {
-  id          Int       @id @default(autoincrement())
-  uuid        String?   @unique
-  estadoSAT   String?   @default("Vigente")
-  tipoComprobante String? @default("I")
-  tipo        String?   @default("Factura")
-  fechaEmision DateTime
-  serie       String?
-  folio       String?
-  rfcEmisor   String
-  nombreEmisor String
-  rfcReceptor String
-  nombreReceptor String
-  usoCFDI     String
-  subTotal    Float
-  descuento   Float?    @default(0)
-  totalIEPS   Float?    @default(0)
-  iva16       Float?    @default(0)
-  retenidoIVA Float?    @default(0)
-  retenidoISR Float?    @default(0)
-  ish         Float?    @default(0)
-  total       Float
-  moneda      String?   @default("MXN")
-  tipoCambio  Float?    @default(1)
-  formaPago   String
-  metodoPago  String
-  conceptos   String
-  regimenFiscalReceptor String?
+  id                      Int       @id @default(autoincrement())
+  uuid                    String?   @unique
+  estadoSAT               String?   @default("Vigente")
+  tipoComprobante         String?   @default("I")
+  tipo                    String?   @default("Factura")
+  fechaEmision            DateTime
+  serie                   String?
+  folio                   String?
+  rfcEmisor               String
+  nombreEmisor            String
+  rfcReceptor             String
+  nombreReceptor          String
+  usoCFDI                 String
+  subTotal                Float
+  descuento               Float?    @default(0)
+  totalIEPS               Float?    @default(0)
+  iva16                   Float?    @default(0)
+  retenidoIVA             Float?    @default(0)
+  retenidoISR             Float?    @default(0)
+  ish                     Float?    @default(0)
+  total                   Float
+  moneda                  String?   @default("MXN")
+  tipoCambio              Float?    @default(1)
+  formaPago               String
+  metodoPago              String
+  conceptos               String
+  regimenFiscalReceptor   String?
   domicilioFiscalReceptor String?
-  fechaPago   DateTime?
-  bancoPago   String?
-  folioPago   String?
-  gastoId     Int?
+  fechaPago               DateTime?
+  bancoPago               String?
+  folioPago               String?
+  gastoId                 Int?
 
   // Relaciones
-  gasto       Gasto?    @relation(fields: [gastoId], references: [id])
-  vehiculo    Vehiculo? @relation(fields: [vehiculoId], references: [id])
-  vehiculoId  Int?
+  gasto      Gasto?    @relation(fields: [gastoId], references: [id])
+  vehiculo   Vehiculo? @relation(fields: [vehiculoId], references: [id])
+  vehiculoId Int?
 
   // Index
   @@index([folio])
