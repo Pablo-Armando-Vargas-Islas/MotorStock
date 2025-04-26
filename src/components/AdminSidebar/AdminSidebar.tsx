@@ -1,3 +1,5 @@
+"use client";
+
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import {
   Sidebar,
@@ -13,8 +15,21 @@ import {
 import { User2, ChevronUp, TruckElectric } from "lucide-react"
 import { items } from "./AdminSidebar.data"
 import { ModeToggle } from "../mode-toggle"
+import { useSession } from "next-auth/react";
+import { LogoutButton } from "@/components/ui/LogoutButton";
 
 export function AdminSidebar() {
+  const { data: session, status } = useSession(); // <-- aquí obtenemos sesión
+  const isLoading = status === "loading";
+
+  if (status === "loading") {
+    return null;
+  }
+
+  if (!session) {
+    return null;
+  }
+
   return (
     <Sidebar collapsible="icon" variant="sidebar" className="h-full">
       <SidebarHeader />
@@ -68,8 +83,8 @@ export function AdminSidebar() {
                   <DropdownMenuItem>
                     <span>Billing</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <span>Sign out</span>
+                  <DropdownMenuItem asChild>
+                    <LogoutButton />
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

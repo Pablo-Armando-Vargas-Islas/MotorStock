@@ -121,22 +121,42 @@ exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   user: 'user',
   password: 'password',
-  role: 'role'
+  role: 'role',
+  canViewSeguros: 'canViewSeguros',
+  canViewGastos: 'canViewGastos',
+  canViewFacturas: 'canViewFacturas',
+  canEditSeguros: 'canEditSeguros',
+  canEditGastos: 'canEditGastos',
+  canEditFacturas: 'canEditFacturas',
+  canManageUsers: 'canManageUsers'
 };
 
 exports.Prisma.VehiculoScalarFieldEnum = {
   id: 'id',
   placa: 'placa',
+  versionActual: 'versionActual',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.VersionVehiculoScalarFieldEnum = {
+  id: 'id',
+  vehiculoId: 'vehiculoId',
+  placa: 'placa',
+  placaAnterior: 'placaAnterior',
   marca: 'marca',
   tipo: 'tipo',
-  color: 'color',
   modelo: 'modelo',
+  color: 'color',
   serie: 'serie',
   motor: 'motor',
   proyecto: 'proyecto',
   ubicacion: 'ubicacion',
-  placaAnterior: 'placaAnterior',
-  comentario: 'comentario'
+  version: 'version',
+  esActual: 'esActual',
+  fechaCambio: 'fechaCambio',
+  motivoCambio: 'motivoCambio',
+  usuarioCambio: 'usuarioCambio'
 };
 
 exports.Prisma.SeguroScalarFieldEnum = {
@@ -146,12 +166,16 @@ exports.Prisma.SeguroScalarFieldEnum = {
   precio: 'precio',
   fechaInicio: 'fechaInicio',
   fechaVencimiento: 'fechaVencimiento',
-  responsable: 'responsable'
+  comentario: 'comentario',
+  esActual: 'esActual',
+  version: 'version',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.GastoScalarFieldEnum = {
   id: 'id',
   folio: 'folio',
+  vehiculoId: 'vehiculoId',
   fecha: 'fecha',
   razonSocial: 'razonSocial',
   banco: 'banco',
@@ -166,7 +190,7 @@ exports.Prisma.GastoScalarFieldEnum = {
   entrada: 'entrada',
   salida: 'salida',
   saldo: 'saldo',
-  vehiculoId: 'vehiculoId'
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.FacturaScalarFieldEnum = {
@@ -177,7 +201,6 @@ exports.Prisma.FacturaScalarFieldEnum = {
   tipo: 'tipo',
   fechaEmision: 'fechaEmision',
   serie: 'serie',
-  folio: 'folio',
   rfcEmisor: 'rfcEmisor',
   nombreEmisor: 'nombreEmisor',
   rfcReceptor: 'rfcReceptor',
@@ -202,7 +225,7 @@ exports.Prisma.FacturaScalarFieldEnum = {
   bancoPago: 'bancoPago',
   folioPago: 'folioPago',
   gastoId: 'gastoId',
-  vehiculoId: 'vehiculoId'
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -220,20 +243,24 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 exports.Role = exports.$Enums.Role = {
+  REGISTRO_GASTOS: 'REGISTRO_GASTOS',
   SEGUROS: 'SEGUROS',
-  GASTOS: 'GASTOS',
-  CONTADOR: 'CONTADOR'
+  CONSULTA: 'CONSULTA',
+  CONTADOR: 'CONTADOR',
+  ADMIN: 'ADMIN',
+  AUDITOR: 'AUDITOR'
 };
 
-exports.CompaniaSeguro = exports.$Enums.CompaniaSeguro = {
+exports.Compania = exports.$Enums.Compania = {
   GM: 'GM',
-  RF: 'RF',
-  HM: 'HM'
+  HM: 'HM',
+  RC: 'RC'
 };
 
 exports.Prisma.ModelName = {
   User: 'User',
   Vehiculo: 'Vehiculo',
+  VersionVehiculo: 'VersionVehiculo',
   Seguro: 'Seguro',
   Gasto: 'Gasto',
   Factura: 'Factura'

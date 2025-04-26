@@ -24,6 +24,11 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export type Vehiculo = $Result.DefaultSelection<Prisma.$VehiculoPayload>
 /**
+ * Model VersionVehiculo
+ * 
+ */
+export type VersionVehiculo = $Result.DefaultSelection<Prisma.$VersionVehiculoPayload>
+/**
  * Model Seguro
  * 
  */
@@ -44,21 +49,24 @@ export type Factura = $Result.DefaultSelection<Prisma.$FacturaPayload>
  */
 export namespace $Enums {
   export const Role: {
+  REGISTRO_GASTOS: 'REGISTRO_GASTOS',
   SEGUROS: 'SEGUROS',
-  GASTOS: 'GASTOS',
-  CONTADOR: 'CONTADOR'
+  CONSULTA: 'CONSULTA',
+  CONTADOR: 'CONTADOR',
+  ADMIN: 'ADMIN',
+  AUDITOR: 'AUDITOR'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
 
 
-export const CompaniaSeguro: {
+export const Compania: {
   GM: 'GM',
-  RF: 'RF',
-  HM: 'HM'
+  HM: 'HM',
+  RC: 'RC'
 };
 
-export type CompaniaSeguro = (typeof CompaniaSeguro)[keyof typeof CompaniaSeguro]
+export type Compania = (typeof Compania)[keyof typeof Compania]
 
 }
 
@@ -66,9 +74,9 @@ export type Role = $Enums.Role
 
 export const Role: typeof $Enums.Role
 
-export type CompaniaSeguro = $Enums.CompaniaSeguro
+export type Compania = $Enums.Compania
 
-export const CompaniaSeguro: typeof $Enums.CompaniaSeguro
+export const Compania: typeof $Enums.Compania
 
 /**
  * ##  Prisma Client ʲˢ
@@ -214,6 +222,16 @@ export class PrismaClient<
     * ```
     */
   get vehiculo(): Prisma.VehiculoDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.versionVehiculo`: Exposes CRUD operations for the **VersionVehiculo** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more VersionVehiculos
+    * const versionVehiculos = await prisma.versionVehiculo.findMany()
+    * ```
+    */
+  get versionVehiculo(): Prisma.VersionVehiculoDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.seguro`: Exposes CRUD operations for the **Seguro** model.
@@ -686,6 +704,7 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Vehiculo: 'Vehiculo',
+    VersionVehiculo: 'VersionVehiculo',
     Seguro: 'Seguro',
     Gasto: 'Gasto',
     Factura: 'Factura'
@@ -707,7 +726,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "vehiculo" | "seguro" | "gasto" | "factura"
+      modelProps: "user" | "vehiculo" | "versionVehiculo" | "seguro" | "gasto" | "factura"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -856,6 +875,80 @@ export namespace Prisma {
           count: {
             args: Prisma.VehiculoCountArgs<ExtArgs>
             result: $Utils.Optional<VehiculoCountAggregateOutputType> | number
+          }
+        }
+      }
+      VersionVehiculo: {
+        payload: Prisma.$VersionVehiculoPayload<ExtArgs>
+        fields: Prisma.VersionVehiculoFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.VersionVehiculoFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionVehiculoPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.VersionVehiculoFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionVehiculoPayload>
+          }
+          findFirst: {
+            args: Prisma.VersionVehiculoFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionVehiculoPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.VersionVehiculoFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionVehiculoPayload>
+          }
+          findMany: {
+            args: Prisma.VersionVehiculoFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionVehiculoPayload>[]
+          }
+          create: {
+            args: Prisma.VersionVehiculoCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionVehiculoPayload>
+          }
+          createMany: {
+            args: Prisma.VersionVehiculoCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.VersionVehiculoCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionVehiculoPayload>[]
+          }
+          delete: {
+            args: Prisma.VersionVehiculoDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionVehiculoPayload>
+          }
+          update: {
+            args: Prisma.VersionVehiculoUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionVehiculoPayload>
+          }
+          deleteMany: {
+            args: Prisma.VersionVehiculoDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.VersionVehiculoUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.VersionVehiculoUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionVehiculoPayload>[]
+          }
+          upsert: {
+            args: Prisma.VersionVehiculoUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$VersionVehiculoPayload>
+          }
+          aggregate: {
+            args: Prisma.VersionVehiculoAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateVersionVehiculo>
+          }
+          groupBy: {
+            args: Prisma.VersionVehiculoGroupByArgs<ExtArgs>
+            result: $Utils.Optional<VersionVehiculoGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.VersionVehiculoCountArgs<ExtArgs>
+            result: $Utils.Optional<VersionVehiculoCountAggregateOutputType> | number
           }
         }
       }
@@ -1167,6 +1260,7 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     vehiculo?: VehiculoOmit
+    versionVehiculo?: VersionVehiculoOmit
     seguro?: SeguroOmit
     gasto?: GastoOmit
     factura?: FacturaOmit
@@ -1264,15 +1358,15 @@ export namespace Prisma {
    */
 
   export type VehiculoCountOutputType = {
+    versiones: number
     seguros: number
     gastos: number
-    facturas: number
   }
 
   export type VehiculoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    versiones?: boolean | VehiculoCountOutputTypeCountVersionesArgs
     seguros?: boolean | VehiculoCountOutputTypeCountSegurosArgs
     gastos?: boolean | VehiculoCountOutputTypeCountGastosArgs
-    facturas?: boolean | VehiculoCountOutputTypeCountFacturasArgs
   }
 
   // Custom InputTypes
@@ -1289,6 +1383,13 @@ export namespace Prisma {
   /**
    * VehiculoCountOutputType without action
    */
+  export type VehiculoCountOutputTypeCountVersionesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VersionVehiculoWhereInput
+  }
+
+  /**
+   * VehiculoCountOutputType without action
+   */
   export type VehiculoCountOutputTypeCountSegurosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SeguroWhereInput
   }
@@ -1298,13 +1399,6 @@ export namespace Prisma {
    */
   export type VehiculoCountOutputTypeCountGastosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: GastoWhereInput
-  }
-
-  /**
-   * VehiculoCountOutputType without action
-   */
-  export type VehiculoCountOutputTypeCountFacturasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: FacturaWhereInput
   }
 
 
@@ -1358,6 +1452,13 @@ export namespace Prisma {
     user: string | null
     password: string | null
     role: $Enums.Role | null
+    canViewSeguros: boolean | null
+    canViewGastos: boolean | null
+    canViewFacturas: boolean | null
+    canEditSeguros: boolean | null
+    canEditGastos: boolean | null
+    canEditFacturas: boolean | null
+    canManageUsers: boolean | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1365,6 +1466,13 @@ export namespace Prisma {
     user: string | null
     password: string | null
     role: $Enums.Role | null
+    canViewSeguros: boolean | null
+    canViewGastos: boolean | null
+    canViewFacturas: boolean | null
+    canEditSeguros: boolean | null
+    canEditGastos: boolean | null
+    canEditFacturas: boolean | null
+    canManageUsers: boolean | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1372,6 +1480,13 @@ export namespace Prisma {
     user: number
     password: number
     role: number
+    canViewSeguros: number
+    canViewGastos: number
+    canViewFacturas: number
+    canEditSeguros: number
+    canEditGastos: number
+    canEditFacturas: number
+    canManageUsers: number
     _all: number
   }
 
@@ -1381,6 +1496,13 @@ export namespace Prisma {
     user?: true
     password?: true
     role?: true
+    canViewSeguros?: true
+    canViewGastos?: true
+    canViewFacturas?: true
+    canEditSeguros?: true
+    canEditGastos?: true
+    canEditFacturas?: true
+    canManageUsers?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1388,6 +1510,13 @@ export namespace Prisma {
     user?: true
     password?: true
     role?: true
+    canViewSeguros?: true
+    canViewGastos?: true
+    canViewFacturas?: true
+    canEditSeguros?: true
+    canEditGastos?: true
+    canEditFacturas?: true
+    canManageUsers?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1395,6 +1524,13 @@ export namespace Prisma {
     user?: true
     password?: true
     role?: true
+    canViewSeguros?: true
+    canViewGastos?: true
+    canViewFacturas?: true
+    canEditSeguros?: true
+    canEditGastos?: true
+    canEditFacturas?: true
+    canManageUsers?: true
     _all?: true
   }
 
@@ -1475,6 +1611,13 @@ export namespace Prisma {
     user: string
     password: string
     role: $Enums.Role
+    canViewSeguros: boolean
+    canViewGastos: boolean
+    canViewFacturas: boolean
+    canEditSeguros: boolean
+    canEditGastos: boolean
+    canEditFacturas: boolean
+    canManageUsers: boolean
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1499,6 +1642,13 @@ export namespace Prisma {
     user?: boolean
     password?: boolean
     role?: boolean
+    canViewSeguros?: boolean
+    canViewGastos?: boolean
+    canViewFacturas?: boolean
+    canEditSeguros?: boolean
+    canEditGastos?: boolean
+    canEditFacturas?: boolean
+    canManageUsers?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1506,6 +1656,13 @@ export namespace Prisma {
     user?: boolean
     password?: boolean
     role?: boolean
+    canViewSeguros?: boolean
+    canViewGastos?: boolean
+    canViewFacturas?: boolean
+    canEditSeguros?: boolean
+    canEditGastos?: boolean
+    canEditFacturas?: boolean
+    canManageUsers?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1513,6 +1670,13 @@ export namespace Prisma {
     user?: boolean
     password?: boolean
     role?: boolean
+    canViewSeguros?: boolean
+    canViewGastos?: boolean
+    canViewFacturas?: boolean
+    canEditSeguros?: boolean
+    canEditGastos?: boolean
+    canEditFacturas?: boolean
+    canManageUsers?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1520,9 +1684,16 @@ export namespace Prisma {
     user?: boolean
     password?: boolean
     role?: boolean
+    canViewSeguros?: boolean
+    canViewGastos?: boolean
+    canViewFacturas?: boolean
+    canEditSeguros?: boolean
+    canEditGastos?: boolean
+    canEditFacturas?: boolean
+    canManageUsers?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user" | "password" | "role", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user" | "password" | "role" | "canViewSeguros" | "canViewGastos" | "canViewFacturas" | "canEditSeguros" | "canEditGastos" | "canEditFacturas" | "canManageUsers", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1532,6 +1703,13 @@ export namespace Prisma {
       user: string
       password: string
       role: $Enums.Role
+      canViewSeguros: boolean
+      canViewGastos: boolean
+      canViewFacturas: boolean
+      canEditSeguros: boolean
+      canEditGastos: boolean
+      canEditFacturas: boolean
+      canManageUsers: boolean
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1959,6 +2137,13 @@ export namespace Prisma {
     readonly user: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'Role'>
+    readonly canViewSeguros: FieldRef<"User", 'Boolean'>
+    readonly canViewGastos: FieldRef<"User", 'Boolean'>
+    readonly canViewFacturas: FieldRef<"User", 'Boolean'>
+    readonly canEditSeguros: FieldRef<"User", 'Boolean'>
+    readonly canEditGastos: FieldRef<"User", 'Boolean'>
+    readonly canEditFacturas: FieldRef<"User", 'Boolean'>
+    readonly canManageUsers: FieldRef<"User", 'Boolean'>
   }
     
 
@@ -2338,115 +2523,69 @@ export namespace Prisma {
   }
 
   export type VehiculoAvgAggregateOutputType = {
-    id: number | null
-    modelo: number | null
+    versionActual: number | null
   }
 
   export type VehiculoSumAggregateOutputType = {
-    id: number | null
-    modelo: number | null
+    versionActual: number | null
   }
 
   export type VehiculoMinAggregateOutputType = {
-    id: number | null
+    id: string | null
     placa: string | null
-    marca: string | null
-    tipo: string | null
-    color: string | null
-    modelo: number | null
-    serie: string | null
-    motor: string | null
-    proyecto: string | null
-    ubicacion: string | null
-    placaAnterior: string | null
-    comentario: string | null
+    versionActual: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type VehiculoMaxAggregateOutputType = {
-    id: number | null
+    id: string | null
     placa: string | null
-    marca: string | null
-    tipo: string | null
-    color: string | null
-    modelo: number | null
-    serie: string | null
-    motor: string | null
-    proyecto: string | null
-    ubicacion: string | null
-    placaAnterior: string | null
-    comentario: string | null
+    versionActual: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type VehiculoCountAggregateOutputType = {
     id: number
     placa: number
-    marca: number
-    tipo: number
-    color: number
-    modelo: number
-    serie: number
-    motor: number
-    proyecto: number
-    ubicacion: number
-    placaAnterior: number
-    comentario: number
+    versionActual: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type VehiculoAvgAggregateInputType = {
-    id?: true
-    modelo?: true
+    versionActual?: true
   }
 
   export type VehiculoSumAggregateInputType = {
-    id?: true
-    modelo?: true
+    versionActual?: true
   }
 
   export type VehiculoMinAggregateInputType = {
     id?: true
     placa?: true
-    marca?: true
-    tipo?: true
-    color?: true
-    modelo?: true
-    serie?: true
-    motor?: true
-    proyecto?: true
-    ubicacion?: true
-    placaAnterior?: true
-    comentario?: true
+    versionActual?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type VehiculoMaxAggregateInputType = {
     id?: true
     placa?: true
-    marca?: true
-    tipo?: true
-    color?: true
-    modelo?: true
-    serie?: true
-    motor?: true
-    proyecto?: true
-    ubicacion?: true
-    placaAnterior?: true
-    comentario?: true
+    versionActual?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type VehiculoCountAggregateInputType = {
     id?: true
     placa?: true
-    marca?: true
-    tipo?: true
-    color?: true
-    modelo?: true
-    serie?: true
-    motor?: true
-    proyecto?: true
-    ubicacion?: true
-    placaAnterior?: true
-    comentario?: true
+    versionActual?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -2537,18 +2676,11 @@ export namespace Prisma {
   }
 
   export type VehiculoGroupByOutputType = {
-    id: number
+    id: string
     placa: string
-    marca: string
-    tipo: string
-    color: string
-    modelo: number
-    serie: string
-    motor: string | null
-    proyecto: string | null
-    ubicacion: string | null
-    placaAnterior: string | null
-    comentario: string | null
+    versionActual: number
+    createdAt: Date
+    updatedAt: Date
     _count: VehiculoCountAggregateOutputType | null
     _avg: VehiculoAvgAggregateOutputType | null
     _sum: VehiculoSumAggregateOutputType | null
@@ -2573,72 +2705,44 @@ export namespace Prisma {
   export type VehiculoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     placa?: boolean
-    marca?: boolean
-    tipo?: boolean
-    color?: boolean
-    modelo?: boolean
-    serie?: boolean
-    motor?: boolean
-    proyecto?: boolean
-    ubicacion?: boolean
-    placaAnterior?: boolean
-    comentario?: boolean
+    versionActual?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    versiones?: boolean | Vehiculo$versionesArgs<ExtArgs>
     seguros?: boolean | Vehiculo$segurosArgs<ExtArgs>
     gastos?: boolean | Vehiculo$gastosArgs<ExtArgs>
-    facturas?: boolean | Vehiculo$facturasArgs<ExtArgs>
     _count?: boolean | VehiculoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["vehiculo"]>
 
   export type VehiculoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     placa?: boolean
-    marca?: boolean
-    tipo?: boolean
-    color?: boolean
-    modelo?: boolean
-    serie?: boolean
-    motor?: boolean
-    proyecto?: boolean
-    ubicacion?: boolean
-    placaAnterior?: boolean
-    comentario?: boolean
+    versionActual?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["vehiculo"]>
 
   export type VehiculoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     placa?: boolean
-    marca?: boolean
-    tipo?: boolean
-    color?: boolean
-    modelo?: boolean
-    serie?: boolean
-    motor?: boolean
-    proyecto?: boolean
-    ubicacion?: boolean
-    placaAnterior?: boolean
-    comentario?: boolean
+    versionActual?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["vehiculo"]>
 
   export type VehiculoSelectScalar = {
     id?: boolean
     placa?: boolean
-    marca?: boolean
-    tipo?: boolean
-    color?: boolean
-    modelo?: boolean
-    serie?: boolean
-    motor?: boolean
-    proyecto?: boolean
-    ubicacion?: boolean
-    placaAnterior?: boolean
-    comentario?: boolean
+    versionActual?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type VehiculoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "placa" | "marca" | "tipo" | "color" | "modelo" | "serie" | "motor" | "proyecto" | "ubicacion" | "placaAnterior" | "comentario", ExtArgs["result"]["vehiculo"]>
+  export type VehiculoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "placa" | "versionActual" | "createdAt" | "updatedAt", ExtArgs["result"]["vehiculo"]>
   export type VehiculoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    versiones?: boolean | Vehiculo$versionesArgs<ExtArgs>
     seguros?: boolean | Vehiculo$segurosArgs<ExtArgs>
     gastos?: boolean | Vehiculo$gastosArgs<ExtArgs>
-    facturas?: boolean | Vehiculo$facturasArgs<ExtArgs>
     _count?: boolean | VehiculoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type VehiculoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2647,23 +2751,16 @@ export namespace Prisma {
   export type $VehiculoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Vehiculo"
     objects: {
+      versiones: Prisma.$VersionVehiculoPayload<ExtArgs>[]
       seguros: Prisma.$SeguroPayload<ExtArgs>[]
       gastos: Prisma.$GastoPayload<ExtArgs>[]
-      facturas: Prisma.$FacturaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: number
+      id: string
       placa: string
-      marca: string
-      tipo: string
-      color: string
-      modelo: number
-      serie: string
-      motor: string | null
-      proyecto: string | null
-      ubicacion: string | null
-      placaAnterior: string | null
-      comentario: string | null
+      versionActual: number
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["vehiculo"]>
     composites: {}
   }
@@ -3058,9 +3155,9 @@ export namespace Prisma {
    */
   export interface Prisma__VehiculoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    versiones<T extends Vehiculo$versionesArgs<ExtArgs> = {}>(args?: Subset<T, Vehiculo$versionesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionVehiculoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     seguros<T extends Vehiculo$segurosArgs<ExtArgs> = {}>(args?: Subset<T, Vehiculo$segurosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SeguroPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     gastos<T extends Vehiculo$gastosArgs<ExtArgs> = {}>(args?: Subset<T, Vehiculo$gastosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$GastoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    facturas<T extends Vehiculo$facturasArgs<ExtArgs> = {}>(args?: Subset<T, Vehiculo$facturasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FacturaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3090,18 +3187,11 @@ export namespace Prisma {
    * Fields of the Vehiculo model
    */
   interface VehiculoFieldRefs {
-    readonly id: FieldRef<"Vehiculo", 'Int'>
+    readonly id: FieldRef<"Vehiculo", 'String'>
     readonly placa: FieldRef<"Vehiculo", 'String'>
-    readonly marca: FieldRef<"Vehiculo", 'String'>
-    readonly tipo: FieldRef<"Vehiculo", 'String'>
-    readonly color: FieldRef<"Vehiculo", 'String'>
-    readonly modelo: FieldRef<"Vehiculo", 'Int'>
-    readonly serie: FieldRef<"Vehiculo", 'String'>
-    readonly motor: FieldRef<"Vehiculo", 'String'>
-    readonly proyecto: FieldRef<"Vehiculo", 'String'>
-    readonly ubicacion: FieldRef<"Vehiculo", 'String'>
-    readonly placaAnterior: FieldRef<"Vehiculo", 'String'>
-    readonly comentario: FieldRef<"Vehiculo", 'String'>
+    readonly versionActual: FieldRef<"Vehiculo", 'Int'>
+    readonly createdAt: FieldRef<"Vehiculo", 'DateTime'>
+    readonly updatedAt: FieldRef<"Vehiculo", 'DateTime'>
   }
     
 
@@ -3490,6 +3580,30 @@ export namespace Prisma {
   }
 
   /**
+   * Vehiculo.versiones
+   */
+  export type Vehiculo$versionesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoInclude<ExtArgs> | null
+    where?: VersionVehiculoWhereInput
+    orderBy?: VersionVehiculoOrderByWithRelationInput | VersionVehiculoOrderByWithRelationInput[]
+    cursor?: VersionVehiculoWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: VersionVehiculoScalarFieldEnum | VersionVehiculoScalarFieldEnum[]
+  }
+
+  /**
    * Vehiculo.seguros
    */
   export type Vehiculo$segurosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3538,30 +3652,6 @@ export namespace Prisma {
   }
 
   /**
-   * Vehiculo.facturas
-   */
-  export type Vehiculo$facturasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Factura
-     */
-    select?: FacturaSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Factura
-     */
-    omit?: FacturaOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: FacturaInclude<ExtArgs> | null
-    where?: FacturaWhereInput
-    orderBy?: FacturaOrderByWithRelationInput | FacturaOrderByWithRelationInput[]
-    cursor?: FacturaWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: FacturaScalarFieldEnum | FacturaScalarFieldEnum[]
-  }
-
-  /**
    * Vehiculo without action
    */
   export type VehiculoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3581,6 +3671,1258 @@ export namespace Prisma {
 
 
   /**
+   * Model VersionVehiculo
+   */
+
+  export type AggregateVersionVehiculo = {
+    _count: VersionVehiculoCountAggregateOutputType | null
+    _avg: VersionVehiculoAvgAggregateOutputType | null
+    _sum: VersionVehiculoSumAggregateOutputType | null
+    _min: VersionVehiculoMinAggregateOutputType | null
+    _max: VersionVehiculoMaxAggregateOutputType | null
+  }
+
+  export type VersionVehiculoAvgAggregateOutputType = {
+    id: number | null
+    version: number | null
+  }
+
+  export type VersionVehiculoSumAggregateOutputType = {
+    id: number | null
+    version: number | null
+  }
+
+  export type VersionVehiculoMinAggregateOutputType = {
+    id: number | null
+    vehiculoId: string | null
+    placa: string | null
+    placaAnterior: string | null
+    marca: string | null
+    tipo: string | null
+    modelo: string | null
+    color: string | null
+    serie: string | null
+    motor: string | null
+    proyecto: string | null
+    ubicacion: string | null
+    version: number | null
+    esActual: boolean | null
+    fechaCambio: Date | null
+    motivoCambio: string | null
+    usuarioCambio: string | null
+  }
+
+  export type VersionVehiculoMaxAggregateOutputType = {
+    id: number | null
+    vehiculoId: string | null
+    placa: string | null
+    placaAnterior: string | null
+    marca: string | null
+    tipo: string | null
+    modelo: string | null
+    color: string | null
+    serie: string | null
+    motor: string | null
+    proyecto: string | null
+    ubicacion: string | null
+    version: number | null
+    esActual: boolean | null
+    fechaCambio: Date | null
+    motivoCambio: string | null
+    usuarioCambio: string | null
+  }
+
+  export type VersionVehiculoCountAggregateOutputType = {
+    id: number
+    vehiculoId: number
+    placa: number
+    placaAnterior: number
+    marca: number
+    tipo: number
+    modelo: number
+    color: number
+    serie: number
+    motor: number
+    proyecto: number
+    ubicacion: number
+    version: number
+    esActual: number
+    fechaCambio: number
+    motivoCambio: number
+    usuarioCambio: number
+    _all: number
+  }
+
+
+  export type VersionVehiculoAvgAggregateInputType = {
+    id?: true
+    version?: true
+  }
+
+  export type VersionVehiculoSumAggregateInputType = {
+    id?: true
+    version?: true
+  }
+
+  export type VersionVehiculoMinAggregateInputType = {
+    id?: true
+    vehiculoId?: true
+    placa?: true
+    placaAnterior?: true
+    marca?: true
+    tipo?: true
+    modelo?: true
+    color?: true
+    serie?: true
+    motor?: true
+    proyecto?: true
+    ubicacion?: true
+    version?: true
+    esActual?: true
+    fechaCambio?: true
+    motivoCambio?: true
+    usuarioCambio?: true
+  }
+
+  export type VersionVehiculoMaxAggregateInputType = {
+    id?: true
+    vehiculoId?: true
+    placa?: true
+    placaAnterior?: true
+    marca?: true
+    tipo?: true
+    modelo?: true
+    color?: true
+    serie?: true
+    motor?: true
+    proyecto?: true
+    ubicacion?: true
+    version?: true
+    esActual?: true
+    fechaCambio?: true
+    motivoCambio?: true
+    usuarioCambio?: true
+  }
+
+  export type VersionVehiculoCountAggregateInputType = {
+    id?: true
+    vehiculoId?: true
+    placa?: true
+    placaAnterior?: true
+    marca?: true
+    tipo?: true
+    modelo?: true
+    color?: true
+    serie?: true
+    motor?: true
+    proyecto?: true
+    ubicacion?: true
+    version?: true
+    esActual?: true
+    fechaCambio?: true
+    motivoCambio?: true
+    usuarioCambio?: true
+    _all?: true
+  }
+
+  export type VersionVehiculoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VersionVehiculo to aggregate.
+     */
+    where?: VersionVehiculoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VersionVehiculos to fetch.
+     */
+    orderBy?: VersionVehiculoOrderByWithRelationInput | VersionVehiculoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: VersionVehiculoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VersionVehiculos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VersionVehiculos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned VersionVehiculos
+    **/
+    _count?: true | VersionVehiculoCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: VersionVehiculoAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: VersionVehiculoSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: VersionVehiculoMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: VersionVehiculoMaxAggregateInputType
+  }
+
+  export type GetVersionVehiculoAggregateType<T extends VersionVehiculoAggregateArgs> = {
+        [P in keyof T & keyof AggregateVersionVehiculo]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateVersionVehiculo[P]>
+      : GetScalarType<T[P], AggregateVersionVehiculo[P]>
+  }
+
+
+
+
+  export type VersionVehiculoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: VersionVehiculoWhereInput
+    orderBy?: VersionVehiculoOrderByWithAggregationInput | VersionVehiculoOrderByWithAggregationInput[]
+    by: VersionVehiculoScalarFieldEnum[] | VersionVehiculoScalarFieldEnum
+    having?: VersionVehiculoScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: VersionVehiculoCountAggregateInputType | true
+    _avg?: VersionVehiculoAvgAggregateInputType
+    _sum?: VersionVehiculoSumAggregateInputType
+    _min?: VersionVehiculoMinAggregateInputType
+    _max?: VersionVehiculoMaxAggregateInputType
+  }
+
+  export type VersionVehiculoGroupByOutputType = {
+    id: number
+    vehiculoId: string
+    placa: string
+    placaAnterior: string | null
+    marca: string
+    tipo: string
+    modelo: string
+    color: string
+    serie: string
+    motor: string | null
+    proyecto: string | null
+    ubicacion: string | null
+    version: number
+    esActual: boolean
+    fechaCambio: Date
+    motivoCambio: string | null
+    usuarioCambio: string | null
+    _count: VersionVehiculoCountAggregateOutputType | null
+    _avg: VersionVehiculoAvgAggregateOutputType | null
+    _sum: VersionVehiculoSumAggregateOutputType | null
+    _min: VersionVehiculoMinAggregateOutputType | null
+    _max: VersionVehiculoMaxAggregateOutputType | null
+  }
+
+  type GetVersionVehiculoGroupByPayload<T extends VersionVehiculoGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<VersionVehiculoGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof VersionVehiculoGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], VersionVehiculoGroupByOutputType[P]>
+            : GetScalarType<T[P], VersionVehiculoGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type VersionVehiculoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vehiculoId?: boolean
+    placa?: boolean
+    placaAnterior?: boolean
+    marca?: boolean
+    tipo?: boolean
+    modelo?: boolean
+    color?: boolean
+    serie?: boolean
+    motor?: boolean
+    proyecto?: boolean
+    ubicacion?: boolean
+    version?: boolean
+    esActual?: boolean
+    fechaCambio?: boolean
+    motivoCambio?: boolean
+    usuarioCambio?: boolean
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["versionVehiculo"]>
+
+  export type VersionVehiculoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vehiculoId?: boolean
+    placa?: boolean
+    placaAnterior?: boolean
+    marca?: boolean
+    tipo?: boolean
+    modelo?: boolean
+    color?: boolean
+    serie?: boolean
+    motor?: boolean
+    proyecto?: boolean
+    ubicacion?: boolean
+    version?: boolean
+    esActual?: boolean
+    fechaCambio?: boolean
+    motivoCambio?: boolean
+    usuarioCambio?: boolean
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["versionVehiculo"]>
+
+  export type VersionVehiculoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vehiculoId?: boolean
+    placa?: boolean
+    placaAnterior?: boolean
+    marca?: boolean
+    tipo?: boolean
+    modelo?: boolean
+    color?: boolean
+    serie?: boolean
+    motor?: boolean
+    proyecto?: boolean
+    ubicacion?: boolean
+    version?: boolean
+    esActual?: boolean
+    fechaCambio?: boolean
+    motivoCambio?: boolean
+    usuarioCambio?: boolean
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["versionVehiculo"]>
+
+  export type VersionVehiculoSelectScalar = {
+    id?: boolean
+    vehiculoId?: boolean
+    placa?: boolean
+    placaAnterior?: boolean
+    marca?: boolean
+    tipo?: boolean
+    modelo?: boolean
+    color?: boolean
+    serie?: boolean
+    motor?: boolean
+    proyecto?: boolean
+    ubicacion?: boolean
+    version?: boolean
+    esActual?: boolean
+    fechaCambio?: boolean
+    motivoCambio?: boolean
+    usuarioCambio?: boolean
+  }
+
+  export type VersionVehiculoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehiculoId" | "placa" | "placaAnterior" | "marca" | "tipo" | "modelo" | "color" | "serie" | "motor" | "proyecto" | "ubicacion" | "version" | "esActual" | "fechaCambio" | "motivoCambio" | "usuarioCambio", ExtArgs["result"]["versionVehiculo"]>
+  export type VersionVehiculoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
+  }
+  export type VersionVehiculoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
+  }
+  export type VersionVehiculoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
+  }
+
+  export type $VersionVehiculoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "VersionVehiculo"
+    objects: {
+      vehiculo: Prisma.$VehiculoPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      vehiculoId: string
+      placa: string
+      placaAnterior: string | null
+      marca: string
+      tipo: string
+      modelo: string
+      color: string
+      serie: string
+      motor: string | null
+      proyecto: string | null
+      ubicacion: string | null
+      version: number
+      esActual: boolean
+      fechaCambio: Date
+      motivoCambio: string | null
+      usuarioCambio: string | null
+    }, ExtArgs["result"]["versionVehiculo"]>
+    composites: {}
+  }
+
+  type VersionVehiculoGetPayload<S extends boolean | null | undefined | VersionVehiculoDefaultArgs> = $Result.GetResult<Prisma.$VersionVehiculoPayload, S>
+
+  type VersionVehiculoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<VersionVehiculoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: VersionVehiculoCountAggregateInputType | true
+    }
+
+  export interface VersionVehiculoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['VersionVehiculo'], meta: { name: 'VersionVehiculo' } }
+    /**
+     * Find zero or one VersionVehiculo that matches the filter.
+     * @param {VersionVehiculoFindUniqueArgs} args - Arguments to find a VersionVehiculo
+     * @example
+     * // Get one VersionVehiculo
+     * const versionVehiculo = await prisma.versionVehiculo.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends VersionVehiculoFindUniqueArgs>(args: SelectSubset<T, VersionVehiculoFindUniqueArgs<ExtArgs>>): Prisma__VersionVehiculoClient<$Result.GetResult<Prisma.$VersionVehiculoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one VersionVehiculo that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {VersionVehiculoFindUniqueOrThrowArgs} args - Arguments to find a VersionVehiculo
+     * @example
+     * // Get one VersionVehiculo
+     * const versionVehiculo = await prisma.versionVehiculo.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends VersionVehiculoFindUniqueOrThrowArgs>(args: SelectSubset<T, VersionVehiculoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VersionVehiculoClient<$Result.GetResult<Prisma.$VersionVehiculoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VersionVehiculo that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionVehiculoFindFirstArgs} args - Arguments to find a VersionVehiculo
+     * @example
+     * // Get one VersionVehiculo
+     * const versionVehiculo = await prisma.versionVehiculo.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends VersionVehiculoFindFirstArgs>(args?: SelectSubset<T, VersionVehiculoFindFirstArgs<ExtArgs>>): Prisma__VersionVehiculoClient<$Result.GetResult<Prisma.$VersionVehiculoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first VersionVehiculo that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionVehiculoFindFirstOrThrowArgs} args - Arguments to find a VersionVehiculo
+     * @example
+     * // Get one VersionVehiculo
+     * const versionVehiculo = await prisma.versionVehiculo.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends VersionVehiculoFindFirstOrThrowArgs>(args?: SelectSubset<T, VersionVehiculoFindFirstOrThrowArgs<ExtArgs>>): Prisma__VersionVehiculoClient<$Result.GetResult<Prisma.$VersionVehiculoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more VersionVehiculos that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionVehiculoFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all VersionVehiculos
+     * const versionVehiculos = await prisma.versionVehiculo.findMany()
+     * 
+     * // Get first 10 VersionVehiculos
+     * const versionVehiculos = await prisma.versionVehiculo.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const versionVehiculoWithIdOnly = await prisma.versionVehiculo.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends VersionVehiculoFindManyArgs>(args?: SelectSubset<T, VersionVehiculoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionVehiculoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a VersionVehiculo.
+     * @param {VersionVehiculoCreateArgs} args - Arguments to create a VersionVehiculo.
+     * @example
+     * // Create one VersionVehiculo
+     * const VersionVehiculo = await prisma.versionVehiculo.create({
+     *   data: {
+     *     // ... data to create a VersionVehiculo
+     *   }
+     * })
+     * 
+     */
+    create<T extends VersionVehiculoCreateArgs>(args: SelectSubset<T, VersionVehiculoCreateArgs<ExtArgs>>): Prisma__VersionVehiculoClient<$Result.GetResult<Prisma.$VersionVehiculoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many VersionVehiculos.
+     * @param {VersionVehiculoCreateManyArgs} args - Arguments to create many VersionVehiculos.
+     * @example
+     * // Create many VersionVehiculos
+     * const versionVehiculo = await prisma.versionVehiculo.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends VersionVehiculoCreateManyArgs>(args?: SelectSubset<T, VersionVehiculoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many VersionVehiculos and returns the data saved in the database.
+     * @param {VersionVehiculoCreateManyAndReturnArgs} args - Arguments to create many VersionVehiculos.
+     * @example
+     * // Create many VersionVehiculos
+     * const versionVehiculo = await prisma.versionVehiculo.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many VersionVehiculos and only return the `id`
+     * const versionVehiculoWithIdOnly = await prisma.versionVehiculo.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends VersionVehiculoCreateManyAndReturnArgs>(args?: SelectSubset<T, VersionVehiculoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionVehiculoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a VersionVehiculo.
+     * @param {VersionVehiculoDeleteArgs} args - Arguments to delete one VersionVehiculo.
+     * @example
+     * // Delete one VersionVehiculo
+     * const VersionVehiculo = await prisma.versionVehiculo.delete({
+     *   where: {
+     *     // ... filter to delete one VersionVehiculo
+     *   }
+     * })
+     * 
+     */
+    delete<T extends VersionVehiculoDeleteArgs>(args: SelectSubset<T, VersionVehiculoDeleteArgs<ExtArgs>>): Prisma__VersionVehiculoClient<$Result.GetResult<Prisma.$VersionVehiculoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one VersionVehiculo.
+     * @param {VersionVehiculoUpdateArgs} args - Arguments to update one VersionVehiculo.
+     * @example
+     * // Update one VersionVehiculo
+     * const versionVehiculo = await prisma.versionVehiculo.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends VersionVehiculoUpdateArgs>(args: SelectSubset<T, VersionVehiculoUpdateArgs<ExtArgs>>): Prisma__VersionVehiculoClient<$Result.GetResult<Prisma.$VersionVehiculoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more VersionVehiculos.
+     * @param {VersionVehiculoDeleteManyArgs} args - Arguments to filter VersionVehiculos to delete.
+     * @example
+     * // Delete a few VersionVehiculos
+     * const { count } = await prisma.versionVehiculo.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends VersionVehiculoDeleteManyArgs>(args?: SelectSubset<T, VersionVehiculoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VersionVehiculos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionVehiculoUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many VersionVehiculos
+     * const versionVehiculo = await prisma.versionVehiculo.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends VersionVehiculoUpdateManyArgs>(args: SelectSubset<T, VersionVehiculoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more VersionVehiculos and returns the data updated in the database.
+     * @param {VersionVehiculoUpdateManyAndReturnArgs} args - Arguments to update many VersionVehiculos.
+     * @example
+     * // Update many VersionVehiculos
+     * const versionVehiculo = await prisma.versionVehiculo.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more VersionVehiculos and only return the `id`
+     * const versionVehiculoWithIdOnly = await prisma.versionVehiculo.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends VersionVehiculoUpdateManyAndReturnArgs>(args: SelectSubset<T, VersionVehiculoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionVehiculoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one VersionVehiculo.
+     * @param {VersionVehiculoUpsertArgs} args - Arguments to update or create a VersionVehiculo.
+     * @example
+     * // Update or create a VersionVehiculo
+     * const versionVehiculo = await prisma.versionVehiculo.upsert({
+     *   create: {
+     *     // ... data to create a VersionVehiculo
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the VersionVehiculo we want to update
+     *   }
+     * })
+     */
+    upsert<T extends VersionVehiculoUpsertArgs>(args: SelectSubset<T, VersionVehiculoUpsertArgs<ExtArgs>>): Prisma__VersionVehiculoClient<$Result.GetResult<Prisma.$VersionVehiculoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of VersionVehiculos.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionVehiculoCountArgs} args - Arguments to filter VersionVehiculos to count.
+     * @example
+     * // Count the number of VersionVehiculos
+     * const count = await prisma.versionVehiculo.count({
+     *   where: {
+     *     // ... the filter for the VersionVehiculos we want to count
+     *   }
+     * })
+    **/
+    count<T extends VersionVehiculoCountArgs>(
+      args?: Subset<T, VersionVehiculoCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], VersionVehiculoCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a VersionVehiculo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionVehiculoAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends VersionVehiculoAggregateArgs>(args: Subset<T, VersionVehiculoAggregateArgs>): Prisma.PrismaPromise<GetVersionVehiculoAggregateType<T>>
+
+    /**
+     * Group by VersionVehiculo.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {VersionVehiculoGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends VersionVehiculoGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: VersionVehiculoGroupByArgs['orderBy'] }
+        : { orderBy?: VersionVehiculoGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, VersionVehiculoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVersionVehiculoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the VersionVehiculo model
+   */
+  readonly fields: VersionVehiculoFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for VersionVehiculo.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__VersionVehiculoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    vehiculo<T extends VehiculoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VehiculoDefaultArgs<ExtArgs>>): Prisma__VehiculoClient<$Result.GetResult<Prisma.$VehiculoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the VersionVehiculo model
+   */
+  interface VersionVehiculoFieldRefs {
+    readonly id: FieldRef<"VersionVehiculo", 'Int'>
+    readonly vehiculoId: FieldRef<"VersionVehiculo", 'String'>
+    readonly placa: FieldRef<"VersionVehiculo", 'String'>
+    readonly placaAnterior: FieldRef<"VersionVehiculo", 'String'>
+    readonly marca: FieldRef<"VersionVehiculo", 'String'>
+    readonly tipo: FieldRef<"VersionVehiculo", 'String'>
+    readonly modelo: FieldRef<"VersionVehiculo", 'String'>
+    readonly color: FieldRef<"VersionVehiculo", 'String'>
+    readonly serie: FieldRef<"VersionVehiculo", 'String'>
+    readonly motor: FieldRef<"VersionVehiculo", 'String'>
+    readonly proyecto: FieldRef<"VersionVehiculo", 'String'>
+    readonly ubicacion: FieldRef<"VersionVehiculo", 'String'>
+    readonly version: FieldRef<"VersionVehiculo", 'Int'>
+    readonly esActual: FieldRef<"VersionVehiculo", 'Boolean'>
+    readonly fechaCambio: FieldRef<"VersionVehiculo", 'DateTime'>
+    readonly motivoCambio: FieldRef<"VersionVehiculo", 'String'>
+    readonly usuarioCambio: FieldRef<"VersionVehiculo", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * VersionVehiculo findUnique
+   */
+  export type VersionVehiculoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoInclude<ExtArgs> | null
+    /**
+     * Filter, which VersionVehiculo to fetch.
+     */
+    where: VersionVehiculoWhereUniqueInput
+  }
+
+  /**
+   * VersionVehiculo findUniqueOrThrow
+   */
+  export type VersionVehiculoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoInclude<ExtArgs> | null
+    /**
+     * Filter, which VersionVehiculo to fetch.
+     */
+    where: VersionVehiculoWhereUniqueInput
+  }
+
+  /**
+   * VersionVehiculo findFirst
+   */
+  export type VersionVehiculoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoInclude<ExtArgs> | null
+    /**
+     * Filter, which VersionVehiculo to fetch.
+     */
+    where?: VersionVehiculoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VersionVehiculos to fetch.
+     */
+    orderBy?: VersionVehiculoOrderByWithRelationInput | VersionVehiculoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VersionVehiculos.
+     */
+    cursor?: VersionVehiculoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VersionVehiculos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VersionVehiculos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VersionVehiculos.
+     */
+    distinct?: VersionVehiculoScalarFieldEnum | VersionVehiculoScalarFieldEnum[]
+  }
+
+  /**
+   * VersionVehiculo findFirstOrThrow
+   */
+  export type VersionVehiculoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoInclude<ExtArgs> | null
+    /**
+     * Filter, which VersionVehiculo to fetch.
+     */
+    where?: VersionVehiculoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VersionVehiculos to fetch.
+     */
+    orderBy?: VersionVehiculoOrderByWithRelationInput | VersionVehiculoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for VersionVehiculos.
+     */
+    cursor?: VersionVehiculoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VersionVehiculos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VersionVehiculos.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of VersionVehiculos.
+     */
+    distinct?: VersionVehiculoScalarFieldEnum | VersionVehiculoScalarFieldEnum[]
+  }
+
+  /**
+   * VersionVehiculo findMany
+   */
+  export type VersionVehiculoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoInclude<ExtArgs> | null
+    /**
+     * Filter, which VersionVehiculos to fetch.
+     */
+    where?: VersionVehiculoWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of VersionVehiculos to fetch.
+     */
+    orderBy?: VersionVehiculoOrderByWithRelationInput | VersionVehiculoOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing VersionVehiculos.
+     */
+    cursor?: VersionVehiculoWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` VersionVehiculos from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` VersionVehiculos.
+     */
+    skip?: number
+    distinct?: VersionVehiculoScalarFieldEnum | VersionVehiculoScalarFieldEnum[]
+  }
+
+  /**
+   * VersionVehiculo create
+   */
+  export type VersionVehiculoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoInclude<ExtArgs> | null
+    /**
+     * The data needed to create a VersionVehiculo.
+     */
+    data: XOR<VersionVehiculoCreateInput, VersionVehiculoUncheckedCreateInput>
+  }
+
+  /**
+   * VersionVehiculo createMany
+   */
+  export type VersionVehiculoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many VersionVehiculos.
+     */
+    data: VersionVehiculoCreateManyInput | VersionVehiculoCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * VersionVehiculo createManyAndReturn
+   */
+  export type VersionVehiculoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * The data used to create many VersionVehiculos.
+     */
+    data: VersionVehiculoCreateManyInput | VersionVehiculoCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * VersionVehiculo update
+   */
+  export type VersionVehiculoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoInclude<ExtArgs> | null
+    /**
+     * The data needed to update a VersionVehiculo.
+     */
+    data: XOR<VersionVehiculoUpdateInput, VersionVehiculoUncheckedUpdateInput>
+    /**
+     * Choose, which VersionVehiculo to update.
+     */
+    where: VersionVehiculoWhereUniqueInput
+  }
+
+  /**
+   * VersionVehiculo updateMany
+   */
+  export type VersionVehiculoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update VersionVehiculos.
+     */
+    data: XOR<VersionVehiculoUpdateManyMutationInput, VersionVehiculoUncheckedUpdateManyInput>
+    /**
+     * Filter which VersionVehiculos to update
+     */
+    where?: VersionVehiculoWhereInput
+    /**
+     * Limit how many VersionVehiculos to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * VersionVehiculo updateManyAndReturn
+   */
+  export type VersionVehiculoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * The data used to update VersionVehiculos.
+     */
+    data: XOR<VersionVehiculoUpdateManyMutationInput, VersionVehiculoUncheckedUpdateManyInput>
+    /**
+     * Filter which VersionVehiculos to update
+     */
+    where?: VersionVehiculoWhereInput
+    /**
+     * Limit how many VersionVehiculos to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * VersionVehiculo upsert
+   */
+  export type VersionVehiculoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoInclude<ExtArgs> | null
+    /**
+     * The filter to search for the VersionVehiculo to update in case it exists.
+     */
+    where: VersionVehiculoWhereUniqueInput
+    /**
+     * In case the VersionVehiculo found by the `where` argument doesn't exist, create a new VersionVehiculo with this data.
+     */
+    create: XOR<VersionVehiculoCreateInput, VersionVehiculoUncheckedCreateInput>
+    /**
+     * In case the VersionVehiculo was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<VersionVehiculoUpdateInput, VersionVehiculoUncheckedUpdateInput>
+  }
+
+  /**
+   * VersionVehiculo delete
+   */
+  export type VersionVehiculoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoInclude<ExtArgs> | null
+    /**
+     * Filter which VersionVehiculo to delete.
+     */
+    where: VersionVehiculoWhereUniqueInput
+  }
+
+  /**
+   * VersionVehiculo deleteMany
+   */
+  export type VersionVehiculoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which VersionVehiculos to delete
+     */
+    where?: VersionVehiculoWhereInput
+    /**
+     * Limit how many VersionVehiculos to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * VersionVehiculo without action
+   */
+  export type VersionVehiculoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the VersionVehiculo
+     */
+    select?: VersionVehiculoSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the VersionVehiculo
+     */
+    omit?: VersionVehiculoOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: VersionVehiculoInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Seguro
    */
 
@@ -3594,34 +4936,40 @@ export namespace Prisma {
 
   export type SeguroAvgAggregateOutputType = {
     id: number | null
-    vehiculoId: number | null
     precio: number | null
+    version: number | null
   }
 
   export type SeguroSumAggregateOutputType = {
     id: number | null
-    vehiculoId: number | null
     precio: number | null
+    version: number | null
   }
 
   export type SeguroMinAggregateOutputType = {
     id: number | null
-    vehiculoId: number | null
-    compania: $Enums.CompaniaSeguro | null
+    vehiculoId: string | null
+    compania: $Enums.Compania | null
     precio: number | null
     fechaInicio: Date | null
     fechaVencimiento: Date | null
-    responsable: string | null
+    comentario: string | null
+    esActual: boolean | null
+    version: number | null
+    createdAt: Date | null
   }
 
   export type SeguroMaxAggregateOutputType = {
     id: number | null
-    vehiculoId: number | null
-    compania: $Enums.CompaniaSeguro | null
+    vehiculoId: string | null
+    compania: $Enums.Compania | null
     precio: number | null
     fechaInicio: Date | null
     fechaVencimiento: Date | null
-    responsable: string | null
+    comentario: string | null
+    esActual: boolean | null
+    version: number | null
+    createdAt: Date | null
   }
 
   export type SeguroCountAggregateOutputType = {
@@ -3631,21 +4979,24 @@ export namespace Prisma {
     precio: number
     fechaInicio: number
     fechaVencimiento: number
-    responsable: number
+    comentario: number
+    esActual: number
+    version: number
+    createdAt: number
     _all: number
   }
 
 
   export type SeguroAvgAggregateInputType = {
     id?: true
-    vehiculoId?: true
     precio?: true
+    version?: true
   }
 
   export type SeguroSumAggregateInputType = {
     id?: true
-    vehiculoId?: true
     precio?: true
+    version?: true
   }
 
   export type SeguroMinAggregateInputType = {
@@ -3655,7 +5006,10 @@ export namespace Prisma {
     precio?: true
     fechaInicio?: true
     fechaVencimiento?: true
-    responsable?: true
+    comentario?: true
+    esActual?: true
+    version?: true
+    createdAt?: true
   }
 
   export type SeguroMaxAggregateInputType = {
@@ -3665,7 +5019,10 @@ export namespace Prisma {
     precio?: true
     fechaInicio?: true
     fechaVencimiento?: true
-    responsable?: true
+    comentario?: true
+    esActual?: true
+    version?: true
+    createdAt?: true
   }
 
   export type SeguroCountAggregateInputType = {
@@ -3675,7 +5032,10 @@ export namespace Prisma {
     precio?: true
     fechaInicio?: true
     fechaVencimiento?: true
-    responsable?: true
+    comentario?: true
+    esActual?: true
+    version?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -3767,12 +5127,15 @@ export namespace Prisma {
 
   export type SeguroGroupByOutputType = {
     id: number
-    vehiculoId: number
-    compania: $Enums.CompaniaSeguro
+    vehiculoId: string
+    compania: $Enums.Compania
     precio: number
     fechaInicio: Date
     fechaVencimiento: Date
-    responsable: string | null
+    comentario: string | null
+    esActual: boolean
+    version: number
+    createdAt: Date
     _count: SeguroCountAggregateOutputType | null
     _avg: SeguroAvgAggregateOutputType | null
     _sum: SeguroSumAggregateOutputType | null
@@ -3801,7 +5164,10 @@ export namespace Prisma {
     precio?: boolean
     fechaInicio?: boolean
     fechaVencimiento?: boolean
-    responsable?: boolean
+    comentario?: boolean
+    esActual?: boolean
+    version?: boolean
+    createdAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seguro"]>
 
@@ -3812,7 +5178,10 @@ export namespace Prisma {
     precio?: boolean
     fechaInicio?: boolean
     fechaVencimiento?: boolean
-    responsable?: boolean
+    comentario?: boolean
+    esActual?: boolean
+    version?: boolean
+    createdAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seguro"]>
 
@@ -3823,7 +5192,10 @@ export namespace Prisma {
     precio?: boolean
     fechaInicio?: boolean
     fechaVencimiento?: boolean
-    responsable?: boolean
+    comentario?: boolean
+    esActual?: boolean
+    version?: boolean
+    createdAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seguro"]>
 
@@ -3834,10 +5206,13 @@ export namespace Prisma {
     precio?: boolean
     fechaInicio?: boolean
     fechaVencimiento?: boolean
-    responsable?: boolean
+    comentario?: boolean
+    esActual?: boolean
+    version?: boolean
+    createdAt?: boolean
   }
 
-  export type SeguroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehiculoId" | "compania" | "precio" | "fechaInicio" | "fechaVencimiento" | "responsable", ExtArgs["result"]["seguro"]>
+  export type SeguroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehiculoId" | "compania" | "precio" | "fechaInicio" | "fechaVencimiento" | "comentario" | "esActual" | "version" | "createdAt", ExtArgs["result"]["seguro"]>
   export type SeguroInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }
@@ -3855,12 +5230,15 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      vehiculoId: number
-      compania: $Enums.CompaniaSeguro
+      vehiculoId: string
+      compania: $Enums.Compania
       precio: number
       fechaInicio: Date
       fechaVencimiento: Date
-      responsable: string | null
+      comentario: string | null
+      esActual: boolean
+      version: number
+      createdAt: Date
     }, ExtArgs["result"]["seguro"]>
     composites: {}
   }
@@ -4286,12 +5664,15 @@ export namespace Prisma {
    */
   interface SeguroFieldRefs {
     readonly id: FieldRef<"Seguro", 'Int'>
-    readonly vehiculoId: FieldRef<"Seguro", 'Int'>
-    readonly compania: FieldRef<"Seguro", 'CompaniaSeguro'>
+    readonly vehiculoId: FieldRef<"Seguro", 'String'>
+    readonly compania: FieldRef<"Seguro", 'Compania'>
     readonly precio: FieldRef<"Seguro", 'Float'>
     readonly fechaInicio: FieldRef<"Seguro", 'DateTime'>
     readonly fechaVencimiento: FieldRef<"Seguro", 'DateTime'>
-    readonly responsable: FieldRef<"Seguro", 'String'>
+    readonly comentario: FieldRef<"Seguro", 'String'>
+    readonly esActual: FieldRef<"Seguro", 'Boolean'>
+    readonly version: FieldRef<"Seguro", 'Int'>
+    readonly createdAt: FieldRef<"Seguro", 'DateTime'>
   }
     
 
@@ -4723,7 +6104,6 @@ export namespace Prisma {
     entrada: number | null
     salida: number | null
     saldo: number | null
-    vehiculoId: number | null
   }
 
   export type GastoSumAggregateOutputType = {
@@ -4731,12 +6111,12 @@ export namespace Prisma {
     entrada: number | null
     salida: number | null
     saldo: number | null
-    vehiculoId: number | null
   }
 
   export type GastoMinAggregateOutputType = {
     id: number | null
     folio: string | null
+    vehiculoId: string | null
     fecha: Date | null
     razonSocial: string | null
     banco: string | null
@@ -4751,12 +6131,13 @@ export namespace Prisma {
     entrada: number | null
     salida: number | null
     saldo: number | null
-    vehiculoId: number | null
+    createdAt: Date | null
   }
 
   export type GastoMaxAggregateOutputType = {
     id: number | null
     folio: string | null
+    vehiculoId: string | null
     fecha: Date | null
     razonSocial: string | null
     banco: string | null
@@ -4771,12 +6152,13 @@ export namespace Prisma {
     entrada: number | null
     salida: number | null
     saldo: number | null
-    vehiculoId: number | null
+    createdAt: Date | null
   }
 
   export type GastoCountAggregateOutputType = {
     id: number
     folio: number
+    vehiculoId: number
     fecha: number
     razonSocial: number
     banco: number
@@ -4791,7 +6173,7 @@ export namespace Prisma {
     entrada: number
     salida: number
     saldo: number
-    vehiculoId: number
+    createdAt: number
     _all: number
   }
 
@@ -4801,7 +6183,6 @@ export namespace Prisma {
     entrada?: true
     salida?: true
     saldo?: true
-    vehiculoId?: true
   }
 
   export type GastoSumAggregateInputType = {
@@ -4809,12 +6190,12 @@ export namespace Prisma {
     entrada?: true
     salida?: true
     saldo?: true
-    vehiculoId?: true
   }
 
   export type GastoMinAggregateInputType = {
     id?: true
     folio?: true
+    vehiculoId?: true
     fecha?: true
     razonSocial?: true
     banco?: true
@@ -4829,12 +6210,13 @@ export namespace Prisma {
     entrada?: true
     salida?: true
     saldo?: true
-    vehiculoId?: true
+    createdAt?: true
   }
 
   export type GastoMaxAggregateInputType = {
     id?: true
     folio?: true
+    vehiculoId?: true
     fecha?: true
     razonSocial?: true
     banco?: true
@@ -4849,12 +6231,13 @@ export namespace Prisma {
     entrada?: true
     salida?: true
     saldo?: true
-    vehiculoId?: true
+    createdAt?: true
   }
 
   export type GastoCountAggregateInputType = {
     id?: true
     folio?: true
+    vehiculoId?: true
     fecha?: true
     razonSocial?: true
     banco?: true
@@ -4869,7 +6252,7 @@ export namespace Prisma {
     entrada?: true
     salida?: true
     saldo?: true
-    vehiculoId?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -4962,6 +6345,7 @@ export namespace Prisma {
   export type GastoGroupByOutputType = {
     id: number
     folio: string
+    vehiculoId: string | null
     fecha: Date
     razonSocial: string
     banco: string | null
@@ -4976,7 +6360,7 @@ export namespace Prisma {
     entrada: number | null
     salida: number | null
     saldo: number | null
-    vehiculoId: number | null
+    createdAt: Date
     _count: GastoCountAggregateOutputType | null
     _avg: GastoAvgAggregateOutputType | null
     _sum: GastoSumAggregateOutputType | null
@@ -5001,6 +6385,7 @@ export namespace Prisma {
   export type GastoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     folio?: boolean
+    vehiculoId?: boolean
     fecha?: boolean
     razonSocial?: boolean
     banco?: boolean
@@ -5015,7 +6400,7 @@ export namespace Prisma {
     entrada?: boolean
     salida?: boolean
     saldo?: boolean
-    vehiculoId?: boolean
+    createdAt?: boolean
     vehiculo?: boolean | Gasto$vehiculoArgs<ExtArgs>
     facturas?: boolean | Gasto$facturasArgs<ExtArgs>
     _count?: boolean | GastoCountOutputTypeDefaultArgs<ExtArgs>
@@ -5024,6 +6409,7 @@ export namespace Prisma {
   export type GastoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     folio?: boolean
+    vehiculoId?: boolean
     fecha?: boolean
     razonSocial?: boolean
     banco?: boolean
@@ -5038,13 +6424,14 @@ export namespace Prisma {
     entrada?: boolean
     salida?: boolean
     saldo?: boolean
-    vehiculoId?: boolean
+    createdAt?: boolean
     vehiculo?: boolean | Gasto$vehiculoArgs<ExtArgs>
   }, ExtArgs["result"]["gasto"]>
 
   export type GastoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     folio?: boolean
+    vehiculoId?: boolean
     fecha?: boolean
     razonSocial?: boolean
     banco?: boolean
@@ -5059,13 +6446,14 @@ export namespace Prisma {
     entrada?: boolean
     salida?: boolean
     saldo?: boolean
-    vehiculoId?: boolean
+    createdAt?: boolean
     vehiculo?: boolean | Gasto$vehiculoArgs<ExtArgs>
   }, ExtArgs["result"]["gasto"]>
 
   export type GastoSelectScalar = {
     id?: boolean
     folio?: boolean
+    vehiculoId?: boolean
     fecha?: boolean
     razonSocial?: boolean
     banco?: boolean
@@ -5080,10 +6468,10 @@ export namespace Prisma {
     entrada?: boolean
     salida?: boolean
     saldo?: boolean
-    vehiculoId?: boolean
+    createdAt?: boolean
   }
 
-  export type GastoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "folio" | "fecha" | "razonSocial" | "banco" | "tdc" | "proveedor" | "concepto" | "referencia" | "documento" | "proyecto" | "responsable" | "transferencia" | "entrada" | "salida" | "saldo" | "vehiculoId", ExtArgs["result"]["gasto"]>
+  export type GastoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "folio" | "vehiculoId" | "fecha" | "razonSocial" | "banco" | "tdc" | "proveedor" | "concepto" | "referencia" | "documento" | "proyecto" | "responsable" | "transferencia" | "entrada" | "salida" | "saldo" | "createdAt", ExtArgs["result"]["gasto"]>
   export type GastoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     vehiculo?: boolean | Gasto$vehiculoArgs<ExtArgs>
     facturas?: boolean | Gasto$facturasArgs<ExtArgs>
@@ -5105,6 +6493,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       folio: string
+      vehiculoId: string | null
       fecha: Date
       razonSocial: string
       banco: string | null
@@ -5119,7 +6508,7 @@ export namespace Prisma {
       entrada: number | null
       salida: number | null
       saldo: number | null
-      vehiculoId: number | null
+      createdAt: Date
     }, ExtArgs["result"]["gasto"]>
     composites: {}
   }
@@ -5547,6 +6936,7 @@ export namespace Prisma {
   interface GastoFieldRefs {
     readonly id: FieldRef<"Gasto", 'Int'>
     readonly folio: FieldRef<"Gasto", 'String'>
+    readonly vehiculoId: FieldRef<"Gasto", 'String'>
     readonly fecha: FieldRef<"Gasto", 'DateTime'>
     readonly razonSocial: FieldRef<"Gasto", 'String'>
     readonly banco: FieldRef<"Gasto", 'String'>
@@ -5561,7 +6951,7 @@ export namespace Prisma {
     readonly entrada: FieldRef<"Gasto", 'Float'>
     readonly salida: FieldRef<"Gasto", 'Float'>
     readonly saldo: FieldRef<"Gasto", 'Float'>
-    readonly vehiculoId: FieldRef<"Gasto", 'Int'>
+    readonly createdAt: FieldRef<"Gasto", 'DateTime'>
   }
     
 
@@ -6043,7 +7433,6 @@ export namespace Prisma {
     total: number | null
     tipoCambio: number | null
     gastoId: number | null
-    vehiculoId: number | null
   }
 
   export type FacturaSumAggregateOutputType = {
@@ -6058,7 +7447,6 @@ export namespace Prisma {
     total: number | null
     tipoCambio: number | null
     gastoId: number | null
-    vehiculoId: number | null
   }
 
   export type FacturaMinAggregateOutputType = {
@@ -6069,7 +7457,6 @@ export namespace Prisma {
     tipo: string | null
     fechaEmision: Date | null
     serie: string | null
-    folio: string | null
     rfcEmisor: string | null
     nombreEmisor: string | null
     rfcReceptor: string | null
@@ -6094,7 +7481,7 @@ export namespace Prisma {
     bancoPago: string | null
     folioPago: string | null
     gastoId: number | null
-    vehiculoId: number | null
+    createdAt: Date | null
   }
 
   export type FacturaMaxAggregateOutputType = {
@@ -6105,7 +7492,6 @@ export namespace Prisma {
     tipo: string | null
     fechaEmision: Date | null
     serie: string | null
-    folio: string | null
     rfcEmisor: string | null
     nombreEmisor: string | null
     rfcReceptor: string | null
@@ -6130,7 +7516,7 @@ export namespace Prisma {
     bancoPago: string | null
     folioPago: string | null
     gastoId: number | null
-    vehiculoId: number | null
+    createdAt: Date | null
   }
 
   export type FacturaCountAggregateOutputType = {
@@ -6141,7 +7527,6 @@ export namespace Prisma {
     tipo: number
     fechaEmision: number
     serie: number
-    folio: number
     rfcEmisor: number
     nombreEmisor: number
     rfcReceptor: number
@@ -6166,7 +7551,7 @@ export namespace Prisma {
     bancoPago: number
     folioPago: number
     gastoId: number
-    vehiculoId: number
+    createdAt: number
     _all: number
   }
 
@@ -6183,7 +7568,6 @@ export namespace Prisma {
     total?: true
     tipoCambio?: true
     gastoId?: true
-    vehiculoId?: true
   }
 
   export type FacturaSumAggregateInputType = {
@@ -6198,7 +7582,6 @@ export namespace Prisma {
     total?: true
     tipoCambio?: true
     gastoId?: true
-    vehiculoId?: true
   }
 
   export type FacturaMinAggregateInputType = {
@@ -6209,7 +7592,6 @@ export namespace Prisma {
     tipo?: true
     fechaEmision?: true
     serie?: true
-    folio?: true
     rfcEmisor?: true
     nombreEmisor?: true
     rfcReceptor?: true
@@ -6234,7 +7616,7 @@ export namespace Prisma {
     bancoPago?: true
     folioPago?: true
     gastoId?: true
-    vehiculoId?: true
+    createdAt?: true
   }
 
   export type FacturaMaxAggregateInputType = {
@@ -6245,7 +7627,6 @@ export namespace Prisma {
     tipo?: true
     fechaEmision?: true
     serie?: true
-    folio?: true
     rfcEmisor?: true
     nombreEmisor?: true
     rfcReceptor?: true
@@ -6270,7 +7651,7 @@ export namespace Prisma {
     bancoPago?: true
     folioPago?: true
     gastoId?: true
-    vehiculoId?: true
+    createdAt?: true
   }
 
   export type FacturaCountAggregateInputType = {
@@ -6281,7 +7662,6 @@ export namespace Prisma {
     tipo?: true
     fechaEmision?: true
     serie?: true
-    folio?: true
     rfcEmisor?: true
     nombreEmisor?: true
     rfcReceptor?: true
@@ -6306,7 +7686,7 @@ export namespace Prisma {
     bancoPago?: true
     folioPago?: true
     gastoId?: true
-    vehiculoId?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -6404,7 +7784,6 @@ export namespace Prisma {
     tipo: string | null
     fechaEmision: Date
     serie: string | null
-    folio: string | null
     rfcEmisor: string
     nombreEmisor: string
     rfcReceptor: string
@@ -6429,7 +7808,7 @@ export namespace Prisma {
     bancoPago: string | null
     folioPago: string | null
     gastoId: number | null
-    vehiculoId: number | null
+    createdAt: Date
     _count: FacturaCountAggregateOutputType | null
     _avg: FacturaAvgAggregateOutputType | null
     _sum: FacturaSumAggregateOutputType | null
@@ -6459,7 +7838,6 @@ export namespace Prisma {
     tipo?: boolean
     fechaEmision?: boolean
     serie?: boolean
-    folio?: boolean
     rfcEmisor?: boolean
     nombreEmisor?: boolean
     rfcReceptor?: boolean
@@ -6484,9 +7862,8 @@ export namespace Prisma {
     bancoPago?: boolean
     folioPago?: boolean
     gastoId?: boolean
-    vehiculoId?: boolean
+    createdAt?: boolean
     gasto?: boolean | Factura$gastoArgs<ExtArgs>
-    vehiculo?: boolean | Factura$vehiculoArgs<ExtArgs>
   }, ExtArgs["result"]["factura"]>
 
   export type FacturaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6497,7 +7874,6 @@ export namespace Prisma {
     tipo?: boolean
     fechaEmision?: boolean
     serie?: boolean
-    folio?: boolean
     rfcEmisor?: boolean
     nombreEmisor?: boolean
     rfcReceptor?: boolean
@@ -6522,9 +7898,8 @@ export namespace Prisma {
     bancoPago?: boolean
     folioPago?: boolean
     gastoId?: boolean
-    vehiculoId?: boolean
+    createdAt?: boolean
     gasto?: boolean | Factura$gastoArgs<ExtArgs>
-    vehiculo?: boolean | Factura$vehiculoArgs<ExtArgs>
   }, ExtArgs["result"]["factura"]>
 
   export type FacturaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6535,7 +7910,6 @@ export namespace Prisma {
     tipo?: boolean
     fechaEmision?: boolean
     serie?: boolean
-    folio?: boolean
     rfcEmisor?: boolean
     nombreEmisor?: boolean
     rfcReceptor?: boolean
@@ -6560,9 +7934,8 @@ export namespace Prisma {
     bancoPago?: boolean
     folioPago?: boolean
     gastoId?: boolean
-    vehiculoId?: boolean
+    createdAt?: boolean
     gasto?: boolean | Factura$gastoArgs<ExtArgs>
-    vehiculo?: boolean | Factura$vehiculoArgs<ExtArgs>
   }, ExtArgs["result"]["factura"]>
 
   export type FacturaSelectScalar = {
@@ -6573,7 +7946,6 @@ export namespace Prisma {
     tipo?: boolean
     fechaEmision?: boolean
     serie?: boolean
-    folio?: boolean
     rfcEmisor?: boolean
     nombreEmisor?: boolean
     rfcReceptor?: boolean
@@ -6598,28 +7970,24 @@ export namespace Prisma {
     bancoPago?: boolean
     folioPago?: boolean
     gastoId?: boolean
-    vehiculoId?: boolean
+    createdAt?: boolean
   }
 
-  export type FacturaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "estadoSAT" | "tipoComprobante" | "tipo" | "fechaEmision" | "serie" | "folio" | "rfcEmisor" | "nombreEmisor" | "rfcReceptor" | "nombreReceptor" | "usoCFDI" | "subTotal" | "descuento" | "totalIEPS" | "iva16" | "retenidoIVA" | "retenidoISR" | "ish" | "total" | "moneda" | "tipoCambio" | "formaPago" | "metodoPago" | "conceptos" | "regimenFiscalReceptor" | "domicilioFiscalReceptor" | "fechaPago" | "bancoPago" | "folioPago" | "gastoId" | "vehiculoId", ExtArgs["result"]["factura"]>
+  export type FacturaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "estadoSAT" | "tipoComprobante" | "tipo" | "fechaEmision" | "serie" | "rfcEmisor" | "nombreEmisor" | "rfcReceptor" | "nombreReceptor" | "usoCFDI" | "subTotal" | "descuento" | "totalIEPS" | "iva16" | "retenidoIVA" | "retenidoISR" | "ish" | "total" | "moneda" | "tipoCambio" | "formaPago" | "metodoPago" | "conceptos" | "regimenFiscalReceptor" | "domicilioFiscalReceptor" | "fechaPago" | "bancoPago" | "folioPago" | "gastoId" | "createdAt", ExtArgs["result"]["factura"]>
   export type FacturaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     gasto?: boolean | Factura$gastoArgs<ExtArgs>
-    vehiculo?: boolean | Factura$vehiculoArgs<ExtArgs>
   }
   export type FacturaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     gasto?: boolean | Factura$gastoArgs<ExtArgs>
-    vehiculo?: boolean | Factura$vehiculoArgs<ExtArgs>
   }
   export type FacturaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     gasto?: boolean | Factura$gastoArgs<ExtArgs>
-    vehiculo?: boolean | Factura$vehiculoArgs<ExtArgs>
   }
 
   export type $FacturaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Factura"
     objects: {
       gasto: Prisma.$GastoPayload<ExtArgs> | null
-      vehiculo: Prisma.$VehiculoPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6629,7 +7997,6 @@ export namespace Prisma {
       tipo: string | null
       fechaEmision: Date
       serie: string | null
-      folio: string | null
       rfcEmisor: string
       nombreEmisor: string
       rfcReceptor: string
@@ -6654,7 +8021,7 @@ export namespace Prisma {
       bancoPago: string | null
       folioPago: string | null
       gastoId: number | null
-      vehiculoId: number | null
+      createdAt: Date
     }, ExtArgs["result"]["factura"]>
     composites: {}
   }
@@ -7050,7 +8417,6 @@ export namespace Prisma {
   export interface Prisma__FacturaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     gasto<T extends Factura$gastoArgs<ExtArgs> = {}>(args?: Subset<T, Factura$gastoArgs<ExtArgs>>): Prisma__GastoClient<$Result.GetResult<Prisma.$GastoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    vehiculo<T extends Factura$vehiculoArgs<ExtArgs> = {}>(args?: Subset<T, Factura$vehiculoArgs<ExtArgs>>): Prisma__VehiculoClient<$Result.GetResult<Prisma.$VehiculoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7087,7 +8453,6 @@ export namespace Prisma {
     readonly tipo: FieldRef<"Factura", 'String'>
     readonly fechaEmision: FieldRef<"Factura", 'DateTime'>
     readonly serie: FieldRef<"Factura", 'String'>
-    readonly folio: FieldRef<"Factura", 'String'>
     readonly rfcEmisor: FieldRef<"Factura", 'String'>
     readonly nombreEmisor: FieldRef<"Factura", 'String'>
     readonly rfcReceptor: FieldRef<"Factura", 'String'>
@@ -7112,7 +8477,7 @@ export namespace Prisma {
     readonly bancoPago: FieldRef<"Factura", 'String'>
     readonly folioPago: FieldRef<"Factura", 'String'>
     readonly gastoId: FieldRef<"Factura", 'Int'>
-    readonly vehiculoId: FieldRef<"Factura", 'Int'>
+    readonly createdAt: FieldRef<"Factura", 'DateTime'>
   }
     
 
@@ -7528,25 +8893,6 @@ export namespace Prisma {
   }
 
   /**
-   * Factura.vehiculo
-   */
-  export type Factura$vehiculoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Vehiculo
-     */
-    select?: VehiculoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Vehiculo
-     */
-    omit?: VehiculoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VehiculoInclude<ExtArgs> | null
-    where?: VehiculoWhereInput
-  }
-
-  /**
    * Factura without action
    */
   export type FacturaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7583,7 +8929,14 @@ export namespace Prisma {
     id: 'id',
     user: 'user',
     password: 'password',
-    role: 'role'
+    role: 'role',
+    canViewSeguros: 'canViewSeguros',
+    canViewGastos: 'canViewGastos',
+    canViewFacturas: 'canViewFacturas',
+    canEditSeguros: 'canEditSeguros',
+    canEditGastos: 'canEditGastos',
+    canEditFacturas: 'canEditFacturas',
+    canManageUsers: 'canManageUsers'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -7592,19 +8945,35 @@ export namespace Prisma {
   export const VehiculoScalarFieldEnum: {
     id: 'id',
     placa: 'placa',
+    versionActual: 'versionActual',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type VehiculoScalarFieldEnum = (typeof VehiculoScalarFieldEnum)[keyof typeof VehiculoScalarFieldEnum]
+
+
+  export const VersionVehiculoScalarFieldEnum: {
+    id: 'id',
+    vehiculoId: 'vehiculoId',
+    placa: 'placa',
+    placaAnterior: 'placaAnterior',
     marca: 'marca',
     tipo: 'tipo',
-    color: 'color',
     modelo: 'modelo',
+    color: 'color',
     serie: 'serie',
     motor: 'motor',
     proyecto: 'proyecto',
     ubicacion: 'ubicacion',
-    placaAnterior: 'placaAnterior',
-    comentario: 'comentario'
+    version: 'version',
+    esActual: 'esActual',
+    fechaCambio: 'fechaCambio',
+    motivoCambio: 'motivoCambio',
+    usuarioCambio: 'usuarioCambio'
   };
 
-  export type VehiculoScalarFieldEnum = (typeof VehiculoScalarFieldEnum)[keyof typeof VehiculoScalarFieldEnum]
+  export type VersionVehiculoScalarFieldEnum = (typeof VersionVehiculoScalarFieldEnum)[keyof typeof VersionVehiculoScalarFieldEnum]
 
 
   export const SeguroScalarFieldEnum: {
@@ -7614,7 +8983,10 @@ export namespace Prisma {
     precio: 'precio',
     fechaInicio: 'fechaInicio',
     fechaVencimiento: 'fechaVencimiento',
-    responsable: 'responsable'
+    comentario: 'comentario',
+    esActual: 'esActual',
+    version: 'version',
+    createdAt: 'createdAt'
   };
 
   export type SeguroScalarFieldEnum = (typeof SeguroScalarFieldEnum)[keyof typeof SeguroScalarFieldEnum]
@@ -7623,6 +8995,7 @@ export namespace Prisma {
   export const GastoScalarFieldEnum: {
     id: 'id',
     folio: 'folio',
+    vehiculoId: 'vehiculoId',
     fecha: 'fecha',
     razonSocial: 'razonSocial',
     banco: 'banco',
@@ -7637,7 +9010,7 @@ export namespace Prisma {
     entrada: 'entrada',
     salida: 'salida',
     saldo: 'saldo',
-    vehiculoId: 'vehiculoId'
+    createdAt: 'createdAt'
   };
 
   export type GastoScalarFieldEnum = (typeof GastoScalarFieldEnum)[keyof typeof GastoScalarFieldEnum]
@@ -7651,7 +9024,6 @@ export namespace Prisma {
     tipo: 'tipo',
     fechaEmision: 'fechaEmision',
     serie: 'serie',
-    folio: 'folio',
     rfcEmisor: 'rfcEmisor',
     nombreEmisor: 'nombreEmisor',
     rfcReceptor: 'rfcReceptor',
@@ -7676,7 +9048,7 @@ export namespace Prisma {
     bancoPago: 'bancoPago',
     folioPago: 'folioPago',
     gastoId: 'gastoId',
-    vehiculoId: 'vehiculoId'
+    createdAt: 'createdAt'
   };
 
   export type FacturaScalarFieldEnum = (typeof FacturaScalarFieldEnum)[keyof typeof FacturaScalarFieldEnum]
@@ -7740,6 +9112,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -7750,34 +9129,6 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'CompaniaSeguro'
-   */
-  export type EnumCompaniaSeguroFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CompaniaSeguro'>
-    
-
-
-  /**
-   * Reference to a field of type 'CompaniaSeguro[]'
-   */
-  export type ListEnumCompaniaSeguroFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CompaniaSeguro[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -7793,6 +9144,34 @@ export namespace Prisma {
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Compania'
+   */
+  export type EnumCompaniaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Compania'>
+    
+
+
+  /**
+   * Reference to a field of type 'Compania[]'
+   */
+  export type ListEnumCompaniaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Compania[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -7806,6 +9185,13 @@ export namespace Prisma {
     user?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
+    canViewSeguros?: BoolFilter<"User"> | boolean
+    canViewGastos?: BoolFilter<"User"> | boolean
+    canViewFacturas?: BoolFilter<"User"> | boolean
+    canEditSeguros?: BoolFilter<"User"> | boolean
+    canEditGastos?: BoolFilter<"User"> | boolean
+    canEditFacturas?: BoolFilter<"User"> | boolean
+    canManageUsers?: BoolFilter<"User"> | boolean
   }
 
   export type UserOrderByWithRelationInput = {
@@ -7813,6 +9199,13 @@ export namespace Prisma {
     user?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    canViewSeguros?: SortOrder
+    canViewGastos?: SortOrder
+    canViewFacturas?: SortOrder
+    canEditSeguros?: SortOrder
+    canEditGastos?: SortOrder
+    canEditFacturas?: SortOrder
+    canManageUsers?: SortOrder
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -7823,6 +9216,13 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     password?: StringFilter<"User"> | string
     role?: EnumRoleFilter<"User"> | $Enums.Role
+    canViewSeguros?: BoolFilter<"User"> | boolean
+    canViewGastos?: BoolFilter<"User"> | boolean
+    canViewFacturas?: BoolFilter<"User"> | boolean
+    canEditSeguros?: BoolFilter<"User"> | boolean
+    canEditGastos?: BoolFilter<"User"> | boolean
+    canEditFacturas?: BoolFilter<"User"> | boolean
+    canManageUsers?: BoolFilter<"User"> | boolean
   }, "id" | "user">
 
   export type UserOrderByWithAggregationInput = {
@@ -7830,6 +9230,13 @@ export namespace Prisma {
     user?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    canViewSeguros?: SortOrder
+    canViewGastos?: SortOrder
+    canViewFacturas?: SortOrder
+    canEditSeguros?: SortOrder
+    canEditGastos?: SortOrder
+    canEditFacturas?: SortOrder
+    canManageUsers?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -7843,81 +9250,60 @@ export namespace Prisma {
     user?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
+    canViewSeguros?: BoolWithAggregatesFilter<"User"> | boolean
+    canViewGastos?: BoolWithAggregatesFilter<"User"> | boolean
+    canViewFacturas?: BoolWithAggregatesFilter<"User"> | boolean
+    canEditSeguros?: BoolWithAggregatesFilter<"User"> | boolean
+    canEditGastos?: BoolWithAggregatesFilter<"User"> | boolean
+    canEditFacturas?: BoolWithAggregatesFilter<"User"> | boolean
+    canManageUsers?: BoolWithAggregatesFilter<"User"> | boolean
   }
 
   export type VehiculoWhereInput = {
     AND?: VehiculoWhereInput | VehiculoWhereInput[]
     OR?: VehiculoWhereInput[]
     NOT?: VehiculoWhereInput | VehiculoWhereInput[]
-    id?: IntFilter<"Vehiculo"> | number
+    id?: StringFilter<"Vehiculo"> | string
     placa?: StringFilter<"Vehiculo"> | string
-    marca?: StringFilter<"Vehiculo"> | string
-    tipo?: StringFilter<"Vehiculo"> | string
-    color?: StringFilter<"Vehiculo"> | string
-    modelo?: IntFilter<"Vehiculo"> | number
-    serie?: StringFilter<"Vehiculo"> | string
-    motor?: StringNullableFilter<"Vehiculo"> | string | null
-    proyecto?: StringNullableFilter<"Vehiculo"> | string | null
-    ubicacion?: StringNullableFilter<"Vehiculo"> | string | null
-    placaAnterior?: StringNullableFilter<"Vehiculo"> | string | null
-    comentario?: StringNullableFilter<"Vehiculo"> | string | null
+    versionActual?: IntFilter<"Vehiculo"> | number
+    createdAt?: DateTimeFilter<"Vehiculo"> | Date | string
+    updatedAt?: DateTimeFilter<"Vehiculo"> | Date | string
+    versiones?: VersionVehiculoListRelationFilter
     seguros?: SeguroListRelationFilter
     gastos?: GastoListRelationFilter
-    facturas?: FacturaListRelationFilter
   }
 
   export type VehiculoOrderByWithRelationInput = {
     id?: SortOrder
     placa?: SortOrder
-    marca?: SortOrder
-    tipo?: SortOrder
-    color?: SortOrder
-    modelo?: SortOrder
-    serie?: SortOrder
-    motor?: SortOrderInput | SortOrder
-    proyecto?: SortOrderInput | SortOrder
-    ubicacion?: SortOrderInput | SortOrder
-    placaAnterior?: SortOrderInput | SortOrder
-    comentario?: SortOrderInput | SortOrder
+    versionActual?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    versiones?: VersionVehiculoOrderByRelationAggregateInput
     seguros?: SeguroOrderByRelationAggregateInput
     gastos?: GastoOrderByRelationAggregateInput
-    facturas?: FacturaOrderByRelationAggregateInput
   }
 
   export type VehiculoWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    id?: string
     placa?: string
-    serie?: string
     AND?: VehiculoWhereInput | VehiculoWhereInput[]
     OR?: VehiculoWhereInput[]
     NOT?: VehiculoWhereInput | VehiculoWhereInput[]
-    marca?: StringFilter<"Vehiculo"> | string
-    tipo?: StringFilter<"Vehiculo"> | string
-    color?: StringFilter<"Vehiculo"> | string
-    modelo?: IntFilter<"Vehiculo"> | number
-    motor?: StringNullableFilter<"Vehiculo"> | string | null
-    proyecto?: StringNullableFilter<"Vehiculo"> | string | null
-    ubicacion?: StringNullableFilter<"Vehiculo"> | string | null
-    placaAnterior?: StringNullableFilter<"Vehiculo"> | string | null
-    comentario?: StringNullableFilter<"Vehiculo"> | string | null
+    versionActual?: IntFilter<"Vehiculo"> | number
+    createdAt?: DateTimeFilter<"Vehiculo"> | Date | string
+    updatedAt?: DateTimeFilter<"Vehiculo"> | Date | string
+    versiones?: VersionVehiculoListRelationFilter
     seguros?: SeguroListRelationFilter
     gastos?: GastoListRelationFilter
-    facturas?: FacturaListRelationFilter
-  }, "id" | "placa" | "serie">
+  }, "id" | "placa">
 
   export type VehiculoOrderByWithAggregationInput = {
     id?: SortOrder
     placa?: SortOrder
-    marca?: SortOrder
-    tipo?: SortOrder
-    color?: SortOrder
-    modelo?: SortOrder
-    serie?: SortOrder
-    motor?: SortOrderInput | SortOrder
-    proyecto?: SortOrderInput | SortOrder
-    ubicacion?: SortOrderInput | SortOrder
-    placaAnterior?: SortOrderInput | SortOrder
-    comentario?: SortOrderInput | SortOrder
+    versionActual?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: VehiculoCountOrderByAggregateInput
     _avg?: VehiculoAvgOrderByAggregateInput
     _max?: VehiculoMaxOrderByAggregateInput
@@ -7929,18 +9315,128 @@ export namespace Prisma {
     AND?: VehiculoScalarWhereWithAggregatesInput | VehiculoScalarWhereWithAggregatesInput[]
     OR?: VehiculoScalarWhereWithAggregatesInput[]
     NOT?: VehiculoScalarWhereWithAggregatesInput | VehiculoScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Vehiculo"> | number
+    id?: StringWithAggregatesFilter<"Vehiculo"> | string
     placa?: StringWithAggregatesFilter<"Vehiculo"> | string
-    marca?: StringWithAggregatesFilter<"Vehiculo"> | string
-    tipo?: StringWithAggregatesFilter<"Vehiculo"> | string
-    color?: StringWithAggregatesFilter<"Vehiculo"> | string
-    modelo?: IntWithAggregatesFilter<"Vehiculo"> | number
-    serie?: StringWithAggregatesFilter<"Vehiculo"> | string
-    motor?: StringNullableWithAggregatesFilter<"Vehiculo"> | string | null
-    proyecto?: StringNullableWithAggregatesFilter<"Vehiculo"> | string | null
-    ubicacion?: StringNullableWithAggregatesFilter<"Vehiculo"> | string | null
-    placaAnterior?: StringNullableWithAggregatesFilter<"Vehiculo"> | string | null
-    comentario?: StringNullableWithAggregatesFilter<"Vehiculo"> | string | null
+    versionActual?: IntWithAggregatesFilter<"Vehiculo"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Vehiculo"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Vehiculo"> | Date | string
+  }
+
+  export type VersionVehiculoWhereInput = {
+    AND?: VersionVehiculoWhereInput | VersionVehiculoWhereInput[]
+    OR?: VersionVehiculoWhereInput[]
+    NOT?: VersionVehiculoWhereInput | VersionVehiculoWhereInput[]
+    id?: IntFilter<"VersionVehiculo"> | number
+    vehiculoId?: StringFilter<"VersionVehiculo"> | string
+    placa?: StringFilter<"VersionVehiculo"> | string
+    placaAnterior?: StringNullableFilter<"VersionVehiculo"> | string | null
+    marca?: StringFilter<"VersionVehiculo"> | string
+    tipo?: StringFilter<"VersionVehiculo"> | string
+    modelo?: StringFilter<"VersionVehiculo"> | string
+    color?: StringFilter<"VersionVehiculo"> | string
+    serie?: StringFilter<"VersionVehiculo"> | string
+    motor?: StringNullableFilter<"VersionVehiculo"> | string | null
+    proyecto?: StringNullableFilter<"VersionVehiculo"> | string | null
+    ubicacion?: StringNullableFilter<"VersionVehiculo"> | string | null
+    version?: IntFilter<"VersionVehiculo"> | number
+    esActual?: BoolFilter<"VersionVehiculo"> | boolean
+    fechaCambio?: DateTimeFilter<"VersionVehiculo"> | Date | string
+    motivoCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
+    usuarioCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
+    vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
+  }
+
+  export type VersionVehiculoOrderByWithRelationInput = {
+    id?: SortOrder
+    vehiculoId?: SortOrder
+    placa?: SortOrder
+    placaAnterior?: SortOrderInput | SortOrder
+    marca?: SortOrder
+    tipo?: SortOrder
+    modelo?: SortOrder
+    color?: SortOrder
+    serie?: SortOrder
+    motor?: SortOrderInput | SortOrder
+    proyecto?: SortOrderInput | SortOrder
+    ubicacion?: SortOrderInput | SortOrder
+    version?: SortOrder
+    esActual?: SortOrder
+    fechaCambio?: SortOrder
+    motivoCambio?: SortOrderInput | SortOrder
+    usuarioCambio?: SortOrderInput | SortOrder
+    vehiculo?: VehiculoOrderByWithRelationInput
+  }
+
+  export type VersionVehiculoWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: VersionVehiculoWhereInput | VersionVehiculoWhereInput[]
+    OR?: VersionVehiculoWhereInput[]
+    NOT?: VersionVehiculoWhereInput | VersionVehiculoWhereInput[]
+    vehiculoId?: StringFilter<"VersionVehiculo"> | string
+    placa?: StringFilter<"VersionVehiculo"> | string
+    placaAnterior?: StringNullableFilter<"VersionVehiculo"> | string | null
+    marca?: StringFilter<"VersionVehiculo"> | string
+    tipo?: StringFilter<"VersionVehiculo"> | string
+    modelo?: StringFilter<"VersionVehiculo"> | string
+    color?: StringFilter<"VersionVehiculo"> | string
+    serie?: StringFilter<"VersionVehiculo"> | string
+    motor?: StringNullableFilter<"VersionVehiculo"> | string | null
+    proyecto?: StringNullableFilter<"VersionVehiculo"> | string | null
+    ubicacion?: StringNullableFilter<"VersionVehiculo"> | string | null
+    version?: IntFilter<"VersionVehiculo"> | number
+    esActual?: BoolFilter<"VersionVehiculo"> | boolean
+    fechaCambio?: DateTimeFilter<"VersionVehiculo"> | Date | string
+    motivoCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
+    usuarioCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
+    vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
+  }, "id">
+
+  export type VersionVehiculoOrderByWithAggregationInput = {
+    id?: SortOrder
+    vehiculoId?: SortOrder
+    placa?: SortOrder
+    placaAnterior?: SortOrderInput | SortOrder
+    marca?: SortOrder
+    tipo?: SortOrder
+    modelo?: SortOrder
+    color?: SortOrder
+    serie?: SortOrder
+    motor?: SortOrderInput | SortOrder
+    proyecto?: SortOrderInput | SortOrder
+    ubicacion?: SortOrderInput | SortOrder
+    version?: SortOrder
+    esActual?: SortOrder
+    fechaCambio?: SortOrder
+    motivoCambio?: SortOrderInput | SortOrder
+    usuarioCambio?: SortOrderInput | SortOrder
+    _count?: VersionVehiculoCountOrderByAggregateInput
+    _avg?: VersionVehiculoAvgOrderByAggregateInput
+    _max?: VersionVehiculoMaxOrderByAggregateInput
+    _min?: VersionVehiculoMinOrderByAggregateInput
+    _sum?: VersionVehiculoSumOrderByAggregateInput
+  }
+
+  export type VersionVehiculoScalarWhereWithAggregatesInput = {
+    AND?: VersionVehiculoScalarWhereWithAggregatesInput | VersionVehiculoScalarWhereWithAggregatesInput[]
+    OR?: VersionVehiculoScalarWhereWithAggregatesInput[]
+    NOT?: VersionVehiculoScalarWhereWithAggregatesInput | VersionVehiculoScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"VersionVehiculo"> | number
+    vehiculoId?: StringWithAggregatesFilter<"VersionVehiculo"> | string
+    placa?: StringWithAggregatesFilter<"VersionVehiculo"> | string
+    placaAnterior?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
+    marca?: StringWithAggregatesFilter<"VersionVehiculo"> | string
+    tipo?: StringWithAggregatesFilter<"VersionVehiculo"> | string
+    modelo?: StringWithAggregatesFilter<"VersionVehiculo"> | string
+    color?: StringWithAggregatesFilter<"VersionVehiculo"> | string
+    serie?: StringWithAggregatesFilter<"VersionVehiculo"> | string
+    motor?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
+    proyecto?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
+    ubicacion?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
+    version?: IntWithAggregatesFilter<"VersionVehiculo"> | number
+    esActual?: BoolWithAggregatesFilter<"VersionVehiculo"> | boolean
+    fechaCambio?: DateTimeWithAggregatesFilter<"VersionVehiculo"> | Date | string
+    motivoCambio?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
+    usuarioCambio?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
   }
 
   export type SeguroWhereInput = {
@@ -7948,12 +9444,15 @@ export namespace Prisma {
     OR?: SeguroWhereInput[]
     NOT?: SeguroWhereInput | SeguroWhereInput[]
     id?: IntFilter<"Seguro"> | number
-    vehiculoId?: IntFilter<"Seguro"> | number
-    compania?: EnumCompaniaSeguroFilter<"Seguro"> | $Enums.CompaniaSeguro
+    vehiculoId?: StringFilter<"Seguro"> | string
+    compania?: EnumCompaniaFilter<"Seguro"> | $Enums.Compania
     precio?: FloatFilter<"Seguro"> | number
     fechaInicio?: DateTimeFilter<"Seguro"> | Date | string
     fechaVencimiento?: DateTimeFilter<"Seguro"> | Date | string
-    responsable?: StringNullableFilter<"Seguro"> | string | null
+    comentario?: StringNullableFilter<"Seguro"> | string | null
+    esActual?: BoolFilter<"Seguro"> | boolean
+    version?: IntFilter<"Seguro"> | number
+    createdAt?: DateTimeFilter<"Seguro"> | Date | string
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
   }
 
@@ -7964,7 +9463,10 @@ export namespace Prisma {
     precio?: SortOrder
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
-    responsable?: SortOrderInput | SortOrder
+    comentario?: SortOrderInput | SortOrder
+    esActual?: SortOrder
+    version?: SortOrder
+    createdAt?: SortOrder
     vehiculo?: VehiculoOrderByWithRelationInput
   }
 
@@ -7973,12 +9475,15 @@ export namespace Prisma {
     AND?: SeguroWhereInput | SeguroWhereInput[]
     OR?: SeguroWhereInput[]
     NOT?: SeguroWhereInput | SeguroWhereInput[]
-    vehiculoId?: IntFilter<"Seguro"> | number
-    compania?: EnumCompaniaSeguroFilter<"Seguro"> | $Enums.CompaniaSeguro
+    vehiculoId?: StringFilter<"Seguro"> | string
+    compania?: EnumCompaniaFilter<"Seguro"> | $Enums.Compania
     precio?: FloatFilter<"Seguro"> | number
     fechaInicio?: DateTimeFilter<"Seguro"> | Date | string
     fechaVencimiento?: DateTimeFilter<"Seguro"> | Date | string
-    responsable?: StringNullableFilter<"Seguro"> | string | null
+    comentario?: StringNullableFilter<"Seguro"> | string | null
+    esActual?: BoolFilter<"Seguro"> | boolean
+    version?: IntFilter<"Seguro"> | number
+    createdAt?: DateTimeFilter<"Seguro"> | Date | string
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
   }, "id">
 
@@ -7989,7 +9494,10 @@ export namespace Prisma {
     precio?: SortOrder
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
-    responsable?: SortOrderInput | SortOrder
+    comentario?: SortOrderInput | SortOrder
+    esActual?: SortOrder
+    version?: SortOrder
+    createdAt?: SortOrder
     _count?: SeguroCountOrderByAggregateInput
     _avg?: SeguroAvgOrderByAggregateInput
     _max?: SeguroMaxOrderByAggregateInput
@@ -8002,12 +9510,15 @@ export namespace Prisma {
     OR?: SeguroScalarWhereWithAggregatesInput[]
     NOT?: SeguroScalarWhereWithAggregatesInput | SeguroScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Seguro"> | number
-    vehiculoId?: IntWithAggregatesFilter<"Seguro"> | number
-    compania?: EnumCompaniaSeguroWithAggregatesFilter<"Seguro"> | $Enums.CompaniaSeguro
+    vehiculoId?: StringWithAggregatesFilter<"Seguro"> | string
+    compania?: EnumCompaniaWithAggregatesFilter<"Seguro"> | $Enums.Compania
     precio?: FloatWithAggregatesFilter<"Seguro"> | number
     fechaInicio?: DateTimeWithAggregatesFilter<"Seguro"> | Date | string
     fechaVencimiento?: DateTimeWithAggregatesFilter<"Seguro"> | Date | string
-    responsable?: StringNullableWithAggregatesFilter<"Seguro"> | string | null
+    comentario?: StringNullableWithAggregatesFilter<"Seguro"> | string | null
+    esActual?: BoolWithAggregatesFilter<"Seguro"> | boolean
+    version?: IntWithAggregatesFilter<"Seguro"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Seguro"> | Date | string
   }
 
   export type GastoWhereInput = {
@@ -8016,6 +9527,7 @@ export namespace Prisma {
     NOT?: GastoWhereInput | GastoWhereInput[]
     id?: IntFilter<"Gasto"> | number
     folio?: StringFilter<"Gasto"> | string
+    vehiculoId?: StringNullableFilter<"Gasto"> | string | null
     fecha?: DateTimeFilter<"Gasto"> | Date | string
     razonSocial?: StringFilter<"Gasto"> | string
     banco?: StringNullableFilter<"Gasto"> | string | null
@@ -8030,7 +9542,7 @@ export namespace Prisma {
     entrada?: FloatNullableFilter<"Gasto"> | number | null
     salida?: FloatNullableFilter<"Gasto"> | number | null
     saldo?: FloatNullableFilter<"Gasto"> | number | null
-    vehiculoId?: IntNullableFilter<"Gasto"> | number | null
+    createdAt?: DateTimeFilter<"Gasto"> | Date | string
     vehiculo?: XOR<VehiculoNullableScalarRelationFilter, VehiculoWhereInput> | null
     facturas?: FacturaListRelationFilter
   }
@@ -8038,6 +9550,7 @@ export namespace Prisma {
   export type GastoOrderByWithRelationInput = {
     id?: SortOrder
     folio?: SortOrder
+    vehiculoId?: SortOrderInput | SortOrder
     fecha?: SortOrder
     razonSocial?: SortOrder
     banco?: SortOrderInput | SortOrder
@@ -8052,17 +9565,18 @@ export namespace Prisma {
     entrada?: SortOrderInput | SortOrder
     salida?: SortOrderInput | SortOrder
     saldo?: SortOrderInput | SortOrder
-    vehiculoId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     vehiculo?: VehiculoOrderByWithRelationInput
     facturas?: FacturaOrderByRelationAggregateInput
   }
 
   export type GastoWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    folio?: string
     AND?: GastoWhereInput | GastoWhereInput[]
     OR?: GastoWhereInput[]
     NOT?: GastoWhereInput | GastoWhereInput[]
+    folio?: StringFilter<"Gasto"> | string
+    vehiculoId?: StringNullableFilter<"Gasto"> | string | null
     fecha?: DateTimeFilter<"Gasto"> | Date | string
     razonSocial?: StringFilter<"Gasto"> | string
     banco?: StringNullableFilter<"Gasto"> | string | null
@@ -8077,14 +9591,15 @@ export namespace Prisma {
     entrada?: FloatNullableFilter<"Gasto"> | number | null
     salida?: FloatNullableFilter<"Gasto"> | number | null
     saldo?: FloatNullableFilter<"Gasto"> | number | null
-    vehiculoId?: IntNullableFilter<"Gasto"> | number | null
+    createdAt?: DateTimeFilter<"Gasto"> | Date | string
     vehiculo?: XOR<VehiculoNullableScalarRelationFilter, VehiculoWhereInput> | null
     facturas?: FacturaListRelationFilter
-  }, "id" | "folio">
+  }, "id">
 
   export type GastoOrderByWithAggregationInput = {
     id?: SortOrder
     folio?: SortOrder
+    vehiculoId?: SortOrderInput | SortOrder
     fecha?: SortOrder
     razonSocial?: SortOrder
     banco?: SortOrderInput | SortOrder
@@ -8099,7 +9614,7 @@ export namespace Prisma {
     entrada?: SortOrderInput | SortOrder
     salida?: SortOrderInput | SortOrder
     saldo?: SortOrderInput | SortOrder
-    vehiculoId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     _count?: GastoCountOrderByAggregateInput
     _avg?: GastoAvgOrderByAggregateInput
     _max?: GastoMaxOrderByAggregateInput
@@ -8113,6 +9628,7 @@ export namespace Prisma {
     NOT?: GastoScalarWhereWithAggregatesInput | GastoScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Gasto"> | number
     folio?: StringWithAggregatesFilter<"Gasto"> | string
+    vehiculoId?: StringNullableWithAggregatesFilter<"Gasto"> | string | null
     fecha?: DateTimeWithAggregatesFilter<"Gasto"> | Date | string
     razonSocial?: StringWithAggregatesFilter<"Gasto"> | string
     banco?: StringNullableWithAggregatesFilter<"Gasto"> | string | null
@@ -8127,7 +9643,7 @@ export namespace Prisma {
     entrada?: FloatNullableWithAggregatesFilter<"Gasto"> | number | null
     salida?: FloatNullableWithAggregatesFilter<"Gasto"> | number | null
     saldo?: FloatNullableWithAggregatesFilter<"Gasto"> | number | null
-    vehiculoId?: IntNullableWithAggregatesFilter<"Gasto"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"Gasto"> | Date | string
   }
 
   export type FacturaWhereInput = {
@@ -8141,7 +9657,6 @@ export namespace Prisma {
     tipo?: StringNullableFilter<"Factura"> | string | null
     fechaEmision?: DateTimeFilter<"Factura"> | Date | string
     serie?: StringNullableFilter<"Factura"> | string | null
-    folio?: StringNullableFilter<"Factura"> | string | null
     rfcEmisor?: StringFilter<"Factura"> | string
     nombreEmisor?: StringFilter<"Factura"> | string
     rfcReceptor?: StringFilter<"Factura"> | string
@@ -8166,9 +9681,8 @@ export namespace Prisma {
     bancoPago?: StringNullableFilter<"Factura"> | string | null
     folioPago?: StringNullableFilter<"Factura"> | string | null
     gastoId?: IntNullableFilter<"Factura"> | number | null
-    vehiculoId?: IntNullableFilter<"Factura"> | number | null
+    createdAt?: DateTimeFilter<"Factura"> | Date | string
     gasto?: XOR<GastoNullableScalarRelationFilter, GastoWhereInput> | null
-    vehiculo?: XOR<VehiculoNullableScalarRelationFilter, VehiculoWhereInput> | null
   }
 
   export type FacturaOrderByWithRelationInput = {
@@ -8179,7 +9693,6 @@ export namespace Prisma {
     tipo?: SortOrderInput | SortOrder
     fechaEmision?: SortOrder
     serie?: SortOrderInput | SortOrder
-    folio?: SortOrderInput | SortOrder
     rfcEmisor?: SortOrder
     nombreEmisor?: SortOrder
     rfcReceptor?: SortOrder
@@ -8204,23 +9717,21 @@ export namespace Prisma {
     bancoPago?: SortOrderInput | SortOrder
     folioPago?: SortOrderInput | SortOrder
     gastoId?: SortOrderInput | SortOrder
-    vehiculoId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     gasto?: GastoOrderByWithRelationInput
-    vehiculo?: VehiculoOrderByWithRelationInput
   }
 
   export type FacturaWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    uuid?: string
     AND?: FacturaWhereInput | FacturaWhereInput[]
     OR?: FacturaWhereInput[]
     NOT?: FacturaWhereInput | FacturaWhereInput[]
+    uuid?: StringNullableFilter<"Factura"> | string | null
     estadoSAT?: StringNullableFilter<"Factura"> | string | null
     tipoComprobante?: StringNullableFilter<"Factura"> | string | null
     tipo?: StringNullableFilter<"Factura"> | string | null
     fechaEmision?: DateTimeFilter<"Factura"> | Date | string
     serie?: StringNullableFilter<"Factura"> | string | null
-    folio?: StringNullableFilter<"Factura"> | string | null
     rfcEmisor?: StringFilter<"Factura"> | string
     nombreEmisor?: StringFilter<"Factura"> | string
     rfcReceptor?: StringFilter<"Factura"> | string
@@ -8245,10 +9756,9 @@ export namespace Prisma {
     bancoPago?: StringNullableFilter<"Factura"> | string | null
     folioPago?: StringNullableFilter<"Factura"> | string | null
     gastoId?: IntNullableFilter<"Factura"> | number | null
-    vehiculoId?: IntNullableFilter<"Factura"> | number | null
+    createdAt?: DateTimeFilter<"Factura"> | Date | string
     gasto?: XOR<GastoNullableScalarRelationFilter, GastoWhereInput> | null
-    vehiculo?: XOR<VehiculoNullableScalarRelationFilter, VehiculoWhereInput> | null
-  }, "id" | "uuid">
+  }, "id">
 
   export type FacturaOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8258,7 +9768,6 @@ export namespace Prisma {
     tipo?: SortOrderInput | SortOrder
     fechaEmision?: SortOrder
     serie?: SortOrderInput | SortOrder
-    folio?: SortOrderInput | SortOrder
     rfcEmisor?: SortOrder
     nombreEmisor?: SortOrder
     rfcReceptor?: SortOrder
@@ -8283,7 +9792,7 @@ export namespace Prisma {
     bancoPago?: SortOrderInput | SortOrder
     folioPago?: SortOrderInput | SortOrder
     gastoId?: SortOrderInput | SortOrder
-    vehiculoId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
     _count?: FacturaCountOrderByAggregateInput
     _avg?: FacturaAvgOrderByAggregateInput
     _max?: FacturaMaxOrderByAggregateInput
@@ -8302,7 +9811,6 @@ export namespace Prisma {
     tipo?: StringNullableWithAggregatesFilter<"Factura"> | string | null
     fechaEmision?: DateTimeWithAggregatesFilter<"Factura"> | Date | string
     serie?: StringNullableWithAggregatesFilter<"Factura"> | string | null
-    folio?: StringNullableWithAggregatesFilter<"Factura"> | string | null
     rfcEmisor?: StringWithAggregatesFilter<"Factura"> | string
     nombreEmisor?: StringWithAggregatesFilter<"Factura"> | string
     rfcReceptor?: StringWithAggregatesFilter<"Factura"> | string
@@ -8327,7 +9835,7 @@ export namespace Prisma {
     bancoPago?: StringNullableWithAggregatesFilter<"Factura"> | string | null
     folioPago?: StringNullableWithAggregatesFilter<"Factura"> | string | null
     gastoId?: IntNullableWithAggregatesFilter<"Factura"> | number | null
-    vehiculoId?: IntNullableWithAggregatesFilter<"Factura"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"Factura"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -8335,6 +9843,13 @@ export namespace Prisma {
     user: string
     password: string
     role?: $Enums.Role
+    canViewSeguros?: boolean
+    canViewGastos?: boolean
+    canViewFacturas?: boolean
+    canEditSeguros?: boolean
+    canEditGastos?: boolean
+    canEditFacturas?: boolean
+    canManageUsers?: boolean
   }
 
   export type UserUncheckedCreateInput = {
@@ -8342,6 +9857,13 @@ export namespace Prisma {
     user: string
     password: string
     role?: $Enums.Role
+    canViewSeguros?: boolean
+    canViewGastos?: boolean
+    canViewFacturas?: boolean
+    canEditSeguros?: boolean
+    canEditGastos?: boolean
+    canEditFacturas?: boolean
+    canManageUsers?: boolean
   }
 
   export type UserUpdateInput = {
@@ -8349,6 +9871,13 @@ export namespace Prisma {
     user?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    canViewSeguros?: BoolFieldUpdateOperationsInput | boolean
+    canViewGastos?: BoolFieldUpdateOperationsInput | boolean
+    canViewFacturas?: BoolFieldUpdateOperationsInput | boolean
+    canEditSeguros?: BoolFieldUpdateOperationsInput | boolean
+    canEditGastos?: BoolFieldUpdateOperationsInput | boolean
+    canEditFacturas?: BoolFieldUpdateOperationsInput | boolean
+    canManageUsers?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUncheckedUpdateInput = {
@@ -8356,6 +9885,13 @@ export namespace Prisma {
     user?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    canViewSeguros?: BoolFieldUpdateOperationsInput | boolean
+    canViewGastos?: BoolFieldUpdateOperationsInput | boolean
+    canViewFacturas?: BoolFieldUpdateOperationsInput | boolean
+    canEditSeguros?: BoolFieldUpdateOperationsInput | boolean
+    canEditGastos?: BoolFieldUpdateOperationsInput | boolean
+    canEditFacturas?: BoolFieldUpdateOperationsInput | boolean
+    canManageUsers?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserCreateManyInput = {
@@ -8363,6 +9899,13 @@ export namespace Prisma {
     user: string
     password: string
     role?: $Enums.Role
+    canViewSeguros?: boolean
+    canViewGastos?: boolean
+    canViewFacturas?: boolean
+    canEditSeguros?: boolean
+    canEditGastos?: boolean
+    canEditFacturas?: boolean
+    canManageUsers?: boolean
   }
 
   export type UserUpdateManyMutationInput = {
@@ -8370,6 +9913,13 @@ export namespace Prisma {
     user?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    canViewSeguros?: BoolFieldUpdateOperationsInput | boolean
+    canViewGastos?: BoolFieldUpdateOperationsInput | boolean
+    canViewFacturas?: BoolFieldUpdateOperationsInput | boolean
+    canEditSeguros?: BoolFieldUpdateOperationsInput | boolean
+    canEditGastos?: BoolFieldUpdateOperationsInput | boolean
+    canEditFacturas?: BoolFieldUpdateOperationsInput | boolean
+    canManageUsers?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -8377,186 +9927,304 @@ export namespace Prisma {
     user?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    canViewSeguros?: BoolFieldUpdateOperationsInput | boolean
+    canViewGastos?: BoolFieldUpdateOperationsInput | boolean
+    canViewFacturas?: BoolFieldUpdateOperationsInput | boolean
+    canEditSeguros?: BoolFieldUpdateOperationsInput | boolean
+    canEditGastos?: BoolFieldUpdateOperationsInput | boolean
+    canEditFacturas?: BoolFieldUpdateOperationsInput | boolean
+    canManageUsers?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type VehiculoCreateInput = {
+    id?: string
     placa: string
-    marca: string
-    tipo: string
-    color: string
-    modelo: number
-    serie: string
-    motor?: string | null
-    proyecto?: string | null
-    ubicacion?: string | null
-    placaAnterior?: string | null
-    comentario?: string | null
+    versionActual?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    versiones?: VersionVehiculoCreateNestedManyWithoutVehiculoInput
     seguros?: SeguroCreateNestedManyWithoutVehiculoInput
     gastos?: GastoCreateNestedManyWithoutVehiculoInput
-    facturas?: FacturaCreateNestedManyWithoutVehiculoInput
   }
 
   export type VehiculoUncheckedCreateInput = {
-    id?: number
+    id?: string
     placa: string
-    marca: string
-    tipo: string
-    color: string
-    modelo: number
-    serie: string
-    motor?: string | null
-    proyecto?: string | null
-    ubicacion?: string | null
-    placaAnterior?: string | null
-    comentario?: string | null
+    versionActual?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    versiones?: VersionVehiculoUncheckedCreateNestedManyWithoutVehiculoInput
     seguros?: SeguroUncheckedCreateNestedManyWithoutVehiculoInput
     gastos?: GastoUncheckedCreateNestedManyWithoutVehiculoInput
-    facturas?: FacturaUncheckedCreateNestedManyWithoutVehiculoInput
   }
 
   export type VehiculoUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
-    marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    modelo?: IntFieldUpdateOperationsInput | number
-    serie?: StringFieldUpdateOperationsInput | string
-    motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
-    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
-    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
-    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    versionActual?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    versiones?: VersionVehiculoUpdateManyWithoutVehiculoNestedInput
     seguros?: SeguroUpdateManyWithoutVehiculoNestedInput
     gastos?: GastoUpdateManyWithoutVehiculoNestedInput
-    facturas?: FacturaUpdateManyWithoutVehiculoNestedInput
   }
 
   export type VehiculoUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
-    marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    modelo?: IntFieldUpdateOperationsInput | number
-    serie?: StringFieldUpdateOperationsInput | string
-    motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
-    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
-    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
-    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    versionActual?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    versiones?: VersionVehiculoUncheckedUpdateManyWithoutVehiculoNestedInput
     seguros?: SeguroUncheckedUpdateManyWithoutVehiculoNestedInput
     gastos?: GastoUncheckedUpdateManyWithoutVehiculoNestedInput
-    facturas?: FacturaUncheckedUpdateManyWithoutVehiculoNestedInput
   }
 
   export type VehiculoCreateManyInput = {
-    id?: number
+    id?: string
     placa: string
+    versionActual?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type VehiculoUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    placa?: StringFieldUpdateOperationsInput | string
+    versionActual?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VehiculoUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    placa?: StringFieldUpdateOperationsInput | string
+    versionActual?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type VersionVehiculoCreateInput = {
+    placa: string
+    placaAnterior?: string | null
     marca: string
     tipo: string
+    modelo: string
     color: string
-    modelo: number
     serie: string
     motor?: string | null
     proyecto?: string | null
     ubicacion?: string | null
+    version: number
+    esActual?: boolean
+    fechaCambio?: Date | string
+    motivoCambio?: string | null
+    usuarioCambio?: string | null
+    vehiculo: VehiculoCreateNestedOneWithoutVersionesInput
+  }
+
+  export type VersionVehiculoUncheckedCreateInput = {
+    id?: number
+    vehiculoId: string
+    placa: string
     placaAnterior?: string | null
-    comentario?: string | null
+    marca: string
+    tipo: string
+    modelo: string
+    color: string
+    serie: string
+    motor?: string | null
+    proyecto?: string | null
+    ubicacion?: string | null
+    version: number
+    esActual?: boolean
+    fechaCambio?: Date | string
+    motivoCambio?: string | null
+    usuarioCambio?: string | null
   }
 
-  export type VehiculoUpdateManyMutationInput = {
+  export type VersionVehiculoUpdateInput = {
     placa?: StringFieldUpdateOperationsInput | string
+    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
     tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    modelo?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
-    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
-    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    vehiculo?: VehiculoUpdateOneRequiredWithoutVersionesNestedInput
   }
 
-  export type VehiculoUncheckedUpdateManyInput = {
+  export type VersionVehiculoUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    vehiculoId?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
+    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
     tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    modelo?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type VersionVehiculoCreateManyInput = {
+    id?: number
+    vehiculoId: string
+    placa: string
+    placaAnterior?: string | null
+    marca: string
+    tipo: string
+    modelo: string
+    color: string
+    serie: string
+    motor?: string | null
+    proyecto?: string | null
+    ubicacion?: string | null
+    version: number
+    esActual?: boolean
+    fechaCambio?: Date | string
+    motivoCambio?: string | null
+    usuarioCambio?: string | null
+  }
+
+  export type VersionVehiculoUpdateManyMutationInput = {
+    placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
-    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type VersionVehiculoUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    vehiculoId?: StringFieldUpdateOperationsInput | string
+    placa?: StringFieldUpdateOperationsInput | string
+    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SeguroCreateInput = {
-    compania: $Enums.CompaniaSeguro
+    compania: $Enums.Compania
     precio: number
     fechaInicio: Date | string
     fechaVencimiento: Date | string
-    responsable?: string | null
+    comentario?: string | null
+    esActual?: boolean
+    version?: number
+    createdAt?: Date | string
     vehiculo: VehiculoCreateNestedOneWithoutSegurosInput
   }
 
   export type SeguroUncheckedCreateInput = {
     id?: number
-    vehiculoId: number
-    compania: $Enums.CompaniaSeguro
+    vehiculoId: string
+    compania: $Enums.Compania
     precio: number
     fechaInicio: Date | string
     fechaVencimiento: Date | string
-    responsable?: string | null
+    comentario?: string | null
+    esActual?: boolean
+    version?: number
+    createdAt?: Date | string
   }
 
   export type SeguroUpdateInput = {
-    compania?: EnumCompaniaSeguroFieldUpdateOperationsInput | $Enums.CompaniaSeguro
+    compania?: EnumCompaniaFieldUpdateOperationsInput | $Enums.Compania
     precio?: FloatFieldUpdateOperationsInput | number
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
-    responsable?: NullableStringFieldUpdateOperationsInput | string | null
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    version?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vehiculo?: VehiculoUpdateOneRequiredWithoutSegurosNestedInput
   }
 
   export type SeguroUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    vehiculoId?: IntFieldUpdateOperationsInput | number
-    compania?: EnumCompaniaSeguroFieldUpdateOperationsInput | $Enums.CompaniaSeguro
+    vehiculoId?: StringFieldUpdateOperationsInput | string
+    compania?: EnumCompaniaFieldUpdateOperationsInput | $Enums.Compania
     precio?: FloatFieldUpdateOperationsInput | number
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
-    responsable?: NullableStringFieldUpdateOperationsInput | string | null
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    version?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SeguroCreateManyInput = {
     id?: number
-    vehiculoId: number
-    compania: $Enums.CompaniaSeguro
+    vehiculoId: string
+    compania: $Enums.Compania
     precio: number
     fechaInicio: Date | string
     fechaVencimiento: Date | string
-    responsable?: string | null
+    comentario?: string | null
+    esActual?: boolean
+    version?: number
+    createdAt?: Date | string
   }
 
   export type SeguroUpdateManyMutationInput = {
-    compania?: EnumCompaniaSeguroFieldUpdateOperationsInput | $Enums.CompaniaSeguro
+    compania?: EnumCompaniaFieldUpdateOperationsInput | $Enums.Compania
     precio?: FloatFieldUpdateOperationsInput | number
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
-    responsable?: NullableStringFieldUpdateOperationsInput | string | null
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    version?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SeguroUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    vehiculoId?: IntFieldUpdateOperationsInput | number
-    compania?: EnumCompaniaSeguroFieldUpdateOperationsInput | $Enums.CompaniaSeguro
+    vehiculoId?: StringFieldUpdateOperationsInput | string
+    compania?: EnumCompaniaFieldUpdateOperationsInput | $Enums.Compania
     precio?: FloatFieldUpdateOperationsInput | number
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
-    responsable?: NullableStringFieldUpdateOperationsInput | string | null
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    version?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GastoCreateInput = {
@@ -8575,6 +10243,7 @@ export namespace Prisma {
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    createdAt?: Date | string
     vehiculo?: VehiculoCreateNestedOneWithoutGastosInput
     facturas?: FacturaCreateNestedManyWithoutGastoInput
   }
@@ -8582,6 +10251,7 @@ export namespace Prisma {
   export type GastoUncheckedCreateInput = {
     id?: number
     folio: string
+    vehiculoId?: string | null
     fecha: Date | string
     razonSocial: string
     banco?: string | null
@@ -8596,7 +10266,7 @@ export namespace Prisma {
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
-    vehiculoId?: number | null
+    createdAt?: Date | string
     facturas?: FacturaUncheckedCreateNestedManyWithoutGastoInput
   }
 
@@ -8616,6 +10286,7 @@ export namespace Prisma {
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vehiculo?: VehiculoUpdateOneWithoutGastosNestedInput
     facturas?: FacturaUpdateManyWithoutGastoNestedInput
   }
@@ -8623,6 +10294,7 @@ export namespace Prisma {
   export type GastoUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     folio?: StringFieldUpdateOperationsInput | string
+    vehiculoId?: NullableStringFieldUpdateOperationsInput | string | null
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     razonSocial?: StringFieldUpdateOperationsInput | string
     banco?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8637,13 +10309,14 @@ export namespace Prisma {
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
-    vehiculoId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     facturas?: FacturaUncheckedUpdateManyWithoutGastoNestedInput
   }
 
   export type GastoCreateManyInput = {
     id?: number
     folio: string
+    vehiculoId?: string | null
     fecha: Date | string
     razonSocial: string
     banco?: string | null
@@ -8658,7 +10331,7 @@ export namespace Prisma {
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
-    vehiculoId?: number | null
+    createdAt?: Date | string
   }
 
   export type GastoUpdateManyMutationInput = {
@@ -8677,11 +10350,13 @@ export namespace Prisma {
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GastoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     folio?: StringFieldUpdateOperationsInput | string
+    vehiculoId?: NullableStringFieldUpdateOperationsInput | string | null
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     razonSocial?: StringFieldUpdateOperationsInput | string
     banco?: NullableStringFieldUpdateOperationsInput | string | null
@@ -8696,7 +10371,7 @@ export namespace Prisma {
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
-    vehiculoId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FacturaCreateInput = {
@@ -8706,7 +10381,6 @@ export namespace Prisma {
     tipo?: string | null
     fechaEmision: Date | string
     serie?: string | null
-    folio?: string | null
     rfcEmisor: string
     nombreEmisor: string
     rfcReceptor: string
@@ -8730,8 +10404,8 @@ export namespace Prisma {
     fechaPago?: Date | string | null
     bancoPago?: string | null
     folioPago?: string | null
+    createdAt?: Date | string
     gasto?: GastoCreateNestedOneWithoutFacturasInput
-    vehiculo?: VehiculoCreateNestedOneWithoutFacturasInput
   }
 
   export type FacturaUncheckedCreateInput = {
@@ -8742,7 +10416,6 @@ export namespace Prisma {
     tipo?: string | null
     fechaEmision: Date | string
     serie?: string | null
-    folio?: string | null
     rfcEmisor: string
     nombreEmisor: string
     rfcReceptor: string
@@ -8767,7 +10440,7 @@ export namespace Prisma {
     bancoPago?: string | null
     folioPago?: string | null
     gastoId?: number | null
-    vehiculoId?: number | null
+    createdAt?: Date | string
   }
 
   export type FacturaUpdateInput = {
@@ -8777,7 +10450,6 @@ export namespace Prisma {
     tipo?: NullableStringFieldUpdateOperationsInput | string | null
     fechaEmision?: DateTimeFieldUpdateOperationsInput | Date | string
     serie?: NullableStringFieldUpdateOperationsInput | string | null
-    folio?: NullableStringFieldUpdateOperationsInput | string | null
     rfcEmisor?: StringFieldUpdateOperationsInput | string
     nombreEmisor?: StringFieldUpdateOperationsInput | string
     rfcReceptor?: StringFieldUpdateOperationsInput | string
@@ -8801,8 +10473,8 @@ export namespace Prisma {
     fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     gasto?: GastoUpdateOneWithoutFacturasNestedInput
-    vehiculo?: VehiculoUpdateOneWithoutFacturasNestedInput
   }
 
   export type FacturaUncheckedUpdateInput = {
@@ -8813,7 +10485,6 @@ export namespace Prisma {
     tipo?: NullableStringFieldUpdateOperationsInput | string | null
     fechaEmision?: DateTimeFieldUpdateOperationsInput | Date | string
     serie?: NullableStringFieldUpdateOperationsInput | string | null
-    folio?: NullableStringFieldUpdateOperationsInput | string | null
     rfcEmisor?: StringFieldUpdateOperationsInput | string
     nombreEmisor?: StringFieldUpdateOperationsInput | string
     rfcReceptor?: StringFieldUpdateOperationsInput | string
@@ -8838,7 +10509,7 @@ export namespace Prisma {
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
     gastoId?: NullableIntFieldUpdateOperationsInput | number | null
-    vehiculoId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FacturaCreateManyInput = {
@@ -8849,7 +10520,6 @@ export namespace Prisma {
     tipo?: string | null
     fechaEmision: Date | string
     serie?: string | null
-    folio?: string | null
     rfcEmisor: string
     nombreEmisor: string
     rfcReceptor: string
@@ -8874,7 +10544,7 @@ export namespace Prisma {
     bancoPago?: string | null
     folioPago?: string | null
     gastoId?: number | null
-    vehiculoId?: number | null
+    createdAt?: Date | string
   }
 
   export type FacturaUpdateManyMutationInput = {
@@ -8884,7 +10554,6 @@ export namespace Prisma {
     tipo?: NullableStringFieldUpdateOperationsInput | string | null
     fechaEmision?: DateTimeFieldUpdateOperationsInput | Date | string
     serie?: NullableStringFieldUpdateOperationsInput | string | null
-    folio?: NullableStringFieldUpdateOperationsInput | string | null
     rfcEmisor?: StringFieldUpdateOperationsInput | string
     nombreEmisor?: StringFieldUpdateOperationsInput | string
     rfcReceptor?: StringFieldUpdateOperationsInput | string
@@ -8908,6 +10577,7 @@ export namespace Prisma {
     fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FacturaUncheckedUpdateManyInput = {
@@ -8918,7 +10588,6 @@ export namespace Prisma {
     tipo?: NullableStringFieldUpdateOperationsInput | string | null
     fechaEmision?: DateTimeFieldUpdateOperationsInput | Date | string
     serie?: NullableStringFieldUpdateOperationsInput | string | null
-    folio?: NullableStringFieldUpdateOperationsInput | string | null
     rfcEmisor?: StringFieldUpdateOperationsInput | string
     nombreEmisor?: StringFieldUpdateOperationsInput | string
     rfcReceptor?: StringFieldUpdateOperationsInput | string
@@ -8943,7 +10612,7 @@ export namespace Prisma {
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
     gastoId?: NullableIntFieldUpdateOperationsInput | number | null
-    vehiculoId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -8968,11 +10637,23 @@ export namespace Prisma {
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     user?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    canViewSeguros?: SortOrder
+    canViewGastos?: SortOrder
+    canViewFacturas?: SortOrder
+    canEditSeguros?: SortOrder
+    canEditGastos?: SortOrder
+    canEditFacturas?: SortOrder
+    canManageUsers?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -8980,6 +10661,13 @@ export namespace Prisma {
     user?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    canViewSeguros?: SortOrder
+    canViewGastos?: SortOrder
+    canViewFacturas?: SortOrder
+    canEditSeguros?: SortOrder
+    canEditGastos?: SortOrder
+    canEditFacturas?: SortOrder
+    canManageUsers?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -8987,6 +10675,13 @@ export namespace Prisma {
     user?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    canViewSeguros?: SortOrder
+    canViewGastos?: SortOrder
+    canViewFacturas?: SortOrder
+    canEditSeguros?: SortOrder
+    canEditGastos?: SortOrder
+    canEditFacturas?: SortOrder
+    canManageUsers?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -9017,6 +10712,14 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9026,6 +10729,109 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type VersionVehiculoListRelationFilter = {
+    every?: VersionVehiculoWhereInput
+    some?: VersionVehiculoWhereInput
+    none?: VersionVehiculoWhereInput
+  }
+
+  export type SeguroListRelationFilter = {
+    every?: SeguroWhereInput
+    some?: SeguroWhereInput
+    none?: SeguroWhereInput
+  }
+
+  export type GastoListRelationFilter = {
+    every?: GastoWhereInput
+    some?: GastoWhereInput
+    none?: GastoWhereInput
+  }
+
+  export type VersionVehiculoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SeguroOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type GastoOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type VehiculoCountOrderByAggregateInput = {
+    id?: SortOrder
+    placa?: SortOrder
+    versionActual?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VehiculoAvgOrderByAggregateInput = {
+    versionActual?: SortOrder
+  }
+
+  export type VehiculoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    placa?: SortOrder
+    versionActual?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VehiculoMinOrderByAggregateInput = {
+    id?: SortOrder
+    placa?: SortOrder
+    versionActual?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VehiculoSumOrderByAggregateInput = {
+    versionActual?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -9043,22 +10849,9 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type SeguroListRelationFilter = {
-    every?: SeguroWhereInput
-    some?: SeguroWhereInput
-    none?: SeguroWhereInput
-  }
-
-  export type GastoListRelationFilter = {
-    every?: GastoWhereInput
-    some?: GastoWhereInput
-    none?: GastoWhereInput
-  }
-
-  export type FacturaListRelationFilter = {
-    every?: FacturaWhereInput
-    some?: FacturaWhereInput
-    none?: FacturaWhereInput
+  export type VehiculoScalarRelationFilter = {
+    is?: VehiculoWhereInput
+    isNot?: VehiculoWhereInput
   }
 
   export type SortOrderInput = {
@@ -9066,87 +10859,74 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type SeguroOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type GastoOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type FacturaOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type VehiculoCountOrderByAggregateInput = {
+  export type VersionVehiculoCountOrderByAggregateInput = {
     id?: SortOrder
+    vehiculoId?: SortOrder
     placa?: SortOrder
+    placaAnterior?: SortOrder
     marca?: SortOrder
     tipo?: SortOrder
-    color?: SortOrder
     modelo?: SortOrder
+    color?: SortOrder
     serie?: SortOrder
     motor?: SortOrder
     proyecto?: SortOrder
     ubicacion?: SortOrder
-    placaAnterior?: SortOrder
-    comentario?: SortOrder
+    version?: SortOrder
+    esActual?: SortOrder
+    fechaCambio?: SortOrder
+    motivoCambio?: SortOrder
+    usuarioCambio?: SortOrder
   }
 
-  export type VehiculoAvgOrderByAggregateInput = {
+  export type VersionVehiculoAvgOrderByAggregateInput = {
     id?: SortOrder
-    modelo?: SortOrder
+    version?: SortOrder
   }
 
-  export type VehiculoMaxOrderByAggregateInput = {
+  export type VersionVehiculoMaxOrderByAggregateInput = {
     id?: SortOrder
+    vehiculoId?: SortOrder
     placa?: SortOrder
+    placaAnterior?: SortOrder
     marca?: SortOrder
     tipo?: SortOrder
-    color?: SortOrder
     modelo?: SortOrder
+    color?: SortOrder
     serie?: SortOrder
     motor?: SortOrder
     proyecto?: SortOrder
     ubicacion?: SortOrder
-    placaAnterior?: SortOrder
-    comentario?: SortOrder
+    version?: SortOrder
+    esActual?: SortOrder
+    fechaCambio?: SortOrder
+    motivoCambio?: SortOrder
+    usuarioCambio?: SortOrder
   }
 
-  export type VehiculoMinOrderByAggregateInput = {
+  export type VersionVehiculoMinOrderByAggregateInput = {
     id?: SortOrder
+    vehiculoId?: SortOrder
     placa?: SortOrder
+    placaAnterior?: SortOrder
     marca?: SortOrder
     tipo?: SortOrder
-    color?: SortOrder
     modelo?: SortOrder
+    color?: SortOrder
     serie?: SortOrder
     motor?: SortOrder
     proyecto?: SortOrder
     ubicacion?: SortOrder
-    placaAnterior?: SortOrder
-    comentario?: SortOrder
+    version?: SortOrder
+    esActual?: SortOrder
+    fechaCambio?: SortOrder
+    motivoCambio?: SortOrder
+    usuarioCambio?: SortOrder
   }
 
-  export type VehiculoSumOrderByAggregateInput = {
+  export type VersionVehiculoSumOrderByAggregateInput = {
     id?: SortOrder
-    modelo?: SortOrder
-  }
-
-  export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    version?: SortOrder
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9167,11 +10947,11 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type EnumCompaniaSeguroFilter<$PrismaModel = never> = {
-    equals?: $Enums.CompaniaSeguro | EnumCompaniaSeguroFieldRefInput<$PrismaModel>
-    in?: $Enums.CompaniaSeguro[] | ListEnumCompaniaSeguroFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CompaniaSeguro[] | ListEnumCompaniaSeguroFieldRefInput<$PrismaModel>
-    not?: NestedEnumCompaniaSeguroFilter<$PrismaModel> | $Enums.CompaniaSeguro
+  export type EnumCompaniaFilter<$PrismaModel = never> = {
+    equals?: $Enums.Compania | EnumCompaniaFieldRefInput<$PrismaModel>
+    in?: $Enums.Compania[] | ListEnumCompaniaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Compania[] | ListEnumCompaniaFieldRefInput<$PrismaModel>
+    not?: NestedEnumCompaniaFilter<$PrismaModel> | $Enums.Compania
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -9185,22 +10965,6 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type VehiculoScalarRelationFilter = {
-    is?: VehiculoWhereInput
-    isNot?: VehiculoWhereInput
-  }
-
   export type SeguroCountOrderByAggregateInput = {
     id?: SortOrder
     vehiculoId?: SortOrder
@@ -9208,13 +10972,16 @@ export namespace Prisma {
     precio?: SortOrder
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
-    responsable?: SortOrder
+    comentario?: SortOrder
+    esActual?: SortOrder
+    version?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type SeguroAvgOrderByAggregateInput = {
     id?: SortOrder
-    vehiculoId?: SortOrder
     precio?: SortOrder
+    version?: SortOrder
   }
 
   export type SeguroMaxOrderByAggregateInput = {
@@ -9224,7 +10991,10 @@ export namespace Prisma {
     precio?: SortOrder
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
-    responsable?: SortOrder
+    comentario?: SortOrder
+    esActual?: SortOrder
+    version?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type SeguroMinOrderByAggregateInput = {
@@ -9234,23 +11004,26 @@ export namespace Prisma {
     precio?: SortOrder
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
-    responsable?: SortOrder
+    comentario?: SortOrder
+    esActual?: SortOrder
+    version?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type SeguroSumOrderByAggregateInput = {
     id?: SortOrder
-    vehiculoId?: SortOrder
     precio?: SortOrder
+    version?: SortOrder
   }
 
-  export type EnumCompaniaSeguroWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.CompaniaSeguro | EnumCompaniaSeguroFieldRefInput<$PrismaModel>
-    in?: $Enums.CompaniaSeguro[] | ListEnumCompaniaSeguroFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CompaniaSeguro[] | ListEnumCompaniaSeguroFieldRefInput<$PrismaModel>
-    not?: NestedEnumCompaniaSeguroWithAggregatesFilter<$PrismaModel> | $Enums.CompaniaSeguro
+  export type EnumCompaniaWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Compania | EnumCompaniaFieldRefInput<$PrismaModel>
+    in?: $Enums.Compania[] | ListEnumCompaniaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Compania[] | ListEnumCompaniaFieldRefInput<$PrismaModel>
+    not?: NestedEnumCompaniaWithAggregatesFilter<$PrismaModel> | $Enums.Compania
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCompaniaSeguroFilter<$PrismaModel>
-    _max?: NestedEnumCompaniaSeguroFilter<$PrismaModel>
+    _min?: NestedEnumCompaniaFilter<$PrismaModel>
+    _max?: NestedEnumCompaniaFilter<$PrismaModel>
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -9269,20 +11042,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type FloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -9294,25 +11053,25 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
   export type VehiculoNullableScalarRelationFilter = {
     is?: VehiculoWhereInput | null
     isNot?: VehiculoWhereInput | null
   }
 
+  export type FacturaListRelationFilter = {
+    every?: FacturaWhereInput
+    some?: FacturaWhereInput
+    none?: FacturaWhereInput
+  }
+
+  export type FacturaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type GastoCountOrderByAggregateInput = {
     id?: SortOrder
     folio?: SortOrder
+    vehiculoId?: SortOrder
     fecha?: SortOrder
     razonSocial?: SortOrder
     banco?: SortOrder
@@ -9327,7 +11086,7 @@ export namespace Prisma {
     entrada?: SortOrder
     salida?: SortOrder
     saldo?: SortOrder
-    vehiculoId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type GastoAvgOrderByAggregateInput = {
@@ -9335,12 +11094,12 @@ export namespace Prisma {
     entrada?: SortOrder
     salida?: SortOrder
     saldo?: SortOrder
-    vehiculoId?: SortOrder
   }
 
   export type GastoMaxOrderByAggregateInput = {
     id?: SortOrder
     folio?: SortOrder
+    vehiculoId?: SortOrder
     fecha?: SortOrder
     razonSocial?: SortOrder
     banco?: SortOrder
@@ -9355,12 +11114,13 @@ export namespace Prisma {
     entrada?: SortOrder
     salida?: SortOrder
     saldo?: SortOrder
-    vehiculoId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type GastoMinOrderByAggregateInput = {
     id?: SortOrder
     folio?: SortOrder
+    vehiculoId?: SortOrder
     fecha?: SortOrder
     razonSocial?: SortOrder
     banco?: SortOrder
@@ -9375,7 +11135,7 @@ export namespace Prisma {
     entrada?: SortOrder
     salida?: SortOrder
     saldo?: SortOrder
-    vehiculoId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type GastoSumOrderByAggregateInput = {
@@ -9383,7 +11143,6 @@ export namespace Prisma {
     entrada?: SortOrder
     salida?: SortOrder
     saldo?: SortOrder
-    vehiculoId?: SortOrder
   }
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9402,22 +11161,6 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -9427,6 +11170,17 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type GastoNullableScalarRelationFilter = {
@@ -9442,7 +11196,6 @@ export namespace Prisma {
     tipo?: SortOrder
     fechaEmision?: SortOrder
     serie?: SortOrder
-    folio?: SortOrder
     rfcEmisor?: SortOrder
     nombreEmisor?: SortOrder
     rfcReceptor?: SortOrder
@@ -9467,7 +11220,7 @@ export namespace Prisma {
     bancoPago?: SortOrder
     folioPago?: SortOrder
     gastoId?: SortOrder
-    vehiculoId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type FacturaAvgOrderByAggregateInput = {
@@ -9482,7 +11235,6 @@ export namespace Prisma {
     total?: SortOrder
     tipoCambio?: SortOrder
     gastoId?: SortOrder
-    vehiculoId?: SortOrder
   }
 
   export type FacturaMaxOrderByAggregateInput = {
@@ -9493,7 +11245,6 @@ export namespace Prisma {
     tipo?: SortOrder
     fechaEmision?: SortOrder
     serie?: SortOrder
-    folio?: SortOrder
     rfcEmisor?: SortOrder
     nombreEmisor?: SortOrder
     rfcReceptor?: SortOrder
@@ -9518,7 +11269,7 @@ export namespace Prisma {
     bancoPago?: SortOrder
     folioPago?: SortOrder
     gastoId?: SortOrder
-    vehiculoId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type FacturaMinOrderByAggregateInput = {
@@ -9529,7 +11280,6 @@ export namespace Prisma {
     tipo?: SortOrder
     fechaEmision?: SortOrder
     serie?: SortOrder
-    folio?: SortOrder
     rfcEmisor?: SortOrder
     nombreEmisor?: SortOrder
     rfcReceptor?: SortOrder
@@ -9554,7 +11304,7 @@ export namespace Prisma {
     bancoPago?: SortOrder
     folioPago?: SortOrder
     gastoId?: SortOrder
-    vehiculoId?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type FacturaSumOrderByAggregateInput = {
@@ -9569,7 +11319,6 @@ export namespace Prisma {
     total?: SortOrder
     tipoCambio?: SortOrder
     gastoId?: SortOrder
-    vehiculoId?: SortOrder
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9586,12 +11335,39 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type VersionVehiculoCreateNestedManyWithoutVehiculoInput = {
+    create?: XOR<VersionVehiculoCreateWithoutVehiculoInput, VersionVehiculoUncheckedCreateWithoutVehiculoInput> | VersionVehiculoCreateWithoutVehiculoInput[] | VersionVehiculoUncheckedCreateWithoutVehiculoInput[]
+    connectOrCreate?: VersionVehiculoCreateOrConnectWithoutVehiculoInput | VersionVehiculoCreateOrConnectWithoutVehiculoInput[]
+    createMany?: VersionVehiculoCreateManyVehiculoInputEnvelope
+    connect?: VersionVehiculoWhereUniqueInput | VersionVehiculoWhereUniqueInput[]
   }
 
   export type SeguroCreateNestedManyWithoutVehiculoInput = {
@@ -9608,11 +11384,11 @@ export namespace Prisma {
     connect?: GastoWhereUniqueInput | GastoWhereUniqueInput[]
   }
 
-  export type FacturaCreateNestedManyWithoutVehiculoInput = {
-    create?: XOR<FacturaCreateWithoutVehiculoInput, FacturaUncheckedCreateWithoutVehiculoInput> | FacturaCreateWithoutVehiculoInput[] | FacturaUncheckedCreateWithoutVehiculoInput[]
-    connectOrCreate?: FacturaCreateOrConnectWithoutVehiculoInput | FacturaCreateOrConnectWithoutVehiculoInput[]
-    createMany?: FacturaCreateManyVehiculoInputEnvelope
-    connect?: FacturaWhereUniqueInput | FacturaWhereUniqueInput[]
+  export type VersionVehiculoUncheckedCreateNestedManyWithoutVehiculoInput = {
+    create?: XOR<VersionVehiculoCreateWithoutVehiculoInput, VersionVehiculoUncheckedCreateWithoutVehiculoInput> | VersionVehiculoCreateWithoutVehiculoInput[] | VersionVehiculoUncheckedCreateWithoutVehiculoInput[]
+    connectOrCreate?: VersionVehiculoCreateOrConnectWithoutVehiculoInput | VersionVehiculoCreateOrConnectWithoutVehiculoInput[]
+    createMany?: VersionVehiculoCreateManyVehiculoInputEnvelope
+    connect?: VersionVehiculoWhereUniqueInput | VersionVehiculoWhereUniqueInput[]
   }
 
   export type SeguroUncheckedCreateNestedManyWithoutVehiculoInput = {
@@ -9629,13 +11405,6 @@ export namespace Prisma {
     connect?: GastoWhereUniqueInput | GastoWhereUniqueInput[]
   }
 
-  export type FacturaUncheckedCreateNestedManyWithoutVehiculoInput = {
-    create?: XOR<FacturaCreateWithoutVehiculoInput, FacturaUncheckedCreateWithoutVehiculoInput> | FacturaCreateWithoutVehiculoInput[] | FacturaUncheckedCreateWithoutVehiculoInput[]
-    connectOrCreate?: FacturaCreateOrConnectWithoutVehiculoInput | FacturaCreateOrConnectWithoutVehiculoInput[]
-    createMany?: FacturaCreateManyVehiculoInputEnvelope
-    connect?: FacturaWhereUniqueInput | FacturaWhereUniqueInput[]
-  }
-
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -9644,8 +11413,22 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type VersionVehiculoUpdateManyWithoutVehiculoNestedInput = {
+    create?: XOR<VersionVehiculoCreateWithoutVehiculoInput, VersionVehiculoUncheckedCreateWithoutVehiculoInput> | VersionVehiculoCreateWithoutVehiculoInput[] | VersionVehiculoUncheckedCreateWithoutVehiculoInput[]
+    connectOrCreate?: VersionVehiculoCreateOrConnectWithoutVehiculoInput | VersionVehiculoCreateOrConnectWithoutVehiculoInput[]
+    upsert?: VersionVehiculoUpsertWithWhereUniqueWithoutVehiculoInput | VersionVehiculoUpsertWithWhereUniqueWithoutVehiculoInput[]
+    createMany?: VersionVehiculoCreateManyVehiculoInputEnvelope
+    set?: VersionVehiculoWhereUniqueInput | VersionVehiculoWhereUniqueInput[]
+    disconnect?: VersionVehiculoWhereUniqueInput | VersionVehiculoWhereUniqueInput[]
+    delete?: VersionVehiculoWhereUniqueInput | VersionVehiculoWhereUniqueInput[]
+    connect?: VersionVehiculoWhereUniqueInput | VersionVehiculoWhereUniqueInput[]
+    update?: VersionVehiculoUpdateWithWhereUniqueWithoutVehiculoInput | VersionVehiculoUpdateWithWhereUniqueWithoutVehiculoInput[]
+    updateMany?: VersionVehiculoUpdateManyWithWhereWithoutVehiculoInput | VersionVehiculoUpdateManyWithWhereWithoutVehiculoInput[]
+    deleteMany?: VersionVehiculoScalarWhereInput | VersionVehiculoScalarWhereInput[]
   }
 
   export type SeguroUpdateManyWithoutVehiculoNestedInput = {
@@ -9676,18 +11459,18 @@ export namespace Prisma {
     deleteMany?: GastoScalarWhereInput | GastoScalarWhereInput[]
   }
 
-  export type FacturaUpdateManyWithoutVehiculoNestedInput = {
-    create?: XOR<FacturaCreateWithoutVehiculoInput, FacturaUncheckedCreateWithoutVehiculoInput> | FacturaCreateWithoutVehiculoInput[] | FacturaUncheckedCreateWithoutVehiculoInput[]
-    connectOrCreate?: FacturaCreateOrConnectWithoutVehiculoInput | FacturaCreateOrConnectWithoutVehiculoInput[]
-    upsert?: FacturaUpsertWithWhereUniqueWithoutVehiculoInput | FacturaUpsertWithWhereUniqueWithoutVehiculoInput[]
-    createMany?: FacturaCreateManyVehiculoInputEnvelope
-    set?: FacturaWhereUniqueInput | FacturaWhereUniqueInput[]
-    disconnect?: FacturaWhereUniqueInput | FacturaWhereUniqueInput[]
-    delete?: FacturaWhereUniqueInput | FacturaWhereUniqueInput[]
-    connect?: FacturaWhereUniqueInput | FacturaWhereUniqueInput[]
-    update?: FacturaUpdateWithWhereUniqueWithoutVehiculoInput | FacturaUpdateWithWhereUniqueWithoutVehiculoInput[]
-    updateMany?: FacturaUpdateManyWithWhereWithoutVehiculoInput | FacturaUpdateManyWithWhereWithoutVehiculoInput[]
-    deleteMany?: FacturaScalarWhereInput | FacturaScalarWhereInput[]
+  export type VersionVehiculoUncheckedUpdateManyWithoutVehiculoNestedInput = {
+    create?: XOR<VersionVehiculoCreateWithoutVehiculoInput, VersionVehiculoUncheckedCreateWithoutVehiculoInput> | VersionVehiculoCreateWithoutVehiculoInput[] | VersionVehiculoUncheckedCreateWithoutVehiculoInput[]
+    connectOrCreate?: VersionVehiculoCreateOrConnectWithoutVehiculoInput | VersionVehiculoCreateOrConnectWithoutVehiculoInput[]
+    upsert?: VersionVehiculoUpsertWithWhereUniqueWithoutVehiculoInput | VersionVehiculoUpsertWithWhereUniqueWithoutVehiculoInput[]
+    createMany?: VersionVehiculoCreateManyVehiculoInputEnvelope
+    set?: VersionVehiculoWhereUniqueInput | VersionVehiculoWhereUniqueInput[]
+    disconnect?: VersionVehiculoWhereUniqueInput | VersionVehiculoWhereUniqueInput[]
+    delete?: VersionVehiculoWhereUniqueInput | VersionVehiculoWhereUniqueInput[]
+    connect?: VersionVehiculoWhereUniqueInput | VersionVehiculoWhereUniqueInput[]
+    update?: VersionVehiculoUpdateWithWhereUniqueWithoutVehiculoInput | VersionVehiculoUpdateWithWhereUniqueWithoutVehiculoInput[]
+    updateMany?: VersionVehiculoUpdateManyWithWhereWithoutVehiculoInput | VersionVehiculoUpdateManyWithWhereWithoutVehiculoInput[]
+    deleteMany?: VersionVehiculoScalarWhereInput | VersionVehiculoScalarWhereInput[]
   }
 
   export type SeguroUncheckedUpdateManyWithoutVehiculoNestedInput = {
@@ -9718,18 +11501,22 @@ export namespace Prisma {
     deleteMany?: GastoScalarWhereInput | GastoScalarWhereInput[]
   }
 
-  export type FacturaUncheckedUpdateManyWithoutVehiculoNestedInput = {
-    create?: XOR<FacturaCreateWithoutVehiculoInput, FacturaUncheckedCreateWithoutVehiculoInput> | FacturaCreateWithoutVehiculoInput[] | FacturaUncheckedCreateWithoutVehiculoInput[]
-    connectOrCreate?: FacturaCreateOrConnectWithoutVehiculoInput | FacturaCreateOrConnectWithoutVehiculoInput[]
-    upsert?: FacturaUpsertWithWhereUniqueWithoutVehiculoInput | FacturaUpsertWithWhereUniqueWithoutVehiculoInput[]
-    createMany?: FacturaCreateManyVehiculoInputEnvelope
-    set?: FacturaWhereUniqueInput | FacturaWhereUniqueInput[]
-    disconnect?: FacturaWhereUniqueInput | FacturaWhereUniqueInput[]
-    delete?: FacturaWhereUniqueInput | FacturaWhereUniqueInput[]
-    connect?: FacturaWhereUniqueInput | FacturaWhereUniqueInput[]
-    update?: FacturaUpdateWithWhereUniqueWithoutVehiculoInput | FacturaUpdateWithWhereUniqueWithoutVehiculoInput[]
-    updateMany?: FacturaUpdateManyWithWhereWithoutVehiculoInput | FacturaUpdateManyWithWhereWithoutVehiculoInput[]
-    deleteMany?: FacturaScalarWhereInput | FacturaScalarWhereInput[]
+  export type VehiculoCreateNestedOneWithoutVersionesInput = {
+    create?: XOR<VehiculoCreateWithoutVersionesInput, VehiculoUncheckedCreateWithoutVersionesInput>
+    connectOrCreate?: VehiculoCreateOrConnectWithoutVersionesInput
+    connect?: VehiculoWhereUniqueInput
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type VehiculoUpdateOneRequiredWithoutVersionesNestedInput = {
+    create?: XOR<VehiculoCreateWithoutVersionesInput, VehiculoUncheckedCreateWithoutVersionesInput>
+    connectOrCreate?: VehiculoCreateOrConnectWithoutVersionesInput
+    upsert?: VehiculoUpsertWithoutVersionesInput
+    connect?: VehiculoWhereUniqueInput
+    update?: XOR<XOR<VehiculoUpdateToOneWithWhereWithoutVersionesInput, VehiculoUpdateWithoutVersionesInput>, VehiculoUncheckedUpdateWithoutVersionesInput>
   }
 
   export type VehiculoCreateNestedOneWithoutSegurosInput = {
@@ -9738,8 +11525,8 @@ export namespace Prisma {
     connect?: VehiculoWhereUniqueInput
   }
 
-  export type EnumCompaniaSeguroFieldUpdateOperationsInput = {
-    set?: $Enums.CompaniaSeguro
+  export type EnumCompaniaFieldUpdateOperationsInput = {
+    set?: $Enums.Compania
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -9748,10 +11535,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type VehiculoUpdateOneRequiredWithoutSegurosNestedInput = {
@@ -9814,14 +11597,6 @@ export namespace Prisma {
     deleteMany?: FacturaScalarWhereInput | FacturaScalarWhereInput[]
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type FacturaUncheckedUpdateManyWithoutGastoNestedInput = {
     create?: XOR<FacturaCreateWithoutGastoInput, FacturaUncheckedCreateWithoutGastoInput> | FacturaCreateWithoutGastoInput[] | FacturaUncheckedCreateWithoutGastoInput[]
     connectOrCreate?: FacturaCreateOrConnectWithoutGastoInput | FacturaCreateOrConnectWithoutGastoInput[]
@@ -9842,12 +11617,6 @@ export namespace Prisma {
     connect?: GastoWhereUniqueInput
   }
 
-  export type VehiculoCreateNestedOneWithoutFacturasInput = {
-    create?: XOR<VehiculoCreateWithoutFacturasInput, VehiculoUncheckedCreateWithoutFacturasInput>
-    connectOrCreate?: VehiculoCreateOrConnectWithoutFacturasInput
-    connect?: VehiculoWhereUniqueInput
-  }
-
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
   }
@@ -9862,14 +11631,12 @@ export namespace Prisma {
     update?: XOR<XOR<GastoUpdateToOneWithWhereWithoutFacturasInput, GastoUpdateWithoutFacturasInput>, GastoUncheckedUpdateWithoutFacturasInput>
   }
 
-  export type VehiculoUpdateOneWithoutFacturasNestedInput = {
-    create?: XOR<VehiculoCreateWithoutFacturasInput, VehiculoUncheckedCreateWithoutFacturasInput>
-    connectOrCreate?: VehiculoCreateOrConnectWithoutFacturasInput
-    upsert?: VehiculoUpsertWithoutFacturasInput
-    disconnect?: VehiculoWhereInput | boolean
-    delete?: VehiculoWhereInput | boolean
-    connect?: VehiculoWhereUniqueInput
-    update?: XOR<XOR<VehiculoUpdateToOneWithWhereWithoutFacturasInput, VehiculoUpdateWithoutFacturasInput>, VehiculoUncheckedUpdateWithoutFacturasInput>
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -9891,6 +11658,11 @@ export namespace Prisma {
     in?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
     notIn?: $Enums.Role[] | ListEnumRoleFieldRefInput<$PrismaModel>
     not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -9931,18 +11703,23 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -9970,6 +11747,34 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -10000,32 +11805,21 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedEnumCompaniaSeguroFilter<$PrismaModel = never> = {
-    equals?: $Enums.CompaniaSeguro | EnumCompaniaSeguroFieldRefInput<$PrismaModel>
-    in?: $Enums.CompaniaSeguro[] | ListEnumCompaniaSeguroFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CompaniaSeguro[] | ListEnumCompaniaSeguroFieldRefInput<$PrismaModel>
-    not?: NestedEnumCompaniaSeguroFilter<$PrismaModel> | $Enums.CompaniaSeguro
+  export type NestedEnumCompaniaFilter<$PrismaModel = never> = {
+    equals?: $Enums.Compania | EnumCompaniaFieldRefInput<$PrismaModel>
+    in?: $Enums.Compania[] | ListEnumCompaniaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Compania[] | ListEnumCompaniaFieldRefInput<$PrismaModel>
+    not?: NestedEnumCompaniaFilter<$PrismaModel> | $Enums.Compania
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedEnumCompaniaSeguroWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.CompaniaSeguro | EnumCompaniaSeguroFieldRefInput<$PrismaModel>
-    in?: $Enums.CompaniaSeguro[] | ListEnumCompaniaSeguroFieldRefInput<$PrismaModel>
-    notIn?: $Enums.CompaniaSeguro[] | ListEnumCompaniaSeguroFieldRefInput<$PrismaModel>
-    not?: NestedEnumCompaniaSeguroWithAggregatesFilter<$PrismaModel> | $Enums.CompaniaSeguro
+  export type NestedEnumCompaniaWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Compania | EnumCompaniaFieldRefInput<$PrismaModel>
+    in?: $Enums.Compania[] | ListEnumCompaniaFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Compania[] | ListEnumCompaniaFieldRefInput<$PrismaModel>
+    not?: NestedEnumCompaniaWithAggregatesFilter<$PrismaModel> | $Enums.Compania
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCompaniaSeguroFilter<$PrismaModel>
-    _max?: NestedEnumCompaniaSeguroFilter<$PrismaModel>
+    _min?: NestedEnumCompaniaFilter<$PrismaModel>
+    _max?: NestedEnumCompaniaFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -10042,20 +11836,6 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
@@ -10085,22 +11865,6 @@ export namespace Prisma {
     _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -10126,21 +11890,90 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type VersionVehiculoCreateWithoutVehiculoInput = {
+    placa: string
+    placaAnterior?: string | null
+    marca: string
+    tipo: string
+    modelo: string
+    color: string
+    serie: string
+    motor?: string | null
+    proyecto?: string | null
+    ubicacion?: string | null
+    version: number
+    esActual?: boolean
+    fechaCambio?: Date | string
+    motivoCambio?: string | null
+    usuarioCambio?: string | null
+  }
+
+  export type VersionVehiculoUncheckedCreateWithoutVehiculoInput = {
+    id?: number
+    placa: string
+    placaAnterior?: string | null
+    marca: string
+    tipo: string
+    modelo: string
+    color: string
+    serie: string
+    motor?: string | null
+    proyecto?: string | null
+    ubicacion?: string | null
+    version: number
+    esActual?: boolean
+    fechaCambio?: Date | string
+    motivoCambio?: string | null
+    usuarioCambio?: string | null
+  }
+
+  export type VersionVehiculoCreateOrConnectWithoutVehiculoInput = {
+    where: VersionVehiculoWhereUniqueInput
+    create: XOR<VersionVehiculoCreateWithoutVehiculoInput, VersionVehiculoUncheckedCreateWithoutVehiculoInput>
+  }
+
+  export type VersionVehiculoCreateManyVehiculoInputEnvelope = {
+    data: VersionVehiculoCreateManyVehiculoInput | VersionVehiculoCreateManyVehiculoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SeguroCreateWithoutVehiculoInput = {
-    compania: $Enums.CompaniaSeguro
+    compania: $Enums.Compania
     precio: number
     fechaInicio: Date | string
     fechaVencimiento: Date | string
-    responsable?: string | null
+    comentario?: string | null
+    esActual?: boolean
+    version?: number
+    createdAt?: Date | string
   }
 
   export type SeguroUncheckedCreateWithoutVehiculoInput = {
     id?: number
-    compania: $Enums.CompaniaSeguro
+    compania: $Enums.Compania
     precio: number
     fechaInicio: Date | string
     fechaVencimiento: Date | string
-    responsable?: string | null
+    comentario?: string | null
+    esActual?: boolean
+    version?: number
+    createdAt?: Date | string
   }
 
   export type SeguroCreateOrConnectWithoutVehiculoInput = {
@@ -10169,6 +12002,7 @@ export namespace Prisma {
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    createdAt?: Date | string
     facturas?: FacturaCreateNestedManyWithoutGastoInput
   }
 
@@ -10189,6 +12023,7 @@ export namespace Prisma {
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    createdAt?: Date | string
     facturas?: FacturaUncheckedCreateNestedManyWithoutGastoInput
   }
 
@@ -10202,83 +12037,43 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type FacturaCreateWithoutVehiculoInput = {
-    uuid?: string | null
-    estadoSAT?: string | null
-    tipoComprobante?: string | null
-    tipo?: string | null
-    fechaEmision: Date | string
-    serie?: string | null
-    folio?: string | null
-    rfcEmisor: string
-    nombreEmisor: string
-    rfcReceptor: string
-    nombreReceptor: string
-    usoCFDI: string
-    subTotal: number
-    descuento?: number | null
-    totalIEPS?: number | null
-    iva16?: number | null
-    retenidoIVA?: number | null
-    retenidoISR?: number | null
-    ish?: number | null
-    total: number
-    moneda?: string | null
-    tipoCambio?: number | null
-    formaPago: string
-    metodoPago: string
-    conceptos: string
-    regimenFiscalReceptor?: string | null
-    domicilioFiscalReceptor?: string | null
-    fechaPago?: Date | string | null
-    bancoPago?: string | null
-    folioPago?: string | null
-    gasto?: GastoCreateNestedOneWithoutFacturasInput
+  export type VersionVehiculoUpsertWithWhereUniqueWithoutVehiculoInput = {
+    where: VersionVehiculoWhereUniqueInput
+    update: XOR<VersionVehiculoUpdateWithoutVehiculoInput, VersionVehiculoUncheckedUpdateWithoutVehiculoInput>
+    create: XOR<VersionVehiculoCreateWithoutVehiculoInput, VersionVehiculoUncheckedCreateWithoutVehiculoInput>
   }
 
-  export type FacturaUncheckedCreateWithoutVehiculoInput = {
-    id?: number
-    uuid?: string | null
-    estadoSAT?: string | null
-    tipoComprobante?: string | null
-    tipo?: string | null
-    fechaEmision: Date | string
-    serie?: string | null
-    folio?: string | null
-    rfcEmisor: string
-    nombreEmisor: string
-    rfcReceptor: string
-    nombreReceptor: string
-    usoCFDI: string
-    subTotal: number
-    descuento?: number | null
-    totalIEPS?: number | null
-    iva16?: number | null
-    retenidoIVA?: number | null
-    retenidoISR?: number | null
-    ish?: number | null
-    total: number
-    moneda?: string | null
-    tipoCambio?: number | null
-    formaPago: string
-    metodoPago: string
-    conceptos: string
-    regimenFiscalReceptor?: string | null
-    domicilioFiscalReceptor?: string | null
-    fechaPago?: Date | string | null
-    bancoPago?: string | null
-    folioPago?: string | null
-    gastoId?: number | null
+  export type VersionVehiculoUpdateWithWhereUniqueWithoutVehiculoInput = {
+    where: VersionVehiculoWhereUniqueInput
+    data: XOR<VersionVehiculoUpdateWithoutVehiculoInput, VersionVehiculoUncheckedUpdateWithoutVehiculoInput>
   }
 
-  export type FacturaCreateOrConnectWithoutVehiculoInput = {
-    where: FacturaWhereUniqueInput
-    create: XOR<FacturaCreateWithoutVehiculoInput, FacturaUncheckedCreateWithoutVehiculoInput>
+  export type VersionVehiculoUpdateManyWithWhereWithoutVehiculoInput = {
+    where: VersionVehiculoScalarWhereInput
+    data: XOR<VersionVehiculoUpdateManyMutationInput, VersionVehiculoUncheckedUpdateManyWithoutVehiculoInput>
   }
 
-  export type FacturaCreateManyVehiculoInputEnvelope = {
-    data: FacturaCreateManyVehiculoInput | FacturaCreateManyVehiculoInput[]
-    skipDuplicates?: boolean
+  export type VersionVehiculoScalarWhereInput = {
+    AND?: VersionVehiculoScalarWhereInput | VersionVehiculoScalarWhereInput[]
+    OR?: VersionVehiculoScalarWhereInput[]
+    NOT?: VersionVehiculoScalarWhereInput | VersionVehiculoScalarWhereInput[]
+    id?: IntFilter<"VersionVehiculo"> | number
+    vehiculoId?: StringFilter<"VersionVehiculo"> | string
+    placa?: StringFilter<"VersionVehiculo"> | string
+    placaAnterior?: StringNullableFilter<"VersionVehiculo"> | string | null
+    marca?: StringFilter<"VersionVehiculo"> | string
+    tipo?: StringFilter<"VersionVehiculo"> | string
+    modelo?: StringFilter<"VersionVehiculo"> | string
+    color?: StringFilter<"VersionVehiculo"> | string
+    serie?: StringFilter<"VersionVehiculo"> | string
+    motor?: StringNullableFilter<"VersionVehiculo"> | string | null
+    proyecto?: StringNullableFilter<"VersionVehiculo"> | string | null
+    ubicacion?: StringNullableFilter<"VersionVehiculo"> | string | null
+    version?: IntFilter<"VersionVehiculo"> | number
+    esActual?: BoolFilter<"VersionVehiculo"> | boolean
+    fechaCambio?: DateTimeFilter<"VersionVehiculo"> | Date | string
+    motivoCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
+    usuarioCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
   }
 
   export type SeguroUpsertWithWhereUniqueWithoutVehiculoInput = {
@@ -10302,12 +12097,15 @@ export namespace Prisma {
     OR?: SeguroScalarWhereInput[]
     NOT?: SeguroScalarWhereInput | SeguroScalarWhereInput[]
     id?: IntFilter<"Seguro"> | number
-    vehiculoId?: IntFilter<"Seguro"> | number
-    compania?: EnumCompaniaSeguroFilter<"Seguro"> | $Enums.CompaniaSeguro
+    vehiculoId?: StringFilter<"Seguro"> | string
+    compania?: EnumCompaniaFilter<"Seguro"> | $Enums.Compania
     precio?: FloatFilter<"Seguro"> | number
     fechaInicio?: DateTimeFilter<"Seguro"> | Date | string
     fechaVencimiento?: DateTimeFilter<"Seguro"> | Date | string
-    responsable?: StringNullableFilter<"Seguro"> | string | null
+    comentario?: StringNullableFilter<"Seguro"> | string | null
+    esActual?: BoolFilter<"Seguro"> | boolean
+    version?: IntFilter<"Seguro"> | number
+    createdAt?: DateTimeFilter<"Seguro"> | Date | string
   }
 
   export type GastoUpsertWithWhereUniqueWithoutVehiculoInput = {
@@ -10332,6 +12130,7 @@ export namespace Prisma {
     NOT?: GastoScalarWhereInput | GastoScalarWhereInput[]
     id?: IntFilter<"Gasto"> | number
     folio?: StringFilter<"Gasto"> | string
+    vehiculoId?: StringNullableFilter<"Gasto"> | string | null
     fecha?: DateTimeFilter<"Gasto"> | Date | string
     razonSocial?: StringFilter<"Gasto"> | string
     banco?: StringNullableFilter<"Gasto"> | string | null
@@ -10346,95 +12145,83 @@ export namespace Prisma {
     entrada?: FloatNullableFilter<"Gasto"> | number | null
     salida?: FloatNullableFilter<"Gasto"> | number | null
     saldo?: FloatNullableFilter<"Gasto"> | number | null
-    vehiculoId?: IntNullableFilter<"Gasto"> | number | null
+    createdAt?: DateTimeFilter<"Gasto"> | Date | string
   }
 
-  export type FacturaUpsertWithWhereUniqueWithoutVehiculoInput = {
-    where: FacturaWhereUniqueInput
-    update: XOR<FacturaUpdateWithoutVehiculoInput, FacturaUncheckedUpdateWithoutVehiculoInput>
-    create: XOR<FacturaCreateWithoutVehiculoInput, FacturaUncheckedCreateWithoutVehiculoInput>
+  export type VehiculoCreateWithoutVersionesInput = {
+    id?: string
+    placa: string
+    versionActual?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    seguros?: SeguroCreateNestedManyWithoutVehiculoInput
+    gastos?: GastoCreateNestedManyWithoutVehiculoInput
   }
 
-  export type FacturaUpdateWithWhereUniqueWithoutVehiculoInput = {
-    where: FacturaWhereUniqueInput
-    data: XOR<FacturaUpdateWithoutVehiculoInput, FacturaUncheckedUpdateWithoutVehiculoInput>
+  export type VehiculoUncheckedCreateWithoutVersionesInput = {
+    id?: string
+    placa: string
+    versionActual?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    seguros?: SeguroUncheckedCreateNestedManyWithoutVehiculoInput
+    gastos?: GastoUncheckedCreateNestedManyWithoutVehiculoInput
   }
 
-  export type FacturaUpdateManyWithWhereWithoutVehiculoInput = {
-    where: FacturaScalarWhereInput
-    data: XOR<FacturaUpdateManyMutationInput, FacturaUncheckedUpdateManyWithoutVehiculoInput>
+  export type VehiculoCreateOrConnectWithoutVersionesInput = {
+    where: VehiculoWhereUniqueInput
+    create: XOR<VehiculoCreateWithoutVersionesInput, VehiculoUncheckedCreateWithoutVersionesInput>
   }
 
-  export type FacturaScalarWhereInput = {
-    AND?: FacturaScalarWhereInput | FacturaScalarWhereInput[]
-    OR?: FacturaScalarWhereInput[]
-    NOT?: FacturaScalarWhereInput | FacturaScalarWhereInput[]
-    id?: IntFilter<"Factura"> | number
-    uuid?: StringNullableFilter<"Factura"> | string | null
-    estadoSAT?: StringNullableFilter<"Factura"> | string | null
-    tipoComprobante?: StringNullableFilter<"Factura"> | string | null
-    tipo?: StringNullableFilter<"Factura"> | string | null
-    fechaEmision?: DateTimeFilter<"Factura"> | Date | string
-    serie?: StringNullableFilter<"Factura"> | string | null
-    folio?: StringNullableFilter<"Factura"> | string | null
-    rfcEmisor?: StringFilter<"Factura"> | string
-    nombreEmisor?: StringFilter<"Factura"> | string
-    rfcReceptor?: StringFilter<"Factura"> | string
-    nombreReceptor?: StringFilter<"Factura"> | string
-    usoCFDI?: StringFilter<"Factura"> | string
-    subTotal?: FloatFilter<"Factura"> | number
-    descuento?: FloatNullableFilter<"Factura"> | number | null
-    totalIEPS?: FloatNullableFilter<"Factura"> | number | null
-    iva16?: FloatNullableFilter<"Factura"> | number | null
-    retenidoIVA?: FloatNullableFilter<"Factura"> | number | null
-    retenidoISR?: FloatNullableFilter<"Factura"> | number | null
-    ish?: FloatNullableFilter<"Factura"> | number | null
-    total?: FloatFilter<"Factura"> | number
-    moneda?: StringNullableFilter<"Factura"> | string | null
-    tipoCambio?: FloatNullableFilter<"Factura"> | number | null
-    formaPago?: StringFilter<"Factura"> | string
-    metodoPago?: StringFilter<"Factura"> | string
-    conceptos?: StringFilter<"Factura"> | string
-    regimenFiscalReceptor?: StringNullableFilter<"Factura"> | string | null
-    domicilioFiscalReceptor?: StringNullableFilter<"Factura"> | string | null
-    fechaPago?: DateTimeNullableFilter<"Factura"> | Date | string | null
-    bancoPago?: StringNullableFilter<"Factura"> | string | null
-    folioPago?: StringNullableFilter<"Factura"> | string | null
-    gastoId?: IntNullableFilter<"Factura"> | number | null
-    vehiculoId?: IntNullableFilter<"Factura"> | number | null
+  export type VehiculoUpsertWithoutVersionesInput = {
+    update: XOR<VehiculoUpdateWithoutVersionesInput, VehiculoUncheckedUpdateWithoutVersionesInput>
+    create: XOR<VehiculoCreateWithoutVersionesInput, VehiculoUncheckedCreateWithoutVersionesInput>
+    where?: VehiculoWhereInput
+  }
+
+  export type VehiculoUpdateToOneWithWhereWithoutVersionesInput = {
+    where?: VehiculoWhereInput
+    data: XOR<VehiculoUpdateWithoutVersionesInput, VehiculoUncheckedUpdateWithoutVersionesInput>
+  }
+
+  export type VehiculoUpdateWithoutVersionesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    placa?: StringFieldUpdateOperationsInput | string
+    versionActual?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seguros?: SeguroUpdateManyWithoutVehiculoNestedInput
+    gastos?: GastoUpdateManyWithoutVehiculoNestedInput
+  }
+
+  export type VehiculoUncheckedUpdateWithoutVersionesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    placa?: StringFieldUpdateOperationsInput | string
+    versionActual?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    seguros?: SeguroUncheckedUpdateManyWithoutVehiculoNestedInput
+    gastos?: GastoUncheckedUpdateManyWithoutVehiculoNestedInput
   }
 
   export type VehiculoCreateWithoutSegurosInput = {
+    id?: string
     placa: string
-    marca: string
-    tipo: string
-    color: string
-    modelo: number
-    serie: string
-    motor?: string | null
-    proyecto?: string | null
-    ubicacion?: string | null
-    placaAnterior?: string | null
-    comentario?: string | null
+    versionActual?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    versiones?: VersionVehiculoCreateNestedManyWithoutVehiculoInput
     gastos?: GastoCreateNestedManyWithoutVehiculoInput
-    facturas?: FacturaCreateNestedManyWithoutVehiculoInput
   }
 
   export type VehiculoUncheckedCreateWithoutSegurosInput = {
-    id?: number
+    id?: string
     placa: string
-    marca: string
-    tipo: string
-    color: string
-    modelo: number
-    serie: string
-    motor?: string | null
-    proyecto?: string | null
-    ubicacion?: string | null
-    placaAnterior?: string | null
-    comentario?: string | null
+    versionActual?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    versiones?: VersionVehiculoUncheckedCreateNestedManyWithoutVehiculoInput
     gastos?: GastoUncheckedCreateNestedManyWithoutVehiculoInput
-    facturas?: FacturaUncheckedCreateNestedManyWithoutVehiculoInput
   }
 
   export type VehiculoCreateOrConnectWithoutSegurosInput = {
@@ -10454,69 +12241,43 @@ export namespace Prisma {
   }
 
   export type VehiculoUpdateWithoutSegurosInput = {
+    id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
-    marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    modelo?: IntFieldUpdateOperationsInput | number
-    serie?: StringFieldUpdateOperationsInput | string
-    motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
-    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
-    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
-    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    versionActual?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    versiones?: VersionVehiculoUpdateManyWithoutVehiculoNestedInput
     gastos?: GastoUpdateManyWithoutVehiculoNestedInput
-    facturas?: FacturaUpdateManyWithoutVehiculoNestedInput
   }
 
   export type VehiculoUncheckedUpdateWithoutSegurosInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
-    marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    modelo?: IntFieldUpdateOperationsInput | number
-    serie?: StringFieldUpdateOperationsInput | string
-    motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
-    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
-    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
-    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    versionActual?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    versiones?: VersionVehiculoUncheckedUpdateManyWithoutVehiculoNestedInput
     gastos?: GastoUncheckedUpdateManyWithoutVehiculoNestedInput
-    facturas?: FacturaUncheckedUpdateManyWithoutVehiculoNestedInput
   }
 
   export type VehiculoCreateWithoutGastosInput = {
+    id?: string
     placa: string
-    marca: string
-    tipo: string
-    color: string
-    modelo: number
-    serie: string
-    motor?: string | null
-    proyecto?: string | null
-    ubicacion?: string | null
-    placaAnterior?: string | null
-    comentario?: string | null
+    versionActual?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    versiones?: VersionVehiculoCreateNestedManyWithoutVehiculoInput
     seguros?: SeguroCreateNestedManyWithoutVehiculoInput
-    facturas?: FacturaCreateNestedManyWithoutVehiculoInput
   }
 
   export type VehiculoUncheckedCreateWithoutGastosInput = {
-    id?: number
+    id?: string
     placa: string
-    marca: string
-    tipo: string
-    color: string
-    modelo: number
-    serie: string
-    motor?: string | null
-    proyecto?: string | null
-    ubicacion?: string | null
-    placaAnterior?: string | null
-    comentario?: string | null
+    versionActual?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    versiones?: VersionVehiculoUncheckedCreateNestedManyWithoutVehiculoInput
     seguros?: SeguroUncheckedCreateNestedManyWithoutVehiculoInput
-    facturas?: FacturaUncheckedCreateNestedManyWithoutVehiculoInput
   }
 
   export type VehiculoCreateOrConnectWithoutGastosInput = {
@@ -10531,7 +12292,6 @@ export namespace Prisma {
     tipo?: string | null
     fechaEmision: Date | string
     serie?: string | null
-    folio?: string | null
     rfcEmisor: string
     nombreEmisor: string
     rfcReceptor: string
@@ -10555,7 +12315,7 @@ export namespace Prisma {
     fechaPago?: Date | string | null
     bancoPago?: string | null
     folioPago?: string | null
-    vehiculo?: VehiculoCreateNestedOneWithoutFacturasInput
+    createdAt?: Date | string
   }
 
   export type FacturaUncheckedCreateWithoutGastoInput = {
@@ -10566,7 +12326,6 @@ export namespace Prisma {
     tipo?: string | null
     fechaEmision: Date | string
     serie?: string | null
-    folio?: string | null
     rfcEmisor: string
     nombreEmisor: string
     rfcReceptor: string
@@ -10590,7 +12349,7 @@ export namespace Prisma {
     fechaPago?: Date | string | null
     bancoPago?: string | null
     folioPago?: string | null
-    vehiculoId?: number | null
+    createdAt?: Date | string
   }
 
   export type FacturaCreateOrConnectWithoutGastoInput = {
@@ -10615,36 +12374,23 @@ export namespace Prisma {
   }
 
   export type VehiculoUpdateWithoutGastosInput = {
+    id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
-    marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    modelo?: IntFieldUpdateOperationsInput | number
-    serie?: StringFieldUpdateOperationsInput | string
-    motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
-    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
-    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
-    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    versionActual?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    versiones?: VersionVehiculoUpdateManyWithoutVehiculoNestedInput
     seguros?: SeguroUpdateManyWithoutVehiculoNestedInput
-    facturas?: FacturaUpdateManyWithoutVehiculoNestedInput
   }
 
   export type VehiculoUncheckedUpdateWithoutGastosInput = {
-    id?: IntFieldUpdateOperationsInput | number
+    id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
-    marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    modelo?: IntFieldUpdateOperationsInput | number
-    serie?: StringFieldUpdateOperationsInput | string
-    motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
-    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
-    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
-    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    versionActual?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    versiones?: VersionVehiculoUncheckedUpdateManyWithoutVehiculoNestedInput
     seguros?: SeguroUncheckedUpdateManyWithoutVehiculoNestedInput
-    facturas?: FacturaUncheckedUpdateManyWithoutVehiculoNestedInput
   }
 
   export type FacturaUpsertWithWhereUniqueWithoutGastoInput = {
@@ -10663,6 +12409,44 @@ export namespace Prisma {
     data: XOR<FacturaUpdateManyMutationInput, FacturaUncheckedUpdateManyWithoutGastoInput>
   }
 
+  export type FacturaScalarWhereInput = {
+    AND?: FacturaScalarWhereInput | FacturaScalarWhereInput[]
+    OR?: FacturaScalarWhereInput[]
+    NOT?: FacturaScalarWhereInput | FacturaScalarWhereInput[]
+    id?: IntFilter<"Factura"> | number
+    uuid?: StringNullableFilter<"Factura"> | string | null
+    estadoSAT?: StringNullableFilter<"Factura"> | string | null
+    tipoComprobante?: StringNullableFilter<"Factura"> | string | null
+    tipo?: StringNullableFilter<"Factura"> | string | null
+    fechaEmision?: DateTimeFilter<"Factura"> | Date | string
+    serie?: StringNullableFilter<"Factura"> | string | null
+    rfcEmisor?: StringFilter<"Factura"> | string
+    nombreEmisor?: StringFilter<"Factura"> | string
+    rfcReceptor?: StringFilter<"Factura"> | string
+    nombreReceptor?: StringFilter<"Factura"> | string
+    usoCFDI?: StringFilter<"Factura"> | string
+    subTotal?: FloatFilter<"Factura"> | number
+    descuento?: FloatNullableFilter<"Factura"> | number | null
+    totalIEPS?: FloatNullableFilter<"Factura"> | number | null
+    iva16?: FloatNullableFilter<"Factura"> | number | null
+    retenidoIVA?: FloatNullableFilter<"Factura"> | number | null
+    retenidoISR?: FloatNullableFilter<"Factura"> | number | null
+    ish?: FloatNullableFilter<"Factura"> | number | null
+    total?: FloatFilter<"Factura"> | number
+    moneda?: StringNullableFilter<"Factura"> | string | null
+    tipoCambio?: FloatNullableFilter<"Factura"> | number | null
+    formaPago?: StringFilter<"Factura"> | string
+    metodoPago?: StringFilter<"Factura"> | string
+    conceptos?: StringFilter<"Factura"> | string
+    regimenFiscalReceptor?: StringNullableFilter<"Factura"> | string | null
+    domicilioFiscalReceptor?: StringNullableFilter<"Factura"> | string | null
+    fechaPago?: DateTimeNullableFilter<"Factura"> | Date | string | null
+    bancoPago?: StringNullableFilter<"Factura"> | string | null
+    folioPago?: StringNullableFilter<"Factura"> | string | null
+    gastoId?: IntNullableFilter<"Factura"> | number | null
+    createdAt?: DateTimeFilter<"Factura"> | Date | string
+  }
+
   export type GastoCreateWithoutFacturasInput = {
     folio: string
     fecha: Date | string
@@ -10679,12 +12463,14 @@ export namespace Prisma {
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    createdAt?: Date | string
     vehiculo?: VehiculoCreateNestedOneWithoutGastosInput
   }
 
   export type GastoUncheckedCreateWithoutFacturasInput = {
     id?: number
     folio: string
+    vehiculoId?: string | null
     fecha: Date | string
     razonSocial: string
     banco?: string | null
@@ -10699,50 +12485,12 @@ export namespace Prisma {
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
-    vehiculoId?: number | null
+    createdAt?: Date | string
   }
 
   export type GastoCreateOrConnectWithoutFacturasInput = {
     where: GastoWhereUniqueInput
     create: XOR<GastoCreateWithoutFacturasInput, GastoUncheckedCreateWithoutFacturasInput>
-  }
-
-  export type VehiculoCreateWithoutFacturasInput = {
-    placa: string
-    marca: string
-    tipo: string
-    color: string
-    modelo: number
-    serie: string
-    motor?: string | null
-    proyecto?: string | null
-    ubicacion?: string | null
-    placaAnterior?: string | null
-    comentario?: string | null
-    seguros?: SeguroCreateNestedManyWithoutVehiculoInput
-    gastos?: GastoCreateNestedManyWithoutVehiculoInput
-  }
-
-  export type VehiculoUncheckedCreateWithoutFacturasInput = {
-    id?: number
-    placa: string
-    marca: string
-    tipo: string
-    color: string
-    modelo: number
-    serie: string
-    motor?: string | null
-    proyecto?: string | null
-    ubicacion?: string | null
-    placaAnterior?: string | null
-    comentario?: string | null
-    seguros?: SeguroUncheckedCreateNestedManyWithoutVehiculoInput
-    gastos?: GastoUncheckedCreateNestedManyWithoutVehiculoInput
-  }
-
-  export type VehiculoCreateOrConnectWithoutFacturasInput = {
-    where: VehiculoWhereUniqueInput
-    create: XOR<VehiculoCreateWithoutFacturasInput, VehiculoUncheckedCreateWithoutFacturasInput>
   }
 
   export type GastoUpsertWithoutFacturasInput = {
@@ -10772,12 +12520,14 @@ export namespace Prisma {
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vehiculo?: VehiculoUpdateOneWithoutGastosNestedInput
   }
 
   export type GastoUncheckedUpdateWithoutFacturasInput = {
     id?: IntFieldUpdateOperationsInput | number
     folio?: StringFieldUpdateOperationsInput | string
+    vehiculoId?: NullableStringFieldUpdateOperationsInput | string | null
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     razonSocial?: StringFieldUpdateOperationsInput | string
     banco?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10792,60 +12542,38 @@ export namespace Prisma {
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
-    vehiculoId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type VehiculoUpsertWithoutFacturasInput = {
-    update: XOR<VehiculoUpdateWithoutFacturasInput, VehiculoUncheckedUpdateWithoutFacturasInput>
-    create: XOR<VehiculoCreateWithoutFacturasInput, VehiculoUncheckedCreateWithoutFacturasInput>
-    where?: VehiculoWhereInput
-  }
-
-  export type VehiculoUpdateToOneWithWhereWithoutFacturasInput = {
-    where?: VehiculoWhereInput
-    data: XOR<VehiculoUpdateWithoutFacturasInput, VehiculoUncheckedUpdateWithoutFacturasInput>
-  }
-
-  export type VehiculoUpdateWithoutFacturasInput = {
-    placa?: StringFieldUpdateOperationsInput | string
-    marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    modelo?: IntFieldUpdateOperationsInput | number
-    serie?: StringFieldUpdateOperationsInput | string
-    motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
-    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
-    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
-    comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    seguros?: SeguroUpdateManyWithoutVehiculoNestedInput
-    gastos?: GastoUpdateManyWithoutVehiculoNestedInput
-  }
-
-  export type VehiculoUncheckedUpdateWithoutFacturasInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    placa?: StringFieldUpdateOperationsInput | string
-    marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    modelo?: IntFieldUpdateOperationsInput | number
-    serie?: StringFieldUpdateOperationsInput | string
-    motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
-    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
-    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
-    comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    seguros?: SeguroUncheckedUpdateManyWithoutVehiculoNestedInput
-    gastos?: GastoUncheckedUpdateManyWithoutVehiculoNestedInput
+  export type VersionVehiculoCreateManyVehiculoInput = {
+    id?: number
+    placa: string
+    placaAnterior?: string | null
+    marca: string
+    tipo: string
+    modelo: string
+    color: string
+    serie: string
+    motor?: string | null
+    proyecto?: string | null
+    ubicacion?: string | null
+    version: number
+    esActual?: boolean
+    fechaCambio?: Date | string
+    motivoCambio?: string | null
+    usuarioCambio?: string | null
   }
 
   export type SeguroCreateManyVehiculoInput = {
     id?: number
-    compania: $Enums.CompaniaSeguro
+    compania: $Enums.Compania
     precio: number
     fechaInicio: Date | string
     fechaVencimiento: Date | string
-    responsable?: string | null
+    comentario?: string | null
+    esActual?: boolean
+    version?: number
+    createdAt?: Date | string
   }
 
   export type GastoCreateManyVehiculoInput = {
@@ -10865,67 +12593,98 @@ export namespace Prisma {
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    createdAt?: Date | string
   }
 
-  export type FacturaCreateManyVehiculoInput = {
-    id?: number
-    uuid?: string | null
-    estadoSAT?: string | null
-    tipoComprobante?: string | null
-    tipo?: string | null
-    fechaEmision: Date | string
-    serie?: string | null
-    folio?: string | null
-    rfcEmisor: string
-    nombreEmisor: string
-    rfcReceptor: string
-    nombreReceptor: string
-    usoCFDI: string
-    subTotal: number
-    descuento?: number | null
-    totalIEPS?: number | null
-    iva16?: number | null
-    retenidoIVA?: number | null
-    retenidoISR?: number | null
-    ish?: number | null
-    total: number
-    moneda?: string | null
-    tipoCambio?: number | null
-    formaPago: string
-    metodoPago: string
-    conceptos: string
-    regimenFiscalReceptor?: string | null
-    domicilioFiscalReceptor?: string | null
-    fechaPago?: Date | string | null
-    bancoPago?: string | null
-    folioPago?: string | null
-    gastoId?: number | null
+  export type VersionVehiculoUpdateWithoutVehiculoInput = {
+    placa?: StringFieldUpdateOperationsInput | string
+    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type VersionVehiculoUncheckedUpdateWithoutVehiculoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    placa?: StringFieldUpdateOperationsInput | string
+    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type VersionVehiculoUncheckedUpdateManyWithoutVehiculoInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    placa?: StringFieldUpdateOperationsInput | string
+    placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
+    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SeguroUpdateWithoutVehiculoInput = {
-    compania?: EnumCompaniaSeguroFieldUpdateOperationsInput | $Enums.CompaniaSeguro
+    compania?: EnumCompaniaFieldUpdateOperationsInput | $Enums.Compania
     precio?: FloatFieldUpdateOperationsInput | number
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
-    responsable?: NullableStringFieldUpdateOperationsInput | string | null
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    version?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SeguroUncheckedUpdateWithoutVehiculoInput = {
     id?: IntFieldUpdateOperationsInput | number
-    compania?: EnumCompaniaSeguroFieldUpdateOperationsInput | $Enums.CompaniaSeguro
+    compania?: EnumCompaniaFieldUpdateOperationsInput | $Enums.Compania
     precio?: FloatFieldUpdateOperationsInput | number
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
-    responsable?: NullableStringFieldUpdateOperationsInput | string | null
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    version?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SeguroUncheckedUpdateManyWithoutVehiculoInput = {
     id?: IntFieldUpdateOperationsInput | number
-    compania?: EnumCompaniaSeguroFieldUpdateOperationsInput | $Enums.CompaniaSeguro
+    compania?: EnumCompaniaFieldUpdateOperationsInput | $Enums.Compania
     precio?: FloatFieldUpdateOperationsInput | number
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
-    responsable?: NullableStringFieldUpdateOperationsInput | string | null
+    comentario?: NullableStringFieldUpdateOperationsInput | string | null
+    esActual?: BoolFieldUpdateOperationsInput | boolean
+    version?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GastoUpdateWithoutVehiculoInput = {
@@ -10944,6 +12703,7 @@ export namespace Prisma {
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     facturas?: FacturaUpdateManyWithoutGastoNestedInput
   }
 
@@ -10964,6 +12724,7 @@ export namespace Prisma {
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     facturas?: FacturaUncheckedUpdateManyWithoutGastoNestedInput
   }
 
@@ -10984,110 +12745,7 @@ export namespace Prisma {
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
-  }
-
-  export type FacturaUpdateWithoutVehiculoInput = {
-    uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    estadoSAT?: NullableStringFieldUpdateOperationsInput | string | null
-    tipoComprobante?: NullableStringFieldUpdateOperationsInput | string | null
-    tipo?: NullableStringFieldUpdateOperationsInput | string | null
-    fechaEmision?: DateTimeFieldUpdateOperationsInput | Date | string
-    serie?: NullableStringFieldUpdateOperationsInput | string | null
-    folio?: NullableStringFieldUpdateOperationsInput | string | null
-    rfcEmisor?: StringFieldUpdateOperationsInput | string
-    nombreEmisor?: StringFieldUpdateOperationsInput | string
-    rfcReceptor?: StringFieldUpdateOperationsInput | string
-    nombreReceptor?: StringFieldUpdateOperationsInput | string
-    usoCFDI?: StringFieldUpdateOperationsInput | string
-    subTotal?: FloatFieldUpdateOperationsInput | number
-    descuento?: NullableFloatFieldUpdateOperationsInput | number | null
-    totalIEPS?: NullableFloatFieldUpdateOperationsInput | number | null
-    iva16?: NullableFloatFieldUpdateOperationsInput | number | null
-    retenidoIVA?: NullableFloatFieldUpdateOperationsInput | number | null
-    retenidoISR?: NullableFloatFieldUpdateOperationsInput | number | null
-    ish?: NullableFloatFieldUpdateOperationsInput | number | null
-    total?: FloatFieldUpdateOperationsInput | number
-    moneda?: NullableStringFieldUpdateOperationsInput | string | null
-    tipoCambio?: NullableFloatFieldUpdateOperationsInput | number | null
-    formaPago?: StringFieldUpdateOperationsInput | string
-    metodoPago?: StringFieldUpdateOperationsInput | string
-    conceptos?: StringFieldUpdateOperationsInput | string
-    regimenFiscalReceptor?: NullableStringFieldUpdateOperationsInput | string | null
-    domicilioFiscalReceptor?: NullableStringFieldUpdateOperationsInput | string | null
-    fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
-    folioPago?: NullableStringFieldUpdateOperationsInput | string | null
-    gasto?: GastoUpdateOneWithoutFacturasNestedInput
-  }
-
-  export type FacturaUncheckedUpdateWithoutVehiculoInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    estadoSAT?: NullableStringFieldUpdateOperationsInput | string | null
-    tipoComprobante?: NullableStringFieldUpdateOperationsInput | string | null
-    tipo?: NullableStringFieldUpdateOperationsInput | string | null
-    fechaEmision?: DateTimeFieldUpdateOperationsInput | Date | string
-    serie?: NullableStringFieldUpdateOperationsInput | string | null
-    folio?: NullableStringFieldUpdateOperationsInput | string | null
-    rfcEmisor?: StringFieldUpdateOperationsInput | string
-    nombreEmisor?: StringFieldUpdateOperationsInput | string
-    rfcReceptor?: StringFieldUpdateOperationsInput | string
-    nombreReceptor?: StringFieldUpdateOperationsInput | string
-    usoCFDI?: StringFieldUpdateOperationsInput | string
-    subTotal?: FloatFieldUpdateOperationsInput | number
-    descuento?: NullableFloatFieldUpdateOperationsInput | number | null
-    totalIEPS?: NullableFloatFieldUpdateOperationsInput | number | null
-    iva16?: NullableFloatFieldUpdateOperationsInput | number | null
-    retenidoIVA?: NullableFloatFieldUpdateOperationsInput | number | null
-    retenidoISR?: NullableFloatFieldUpdateOperationsInput | number | null
-    ish?: NullableFloatFieldUpdateOperationsInput | number | null
-    total?: FloatFieldUpdateOperationsInput | number
-    moneda?: NullableStringFieldUpdateOperationsInput | string | null
-    tipoCambio?: NullableFloatFieldUpdateOperationsInput | number | null
-    formaPago?: StringFieldUpdateOperationsInput | string
-    metodoPago?: StringFieldUpdateOperationsInput | string
-    conceptos?: StringFieldUpdateOperationsInput | string
-    regimenFiscalReceptor?: NullableStringFieldUpdateOperationsInput | string | null
-    domicilioFiscalReceptor?: NullableStringFieldUpdateOperationsInput | string | null
-    fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
-    folioPago?: NullableStringFieldUpdateOperationsInput | string | null
-    gastoId?: NullableIntFieldUpdateOperationsInput | number | null
-  }
-
-  export type FacturaUncheckedUpdateManyWithoutVehiculoInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    uuid?: NullableStringFieldUpdateOperationsInput | string | null
-    estadoSAT?: NullableStringFieldUpdateOperationsInput | string | null
-    tipoComprobante?: NullableStringFieldUpdateOperationsInput | string | null
-    tipo?: NullableStringFieldUpdateOperationsInput | string | null
-    fechaEmision?: DateTimeFieldUpdateOperationsInput | Date | string
-    serie?: NullableStringFieldUpdateOperationsInput | string | null
-    folio?: NullableStringFieldUpdateOperationsInput | string | null
-    rfcEmisor?: StringFieldUpdateOperationsInput | string
-    nombreEmisor?: StringFieldUpdateOperationsInput | string
-    rfcReceptor?: StringFieldUpdateOperationsInput | string
-    nombreReceptor?: StringFieldUpdateOperationsInput | string
-    usoCFDI?: StringFieldUpdateOperationsInput | string
-    subTotal?: FloatFieldUpdateOperationsInput | number
-    descuento?: NullableFloatFieldUpdateOperationsInput | number | null
-    totalIEPS?: NullableFloatFieldUpdateOperationsInput | number | null
-    iva16?: NullableFloatFieldUpdateOperationsInput | number | null
-    retenidoIVA?: NullableFloatFieldUpdateOperationsInput | number | null
-    retenidoISR?: NullableFloatFieldUpdateOperationsInput | number | null
-    ish?: NullableFloatFieldUpdateOperationsInput | number | null
-    total?: FloatFieldUpdateOperationsInput | number
-    moneda?: NullableStringFieldUpdateOperationsInput | string | null
-    tipoCambio?: NullableFloatFieldUpdateOperationsInput | number | null
-    formaPago?: StringFieldUpdateOperationsInput | string
-    metodoPago?: StringFieldUpdateOperationsInput | string
-    conceptos?: StringFieldUpdateOperationsInput | string
-    regimenFiscalReceptor?: NullableStringFieldUpdateOperationsInput | string | null
-    domicilioFiscalReceptor?: NullableStringFieldUpdateOperationsInput | string | null
-    fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
-    folioPago?: NullableStringFieldUpdateOperationsInput | string | null
-    gastoId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FacturaCreateManyGastoInput = {
@@ -11098,7 +12756,6 @@ export namespace Prisma {
     tipo?: string | null
     fechaEmision: Date | string
     serie?: string | null
-    folio?: string | null
     rfcEmisor: string
     nombreEmisor: string
     rfcReceptor: string
@@ -11122,7 +12779,7 @@ export namespace Prisma {
     fechaPago?: Date | string | null
     bancoPago?: string | null
     folioPago?: string | null
-    vehiculoId?: number | null
+    createdAt?: Date | string
   }
 
   export type FacturaUpdateWithoutGastoInput = {
@@ -11132,7 +12789,6 @@ export namespace Prisma {
     tipo?: NullableStringFieldUpdateOperationsInput | string | null
     fechaEmision?: DateTimeFieldUpdateOperationsInput | Date | string
     serie?: NullableStringFieldUpdateOperationsInput | string | null
-    folio?: NullableStringFieldUpdateOperationsInput | string | null
     rfcEmisor?: StringFieldUpdateOperationsInput | string
     nombreEmisor?: StringFieldUpdateOperationsInput | string
     rfcReceptor?: StringFieldUpdateOperationsInput | string
@@ -11156,7 +12812,7 @@ export namespace Prisma {
     fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
-    vehiculo?: VehiculoUpdateOneWithoutFacturasNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FacturaUncheckedUpdateWithoutGastoInput = {
@@ -11167,7 +12823,6 @@ export namespace Prisma {
     tipo?: NullableStringFieldUpdateOperationsInput | string | null
     fechaEmision?: DateTimeFieldUpdateOperationsInput | Date | string
     serie?: NullableStringFieldUpdateOperationsInput | string | null
-    folio?: NullableStringFieldUpdateOperationsInput | string | null
     rfcEmisor?: StringFieldUpdateOperationsInput | string
     nombreEmisor?: StringFieldUpdateOperationsInput | string
     rfcReceptor?: StringFieldUpdateOperationsInput | string
@@ -11191,7 +12846,7 @@ export namespace Prisma {
     fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
-    vehiculoId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FacturaUncheckedUpdateManyWithoutGastoInput = {
@@ -11202,7 +12857,6 @@ export namespace Prisma {
     tipo?: NullableStringFieldUpdateOperationsInput | string | null
     fechaEmision?: DateTimeFieldUpdateOperationsInput | Date | string
     serie?: NullableStringFieldUpdateOperationsInput | string | null
-    folio?: NullableStringFieldUpdateOperationsInput | string | null
     rfcEmisor?: StringFieldUpdateOperationsInput | string
     nombreEmisor?: StringFieldUpdateOperationsInput | string
     rfcReceptor?: StringFieldUpdateOperationsInput | string
@@ -11226,7 +12880,7 @@ export namespace Prisma {
     fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
-    vehiculoId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
