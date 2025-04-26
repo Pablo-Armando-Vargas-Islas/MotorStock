@@ -19,7 +19,7 @@ import { useSession } from "next-auth/react";
 import { LogoutButton } from "@/components/ui/LogoutButton";
 
 export function AdminSidebar() {
-  const { data: session, status } = useSession(); // <-- aquí obtenemos sesión
+  const { data: session, status } = useSession();
   const isLoading = status === "loading";
 
   if (status === "loading") {
