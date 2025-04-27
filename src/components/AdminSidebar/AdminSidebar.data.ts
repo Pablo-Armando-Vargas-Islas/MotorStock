@@ -3,7 +3,7 @@ import { File, KeyRoundIcon, LockKeyholeOpen } from "lucide-react";
 export const items = [
   {
     title: "Registro Gastos",
-    url: "/",
+    url: "/registro-gastos",
     icon: File,
   },
   {
