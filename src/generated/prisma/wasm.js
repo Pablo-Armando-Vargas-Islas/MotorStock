@@ -128,7 +128,8 @@ exports.Prisma.UserScalarFieldEnum = {
   canEditSeguros: 'canEditSeguros',
   canEditGastos: 'canEditGastos',
   canEditFacturas: 'canEditFacturas',
-  canManageUsers: 'canManageUsers'
+  canManageUsers: 'canManageUsers',
+  allowedCompanies: 'allowedCompanies'
 };
 
 exports.Prisma.VehiculoScalarFieldEnum = {

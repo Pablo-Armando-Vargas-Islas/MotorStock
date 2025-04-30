@@ -1487,6 +1487,7 @@ export namespace Prisma {
     canEditGastos: number
     canEditFacturas: number
     canManageUsers: number
+    allowedCompanies: number
     _all: number
   }
 
@@ -1531,6 +1532,7 @@ export namespace Prisma {
     canEditGastos?: true
     canEditFacturas?: true
     canManageUsers?: true
+    allowedCompanies?: true
     _all?: true
   }
 
@@ -1618,6 +1620,7 @@ export namespace Prisma {
     canEditGastos: boolean
     canEditFacturas: boolean
     canManageUsers: boolean
+    allowedCompanies: $Enums.Compania[]
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1649,6 +1652,7 @@ export namespace Prisma {
     canEditGastos?: boolean
     canEditFacturas?: boolean
     canManageUsers?: boolean
+    allowedCompanies?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1663,6 +1667,7 @@ export namespace Prisma {
     canEditGastos?: boolean
     canEditFacturas?: boolean
     canManageUsers?: boolean
+    allowedCompanies?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1677,6 +1682,7 @@ export namespace Prisma {
     canEditGastos?: boolean
     canEditFacturas?: boolean
     canManageUsers?: boolean
+    allowedCompanies?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1691,9 +1697,10 @@ export namespace Prisma {
     canEditGastos?: boolean
     canEditFacturas?: boolean
     canManageUsers?: boolean
+    allowedCompanies?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user" | "password" | "role" | "canViewSeguros" | "canViewGastos" | "canViewFacturas" | "canEditSeguros" | "canEditGastos" | "canEditFacturas" | "canManageUsers", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user" | "password" | "role" | "canViewSeguros" | "canViewGastos" | "canViewFacturas" | "canEditSeguros" | "canEditGastos" | "canEditFacturas" | "canManageUsers" | "allowedCompanies", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1710,6 +1717,7 @@ export namespace Prisma {
       canEditGastos: boolean
       canEditFacturas: boolean
       canManageUsers: boolean
+      allowedCompanies: $Enums.Compania[]
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2144,6 +2152,7 @@ export namespace Prisma {
     readonly canEditGastos: FieldRef<"User", 'Boolean'>
     readonly canEditFacturas: FieldRef<"User", 'Boolean'>
     readonly canManageUsers: FieldRef<"User", 'Boolean'>
+    readonly allowedCompanies: FieldRef<"User", 'Compania[]'>
   }
     
 
@@ -8936,7 +8945,8 @@ export namespace Prisma {
     canEditSeguros: 'canEditSeguros',
     canEditGastos: 'canEditGastos',
     canEditFacturas: 'canEditFacturas',
-    canManageUsers: 'canManageUsers'
+    canManageUsers: 'canManageUsers',
+    allowedCompanies: 'allowedCompanies'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -9119,6 +9129,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Compania[]'
+   */
+  export type ListEnumCompaniaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Compania[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Compania'
+   */
+  export type EnumCompaniaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Compania'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -9143,20 +9167,6 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Compania'
-   */
-  export type EnumCompaniaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Compania'>
-    
-
-
-  /**
-   * Reference to a field of type 'Compania[]'
-   */
-  export type ListEnumCompaniaFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Compania[]'>
     
 
 
@@ -9192,6 +9202,7 @@ export namespace Prisma {
     canEditGastos?: BoolFilter<"User"> | boolean
     canEditFacturas?: BoolFilter<"User"> | boolean
     canManageUsers?: BoolFilter<"User"> | boolean
+    allowedCompanies?: EnumCompaniaNullableListFilter<"User">
   }
 
   export type UserOrderByWithRelationInput = {
@@ -9206,6 +9217,7 @@ export namespace Prisma {
     canEditGastos?: SortOrder
     canEditFacturas?: SortOrder
     canManageUsers?: SortOrder
+    allowedCompanies?: SortOrder
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -9223,6 +9235,7 @@ export namespace Prisma {
     canEditGastos?: BoolFilter<"User"> | boolean
     canEditFacturas?: BoolFilter<"User"> | boolean
     canManageUsers?: BoolFilter<"User"> | boolean
+    allowedCompanies?: EnumCompaniaNullableListFilter<"User">
   }, "id" | "user">
 
   export type UserOrderByWithAggregationInput = {
@@ -9237,6 +9250,7 @@ export namespace Prisma {
     canEditGastos?: SortOrder
     canEditFacturas?: SortOrder
     canManageUsers?: SortOrder
+    allowedCompanies?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -9257,6 +9271,7 @@ export namespace Prisma {
     canEditGastos?: BoolWithAggregatesFilter<"User"> | boolean
     canEditFacturas?: BoolWithAggregatesFilter<"User"> | boolean
     canManageUsers?: BoolWithAggregatesFilter<"User"> | boolean
+    allowedCompanies?: EnumCompaniaNullableListFilter<"User">
   }
 
   export type VehiculoWhereInput = {
@@ -9850,6 +9865,7 @@ export namespace Prisma {
     canEditGastos?: boolean
     canEditFacturas?: boolean
     canManageUsers?: boolean
+    allowedCompanies?: UserCreateallowedCompaniesInput | $Enums.Compania[]
   }
 
   export type UserUncheckedCreateInput = {
@@ -9864,6 +9880,7 @@ export namespace Prisma {
     canEditGastos?: boolean
     canEditFacturas?: boolean
     canManageUsers?: boolean
+    allowedCompanies?: UserCreateallowedCompaniesInput | $Enums.Compania[]
   }
 
   export type UserUpdateInput = {
@@ -9878,6 +9895,7 @@ export namespace Prisma {
     canEditGastos?: BoolFieldUpdateOperationsInput | boolean
     canEditFacturas?: BoolFieldUpdateOperationsInput | boolean
     canManageUsers?: BoolFieldUpdateOperationsInput | boolean
+    allowedCompanies?: UserUpdateallowedCompaniesInput | $Enums.Compania[]
   }
 
   export type UserUncheckedUpdateInput = {
@@ -9892,6 +9910,7 @@ export namespace Prisma {
     canEditGastos?: BoolFieldUpdateOperationsInput | boolean
     canEditFacturas?: BoolFieldUpdateOperationsInput | boolean
     canManageUsers?: BoolFieldUpdateOperationsInput | boolean
+    allowedCompanies?: UserUpdateallowedCompaniesInput | $Enums.Compania[]
   }
 
   export type UserCreateManyInput = {
@@ -9906,6 +9925,7 @@ export namespace Prisma {
     canEditGastos?: boolean
     canEditFacturas?: boolean
     canManageUsers?: boolean
+    allowedCompanies?: UserCreateallowedCompaniesInput | $Enums.Compania[]
   }
 
   export type UserUpdateManyMutationInput = {
@@ -9920,6 +9940,7 @@ export namespace Prisma {
     canEditGastos?: BoolFieldUpdateOperationsInput | boolean
     canEditFacturas?: BoolFieldUpdateOperationsInput | boolean
     canManageUsers?: BoolFieldUpdateOperationsInput | boolean
+    allowedCompanies?: UserUpdateallowedCompaniesInput | $Enums.Compania[]
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -9934,6 +9955,7 @@ export namespace Prisma {
     canEditGastos?: BoolFieldUpdateOperationsInput | boolean
     canEditFacturas?: BoolFieldUpdateOperationsInput | boolean
     canManageUsers?: BoolFieldUpdateOperationsInput | boolean
+    allowedCompanies?: UserUpdateallowedCompaniesInput | $Enums.Compania[]
   }
 
   export type VehiculoCreateInput = {
@@ -10642,6 +10664,14 @@ export namespace Prisma {
     not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
+  export type EnumCompaniaNullableListFilter<$PrismaModel = never> = {
+    equals?: $Enums.Compania[] | ListEnumCompaniaFieldRefInput<$PrismaModel> | null
+    has?: $Enums.Compania | EnumCompaniaFieldRefInput<$PrismaModel> | null
+    hasEvery?: $Enums.Compania[] | ListEnumCompaniaFieldRefInput<$PrismaModel>
+    hasSome?: $Enums.Compania[] | ListEnumCompaniaFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     user?: SortOrder
@@ -10654,6 +10684,7 @@ export namespace Prisma {
     canEditGastos?: SortOrder
     canEditFacturas?: SortOrder
     canManageUsers?: SortOrder
+    allowedCompanies?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -11351,6 +11382,10 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+  export type UserCreateallowedCompaniesInput = {
+    set: $Enums.Compania[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -11361,6 +11396,11 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type UserUpdateallowedCompaniesInput = {
+    set?: $Enums.Compania[]
+    push?: $Enums.Compania | $Enums.Compania[]
   }
 
   export type VersionVehiculoCreateNestedManyWithoutVehiculoInput = {

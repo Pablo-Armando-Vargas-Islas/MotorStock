@@ -20,6 +20,10 @@ model User {
   canEditGastos  Boolean @default(false)
   canEditFacturas Boolean @default(false)
   canManageUsers Boolean @default(false)
+
+  allowedCompanies Compania[]  @default([])
+
+  @@map("users")
 }
 
 enum Role {

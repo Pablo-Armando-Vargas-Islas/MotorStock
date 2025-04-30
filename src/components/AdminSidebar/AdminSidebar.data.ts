@@ -1,6 +1,11 @@
-import { File, KeyRoundIcon, LockKeyholeOpen } from "lucide-react";
+import { File, KeyRoundIcon, LockKeyholeOpen, User2} from "lucide-react";
 
 export const items = [
+  {
+    title: "Usuarios",
+    url: "/admin/usuarios",
+    icon: User2,
+  },
   {
     title: "Registro Gastos",
     url: "/registro-gastos",
