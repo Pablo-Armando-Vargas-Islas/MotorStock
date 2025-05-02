@@ -1,6 +1,7 @@
 import { z } from "zod"
  
 export const gastosFormSchema = z.object({
+  cantidadRegistros: z.coerce.number().min(1, "El número de registros es requerido").optional(),
   folio: z.string().min(1, "El folio es requerido").max(50),
   vehiculoId: z.string().optional(),
   fecha: z.date({
