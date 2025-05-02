@@ -19,11 +19,13 @@ import { cn } from "@/lib/utils"
 import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover"
 import { CalendarIcon } from "lucide-react"
 import { format } from "date-fns"
+import axios from "axios"
 
 const GastosForm = () => {
   const form = useForm<z.infer<typeof gastosFormSchema>>({
     resolver: zodResolver(gastosFormSchema),
     defaultValues: {
+      cantidadRegistros: 1,
       folio: "",
       vehiculoId: "",
       fecha: new Date(),
@@ -43,14 +45,47 @@ const GastosForm = () => {
     }
   })
 
-  function onSubmit(values: z.infer<typeof gastosFormSchema>) {
-    alert("ahsdkflashdlf: " + JSON.stringify(values, null, 2))
+  const onSubmit = async (values: z.infer<typeof gastosFormSchema>) => {
+    try {
+      const datosToSend = {
+        ...values,
+        fecha: values.fecha.toISOString()
+      };
+      const response = await axios.post("/api/gastos", datosToSend);
+      console.log("Gasto creado:", response.data);
+      // Puedes añadir un toast de éxito aquí
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("Error al crear el gasto:", {
+          message: error.message,
+          response: error.response?.data,
+          status: error.response?.status
+        });
+      } else {
+        console.error("Error inesperado:", error);
+      }
+      // Puedes añadir un toast de error aquí
+    }
   }
 
   return (
     <div className="max-h-[80vh] overflow-y-auto px-4">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          {/* Cantidad */}
+          <FormField 
+            control={form.control}
+            name="cantidadRegistros"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Cantidad Registros</FormLabel>
+                <FormControl>
+                  <Input type="number" min={1} placeholder="N° registros a crear" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           {/* Folio */}
           <FormField 
             control={form.control}

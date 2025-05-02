@@ -250,7 +250,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\pavip\\Documents\\VisualCodeProjects\\MotorStock\\motor-stock\\src\\generated\\prisma",
+      "value": "C:\\Users\\PC WHITE LION\\MotorStock\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -264,7 +264,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\pavip\\Documents\\VisualCodeProjects\\MotorStock\\motor-stock\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\PC WHITE LION\\MotorStock\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -278,12 +278,11 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "postgresql://postgres:23231208@localhost:5432/motorstock?schema=public"
       }
     }
   },
