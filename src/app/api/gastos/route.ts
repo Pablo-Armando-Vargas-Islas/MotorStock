@@ -1,40 +1,10 @@
-/*
-import { NextRequest, NextResponse } from "next/server";
-import {getToken} from "next-auth/jwt";
-import {prisma} from "@/lib/prisma";
-
-export async function POST(req: NextRequest) {
-  try {
-    const token = getToken({ req })
-
-    const data = await req.json()
-
-    if (!token) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const result = await prisma.gasto.create({
-      data
-    })
-
-    if (!result) {
-      return NextResponse.json({ error: "Internal Server Error" });
-    }
-
-    return NextResponse.json({ data })
-  } catch (error) {
-    console.error("Error in POST /api/gastos:", error);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
-  }
-}*/
-
 import { NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(req: NextRequest) {
   try {
-    const token = await getToken({ req }); // Añade await aquí
+    const token = await getToken({ req });
 
     if (!token) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -46,7 +16,6 @@ export async function POST(req: NextRequest) {
 
     const gastosData = Array(Number(cantidadRegistros)).fill(data);
 
-    // Validación básica de datos
     if (!gastosData || typeof gastosData !== "object") {
       return NextResponse.json({ error: "Datos inválidos" }, { status: 400 });
     }
@@ -55,7 +24,7 @@ export async function POST(req: NextRequest) {
       data: gastosData
     });
 
-    return NextResponse.json(result); // Devuelve el resultado de la creación
+    return NextResponse.json(result);
   } catch (error) {
     console.error("Error in POST /api/gastos:", error);
     return NextResponse.json({
@@ -63,4 +32,16 @@ export async function POST(req: NextRequest) {
       details: error instanceof Error ? error.message : String(error)
     }, { status: 500 });
   }
+}
+
+export async function GET() {
+  const gastos = await prisma.gasto.findMany({
+    orderBy: {
+      fecha: "asc"
+    }
+  })
+
+  console.log(gastos)
+
+  return NextResponse.json(gastos);
 }
