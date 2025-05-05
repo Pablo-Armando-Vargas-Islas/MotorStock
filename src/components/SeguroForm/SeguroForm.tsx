@@ -81,21 +81,6 @@ const SeguroForm = () => {
             )}
           />
 
-          {/* compañia
-          <FormField 
-            control={form.control}
-            name="compania"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Compañia</FormLabel>
-                <FormControl>
-                  <Input placeholder="Compañia" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          /> */}
-
           {/* Compañia */}
           <FormField
           control={form.control}
@@ -118,7 +103,7 @@ const SeguroForm = () => {
                         ? company.find(
                             (company) => company.value === field.value
                           )?.label
-                        : "Select language"}
+                        : "Seleccione compañia"}
                       <ChevronsUpDown className="opacity-50" />
                     </Button>
                   </FormControl>
