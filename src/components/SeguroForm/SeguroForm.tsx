@@ -6,12 +6,20 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { cn } from "@/lib/utils"
 import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover"
-import { CalendarIcon } from "lucide-react"
+import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react"
 import { format } from "date-fns"
-import { FormField, FormItem, FormLabel, FormControl, FormMessage, Form } from "../ui/form"
+import { FormField, FormItem, FormLabel, FormControl, FormMessage, Form, FormDescription } from "../ui/form"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { Calendar } from "../ui/calendar"
+import axios from "axios"
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command"
+
+const company = [
+  { label: "GM", value: "GM" },
+  { label: "HM", value: "HM" },
+  { label: "RC", value: "RC" }
+] as const
 
 const SeguroForm = () => {
   const form = useForm<z.infer<typeof seguroFormSchema>>({
@@ -29,8 +37,29 @@ const SeguroForm = () => {
   })
 
   const onSubmit = async (data: z.infer<typeof seguroFormSchema>) => {
-    console.log("Form data:", data)
-    // Aquí puedes manejar el envío del formulario, como hacer una solicitud a una API
+    try {
+      const datosToSend = {
+        ...data,
+        fechaInicio: data.fechaInicio.toISOString(),
+        fechaVencimiento: data.fechaVencimiento.toISOString()
+      }
+
+      console.log("[DATA TO SEND]: ", datosToSend)
+
+      const response = await axios.post("/api/seguro", datosToSend)
+      console.log("[RESPONSE]: ", response)
+      console.log("Respuesta del servidor: ", response.data)
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error("Error al registrar el seguro: ", {
+          message: error.message,
+          response: error.response?.data,
+          status: error.response?.status
+        })
+      } else {
+        console.error("Error inesperado: ", error)
+      }
+    }
   }
 
   return (
@@ -52,7 +81,7 @@ const SeguroForm = () => {
             )}
           />
 
-            {/* compañia */}
+          {/* compañia
           <FormField 
             control={form.control}
             name="compania"
@@ -65,7 +94,75 @@ const SeguroForm = () => {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
+
+          {/* Compañia */}
+          <FormField
+          control={form.control}
+          name="compania"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <FormLabel>Compañia</FormLabel>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <FormControl>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      className={cn(
+                        "w-[200px] justify-between",
+                        !field.value && "text-muted-foreground"
+                      )}
+                    >
+                      {field.value
+                        ? company.find(
+                            (company) => company.value === field.value
+                          )?.label
+                        : "Select language"}
+                      <ChevronsUpDown className="opacity-50" />
+                    </Button>
+                  </FormControl>
+                </PopoverTrigger>
+                <PopoverContent className="w-[200px] p-0">
+                  <Command>
+                    <CommandInput
+                      placeholder="Compañia..."
+                      className="h-9"
+                    />
+                    <CommandList>
+                      <CommandEmpty>No hay compañia</CommandEmpty>
+                      <CommandGroup>
+                        {company.map((company) => (
+                          <CommandItem
+                            value={company.label}
+                            key={company.value}
+                            onSelect={() => {
+                              form.setValue("compania", company.value)
+                            }}
+                          >
+                            {company.label}
+                            <Check
+                              className={cn(
+                                "ml-auto",
+                                company.value === field.value
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
+                            />
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
+              <FormDescription>
+                Escoge el nombre de la compañia.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
           {/* precio */}
           <FormField 
