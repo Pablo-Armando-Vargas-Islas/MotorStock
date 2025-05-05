@@ -41,7 +41,5 @@ export async function GET() {
     }
   })
 
-  console.log(gastos)
-
   return NextResponse.json(gastos);
 }
