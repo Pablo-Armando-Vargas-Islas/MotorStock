@@ -25,7 +25,7 @@ async function getData(): Promise<Gasto[]> {
 const RegistroGastosPage = async () => {
   const data = await getData()
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 gap-5 dark:bg-neutral-800">
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100 gap-5 dark:bg-neutral-800 p-4">
       <div className="flex justify-between items-center w-full max-w-4xl mx-auto px-4">
         <h1 className="text-3xl font-bold">Registro de gastos</h1>
 
