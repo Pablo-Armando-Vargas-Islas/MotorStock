@@ -27,7 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AppProviders>
           <SidebarProvider>
             <AdminSidebar />
-              <main className="w-full bg-[#F3F3F1 ">
+              <main className="w-full min-h-screen bg-background">
                 <div className="px-3">
                   <SidebarTrigger />
                 </div>
