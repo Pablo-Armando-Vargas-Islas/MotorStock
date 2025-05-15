@@ -29,6 +29,7 @@ import {
   LockKeyholeOpen,
   FileText,
   Search,
+  CarFront,
   TruckElectric,
 } from "lucide-react";
 
@@ -51,6 +52,10 @@ export function AdminSidebar() {
       title: "Registro de Seguros",
       url: "/seguros",
       icon: LockKeyholeOpen,
+    }, {
+      title: "Vehiculos",
+      url: "/vehiculos",
+      icon: CarFront
     });
   }
   if (user.canEditFacturas) {
@@ -81,7 +86,9 @@ export function AdminSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <div className="p-1">
-            <TruckElectric className="h-5 w-5" />
+            <Link href={"/"}>
+              <TruckElectric className="size-4" />
+            </Link>
           </div>
         </SidebarGroup>
         <SidebarGroup>
