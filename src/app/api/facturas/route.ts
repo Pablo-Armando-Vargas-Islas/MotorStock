@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
-import { getToken } from "next-auth/jwt";
 import { prisma } from "@/lib/prisma";
-import { z } from "zod";
+import { getToken } from "next-auth/jwt";
+import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod"
 
 const FacturaSchema = z.object({
   uuid: z.string().optional(),
@@ -10,96 +10,124 @@ const FacturaSchema = z.object({
   tipo: z.string().optional(),
   fechaEmision: z.string().datetime(),
   serie: z.string().optional(),
-  rfcEmisor: z.string().min(1),
-  nombreEmisor: z.string().min(1),
-  rfcReceptor: z.string().min(1),
-  nombreReceptor: z.string().min(1),
-  usoCFDI: z.string().min(1),
-  subTotal: z.number().nonnegative(),
-  descuento: z.number().nonnegative().optional().default(0),
-  totalIEPS: z.number().nonnegative().optional().default(0),
-  iva16: z.number().nonnegative().optional().default(0),
-  retenidoIVA: z.number().nonnegative().optional().default(0),
-  retenidoISR: z.number().nonnegative().optional().default(0),
-  ish: z.number().nonnegative().optional().default(0),
-  total: z.number().nonnegative(),
-  moneda: z.string().optional().default("MXN"),
-  tipoCambio: z.number().nonnegative().optional().default(0),
-  formaPago: z.string().min(1),
-  metodoPago: z.string().min(1),
-  conceptos: z.string().min(1),
+  rfcEmisor: z.string({
+    required_error: "El rfc del emisor es requerido"
+  }),
+  nombreEmisor: z.string({
+    required_error: "El nombre del emisor es requerido"
+  }),
+  rfcReceptor: z.string({
+    required_error: "El rfc del receptor es requerido"
+  }),
+  nombreReceptor: z.string({
+    required_error: "El nombre del receptor es requerido"
+  }),
+  usoCFDI: z.string({
+    required_error: "El uso CFDI es requerido"
+  }),
+  subTotal: z.coerce.number({
+    required_error: "El sub total es requerido"
+  }),
+  descuento: z.coerce.number().optional(),
+  totalIEPS: z.coerce.number().optional(),
+  iva16: z.coerce.number().optional(),
+  retenidoIVA: z.coerce.number().optional(),
+  retenidoISR: z.coerce.number().optional(),
+  ish: z.coerce.number().optional(),
+  total: z.coerce.number({
+    required_error: "El total es requerido"
+  }),
+  moneda: z.string().optional(),
+  tipoCambio: z.coerce.number({
+    required_error: "El tipo de cambio es requerido"
+  }),
+  formaPago: z.string({
+    required_error: "La forma de pago es requerida"
+  }),
+  metodoPago: z.string({
+    required_error: "El método de pago es requerido"
+  }),
+  conceptos: z.string({
+    required_error: "Los conceptos son requeridos"
+  }),
   regimenFiscalReceptor: z.string().optional(),
   domicilioFiscalReceptor: z.string().optional(),
-  fechaPago: z.string().datetime().optional(),
+  fechaPago: z.string().datetime(),
   bancoPago: z.string().optional(),
-  folioPago: z.string().optional(),
-  gastoId: z.number().optional(),
-});
+  folioPago: z.string().optional()
+})
 
 export async function POST(req: NextRequest) {
-  const token = await getToken({ req });
-  if (!token) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  const body = await req.json();
-  const parse = FacturaSchema.safeParse(body);
-  if (!parse.success) {
-    return NextResponse.json(
-      { error: "Datos inválidos", details: parse.error.flatten() },
-      { status: 400 }
-    );
-  }
-
-  const data = parse.data;
   try {
-    const factura = await prisma.factura.create({
+    const token = await getToken({ req })
+
+    if (!token) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
+    }
+
+    const body = await req.json()
+
+    const validation = FacturaSchema.safeParse(body)
+
+    if (!validation.success) {
+      return NextResponse.json(
+        {
+          error: "Datos inválidos",
+          details: validation.error.flatten()
+        },
+        { status: 400 }
+      )
+    }
+
+    const result = await prisma.factura.create({
       data: {
-        uuid: data.uuid,
-        estadoSAT: data.estadoSAT,
-        tipoComprobante: data.tipoComprobante,
-        tipo: data.tipo,
-        fechaEmision: new Date(data.fechaEmision),
-        serie: data.serie,
-        rfcEmisor: data.rfcEmisor,
-        nombreEmisor: data.nombreEmisor,
-        rfcReceptor: data.rfcReceptor,
-        nombreReceptor: data.nombreReceptor,
-        usoCFDI: data.usoCFDI,
-        subTotal: data.subTotal,
-        descuento: data.descuento,
-        totalIEPS: data.totalIEPS,
-        iva16: data.iva16,
-        retenidoIVA: data.retenidoIVA,
-        retenidoISR: data.retenidoISR,
-        ish: data.ish,
-        total: data.total,
-        moneda: data.moneda,
-        tipoCambio: data.tipoCambio,
-        formaPago: data.formaPago,
-        metodoPago: data.metodoPago,
-        conceptos: data.conceptos,
-        regimenFiscalReceptor: data.regimenFiscalReceptor,
-        domicilioFiscalReceptor: data.domicilioFiscalReceptor,
-        fechaPago: data.fechaPago ? new Date(data.fechaPago) : null,
-        bancoPago: data.bancoPago,
-        folioPago: data.folioPago,
-        gastoId: data.gastoId,
-      },
-    });
-    return NextResponse.json(factura, { status: 201 });
-  } catch (error: any) {
-    console.error("Error en POST /api/facturas:", error);
+        uuid: validation.data.uuid,
+        estadoSAT: validation.data.estadoSAT,
+        tipoComprobante: validation.data.tipoComprobante,
+        tipo: validation.data.tipo,
+        fechaEmision: validation.data.fechaEmision,
+        serie: validation.data.serie,
+        rfcEmisor: validation.data.rfcEmisor,
+        nombreEmisor: validation.data.nombreEmisor,
+        rfcReceptor: validation.data.rfcReceptor,
+        nombreReceptor: validation.data.nombreReceptor,
+        usoCFDI: validation.data.usoCFDI,
+        subTotal: validation.data.subTotal,
+        descuento: validation.data.descuento,
+        totalIEPS: validation.data.totalIEPS,
+        iva16: validation.data.iva16,
+        retenidoIVA: validation.data.retenidoIVA,
+        retenidoISR: validation.data.retenidoISR,
+        ish: validation.data.ish,
+        total: validation.data.total,
+        moneda: validation.data.moneda,
+        tipoCambio: validation.data.tipoCambio,
+        formaPago: validation.data.formaPago,
+        metodoPago: validation.data.metodoPago,
+        conceptos: validation.data.conceptos,
+        regimenFiscalReceptor: validation.data.regimenFiscalReceptor,
+        domicilioFiscalReceptor: validation.data.domicilioFiscalReceptor,
+        fechaPago: validation.data.fechaPago,
+        bancoPago: validation.data.bancoPago,
+        folioPago: validation.data.folioPago
+      }
+    })
+
+    return NextResponse.json(result)
+  } catch (error) {
+    console.error("Error in POST /api/seguro: ", error);
     return NextResponse.json(
-      { error: "Internal Server Error", details: error.message },
+      {
+        error: "Internal Server Error",
+        details: error instanceof Error ? error.message : String(error)
+      },
       { status: 500 }
     );
   }
 }
 
 export async function GET() {
-  const facturas = await prisma.factura.findMany({
-    orderBy: { fechaEmision: "asc" },
-  });
-  return NextResponse.json(facturas);
+  const facturas = await prisma.factura.findMany()
+
+  return NextResponse.json(facturas)
 }

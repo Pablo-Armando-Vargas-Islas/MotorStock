@@ -6,55 +6,75 @@ import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
 import Link from "next/link"
 
-export type Vehiculo = {
+export type Seguro = {
   id: number
-  placa: string
-  versionActual: string
+  vehiculoId: string
+  compania: string
+  precio: number
+  fechaInicio: string
+  fechaVencimiento: string
+  comentario: string
 }
 
-export const columns: ColumnDef<Vehiculo>[] = [
+export const columns: ColumnDef<Seguro>[] = [
   {
     accessorKey: "id",
-    header: "Id"
+    header: "ID"
   },
   {
-    accessorKey: "placa",
-    header: "Placa"
+    accessorKey: "vehiculoId",
+    header: "Id vehiculo"
   },
   {
-    accessorKey: "versionActual",
-    header: "Version Actual"
+    accessorKey: "compania",
+    header: "Compañía"
   },
   {
-    id: "actions",
+    accessorKey: "precio",
+    header: "Precio"
+  },
+  {
+    accessorKey: "fechaInicio",
+    header: "Fecha inicio"
+  },
+  {
+    accessorKey: "fechaVencimiento",
+    header: "Fecha vencimiento"
+  },
+  {
+    accessorKey: "comentario",
+    header: "Comentario"
+  },
+  {
+    id: "action",
     enableHiding: false,
     cell: ({ row }) => {
-      const vehiculo = row.original
- 
+      const seguro = row.original
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">Open enu</span>
               <MoreHorizontal />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(vehiculo.id.toString())}
+              onClick={() => navigator.clipboard.writeText(seguro.id.toString())}
             >
               Copiar Id
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link href={`/vehiculos/${vehiculo.id}`}>
-                Editar vehiculo
+              <Link href={`/seguros/${seguro.id}`}>
+                Editar seguro
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
-    },
+    }
   }
 ]
