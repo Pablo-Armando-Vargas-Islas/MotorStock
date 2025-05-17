@@ -61,3 +61,9 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+export async function GET() {
+  const seguros = await prisma.seguro.findMany()
+
+  return NextResponse.json(seguros)
+}
