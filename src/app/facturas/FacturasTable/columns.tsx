@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
+import Link from "next/link";
 
 export type Factura = {
     id: number;
@@ -93,7 +94,11 @@ export const columns: ColumnDef<Factura>[] = [
               Copiar UUID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Editar factura</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={`/facturas/${factura.id}`}>
+                Editar factura
+              </Link>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

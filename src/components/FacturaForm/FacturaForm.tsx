@@ -13,8 +13,15 @@ import { Button } from "../ui/button"
 import { Calendar } from "../ui/calendar"
 import axios from "axios"
 import { facturaFormSchema } from "./FacturaForm.form"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
 
-const FacturaForm = () => {
+type FacturaFormProps = {
+  onSuccess: () => void
+}
+
+const FacturaForm = ({ onSuccess } : FacturaFormProps) => {
+  const router = useRouter()
   const form = useForm<z.infer<typeof facturaFormSchema>>({
     resolver: zodResolver(facturaFormSchema),
     defaultValues: {
@@ -59,6 +66,9 @@ const FacturaForm = () => {
       }
 
       await axios.post("/api/facturas", datosToSend)
+      router.refresh()
+      toast.success("Factura creada correctamente")
+      onSuccess?.()
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Error al registrar la factura: ", {

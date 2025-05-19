@@ -1,3 +1,5 @@
+"use client"
+
 import GastosForm from "@/components/GastosForm/GastosForm"
 import { Button } from "@/components/ui/button"
 import {
@@ -11,6 +13,8 @@ import {
 import { Gasto, columns } from "@/app/registro-gastos/GastosTable/columns";
 import { DataTable} from "@/app/registro-gastos/GastosTable/data-table";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { RefreshCcw } from "lucide-react";
 
 async function getData(): Promise<Gasto[]> {
   const baseURL = process.env.NEXT_BASE_URL || 'http://localhost:3000'
@@ -22,21 +26,39 @@ async function getData(): Promise<Gasto[]> {
   }
 }
 
-const RegistroGastosPage = async () => {
-  const data = await getData()
+const RegistroGastosPage = () => {
+  const [open, setOpen] = useState(false)
+
+  const handleSuccess = () => {
+    setOpen(false)
+  }
+
+  const [data, setData] = useState<Gasto[]>([])
+
+  useEffect(() => {
+    getData().then(setData)
+  }, [])
+
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100 gap-5 dark:bg-neutral-800 p-4">
       <div className="flex justify-between items-center w-full max-w-4xl mx-auto px-4">
         <h1 className="text-3xl font-bold">Registro de gastos</h1>
 
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white">Registrar</Button>
+            <div className="flex space-between gap-4">
+              <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white">Registrar</Button>
+              <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white"
+                onClick={() => window.location.reload()}
+              >
+                <RefreshCcw /> Recargar
+              </Button>
+            </div>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
               <DialogTitle className="mb-4">Registra un nuevo gasto</DialogTitle>
-              <GastosForm />
+              <GastosForm onSuccess={handleSuccess} />
             </DialogHeader>
           </DialogContent>
         </Dialog>
