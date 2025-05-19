@@ -9,67 +9,67 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(uuid())
-  user      String    @unique  
-  password  String    
-  role      Role      @default(REGISTRO_GASTOS)
-  canViewSeguros Boolean @default(false)
-  canViewGastos  Boolean @default(true)
+  id              String  @id @default(uuid())
+  user            String  @unique
+  password        String
+  role            Role    @default(REGISTRO_GASTOS)
+  canViewSeguros  Boolean @default(false)
+  canViewGastos   Boolean @default(true)
   canViewFacturas Boolean @default(false)
-  canEditSeguros Boolean @default(false)
-  canEditGastos  Boolean @default(false)
+  canEditSeguros  Boolean @default(false)
+  canEditGastos   Boolean @default(false)
   canEditFacturas Boolean @default(false)
-  canManageUsers Boolean @default(false)
+  canManageUsers  Boolean @default(false)
 
-  allowedCompanies Compania[]  @default([])
+  allowedCompanies Compania[] @default([])
 
   @@map("users")
 }
 
 enum Role {
-  REGISTRO_GASTOS  // Joss
-  SEGUROS          // Moises
-  CONSULTA         // Gema
-  CONTADOR         // JuanCarlos
-  ADMIN            // Miguel
-  AUDITOR          // Ricardo y Anais
+  REGISTRO_GASTOS // Joss
+  SEGUROS // Moises
+  CONSULTA // Gema
+  CONTADOR // JuanCarlos
+  ADMIN // Miguel
+  AUDITOR // Ricardo y Anais
 }
 
 model Vehiculo {
-  id          String      @id @default(uuid())
-  placa       String      @unique
-  versionActual Int       @default(1)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  
+  id            String   @id @default(uuid())
+  placa         String   @unique
+  versionActual Int      @default(1)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
   // Relaciones
-  versiones   VersionVehiculo[]
-  seguros     Seguro[]
-  gastos      Gasto[]
+  versiones VersionVehiculo[]
+  seguros   Seguro[]
+  gastos    Gasto[]
 }
 
 model VersionVehiculo {
-  id          Int       @id @default(autoincrement())
-  vehiculo    Vehiculo  @relation(fields: [vehiculoId], references: [id])
-  vehiculoId  String
-  
+  id         Int      @id @default(autoincrement())
+  vehiculo   Vehiculo @relation(fields: [vehiculoId], references: [id])
+  vehiculoId String
+
   // Datos del vehículo que pueden cambiar
-  placa       String
+  placa         String
   placaAnterior String?
-  marca       String
-  tipo        String
-  modelo      String
-  color       String
-  serie       String    
-  motor       String?
-  proyecto    String?
-  ubicacion   String?
-  
+  marca         String
+  tipo          String
+  modelo        String
+  color         String
+  serie         String
+  motor         String?
+  proyecto      String?
+  ubicacion     String?
+
   // Control de versiones
-  version     Int
-  esActual    Boolean   @default(false)
-  fechaCambio DateTime  @default(now())
-  motivoCambio String?
+  version       Int
+  esActual      Boolean  @default(false)
+  fechaCambio   DateTime @default(now())
+  motivoCambio  String?
   usuarioCambio String?
 
   @@index([vehiculoId])
@@ -78,18 +78,18 @@ model VersionVehiculo {
 }
 
 model Seguro {
-  id          Int       @id @default(autoincrement())
-  vehiculo    Vehiculo  @relation(fields: [vehiculoId], references: [id])
-  vehiculoId  String    
-    
-  compania    Compania
-  precio      Float
-  fechaInicio DateTime
+  id         Int      @id @default(autoincrement())
+  vehiculo   Vehiculo @relation(fields: [vehiculoId], references: [id])
+  vehiculoId String
+
+  compania         Compania
+  precio           Float
+  fechaInicio      DateTime
   fechaVencimiento DateTime
-  comentario  String?
-  esActual    Boolean   @default(true) // Para manejar las multiples versiones
-  version     Int       @default(1)
-  createdAt   DateTime  @default(now())
+  comentario       String?
+  esActual         Boolean  @default(true) // Para manejar las multiples versiones
+  version          Int      @default(1)
+  createdAt        DateTime @default(now())
 
   @@index([vehiculoId])
 }
@@ -97,33 +97,33 @@ model Seguro {
 enum Compania {
   GM
   HM
-  RC 
+  RC
 }
 
 model Gasto {
-  id          Int       @id @default(autoincrement())
-  folio       String    
-  vehiculo    Vehiculo? @relation(fields: [vehiculoId], references: [id])
-  vehiculoId  String? 
-  
-  fecha       DateTime
-  razonSocial String
-  banco       String?
-  tdc         String?
-  proveedor   String
-  concepto    String
-  referencia  String?
-  documento   String?
-  proyecto    String?
-  responsable String
+  id         Int       @id @default(autoincrement())
+  folio      String
+  vehiculo   Vehiculo? @relation(fields: [vehiculoId], references: [id])
+  vehiculoId String?
+
+  fecha         DateTime
+  razonSocial   String
+  banco         String?
+  tdc           String?
+  proveedor     String
+  concepto      String
+  referencia    String?
+  documento     String?
+  proyecto      String?
+  responsable   String
   transferencia String?
-  entrada     Float?
-  salida      Float?
-  saldo       Float?
-  createdAt   DateTime  @default(now())
-  
+  entrada       Float?
+  salida        Float?
+  saldo         Float?
+  createdAt     DateTime @default(now())
+
   // Relación con Factura
-  facturas    Factura[] @relation("GastoToFacturas")
+  facturas Factura[] @relation("GastoToFacturas")
 
   @@index([folio])
   @@index([proveedor])
@@ -131,43 +131,42 @@ model Gasto {
   @@index([vehiculoId])
 }
 
-
 model Factura {
-  id          Int       @id @default(autoincrement())
-  uuid        String?   
-  estadoSAT   String?   
-  tipoComprobante String? 
-  tipo        String?   
-  fechaEmision DateTime
-  serie       String?
-  rfcEmisor   String
-  nombreEmisor String
-  rfcReceptor String
-  nombreReceptor String
-  usoCFDI     String
-  subTotal    Float
-  descuento   Float?    @default(0)
-  totalIEPS   Float?    @default(0)
-  iva16       Float?    @default(0)
-  retenidoIVA Float?    @default(0)
-  retenidoISR Float?    @default(0)
-  ish         Float?    @default(0)
-  total       Float
-  moneda      String?   @default("MXN")
-  tipoCambio  Float?    @default(0)
-  formaPago   String
-  metodoPago  String
-  conceptos   String
-  regimenFiscalReceptor String?
+  id                      Int       @id @default(autoincrement())
+  uuid                    String?
+  estadoSAT               String?
+  tipoComprobante         String?
+  tipo                    String?
+  fechaEmision            DateTime
+  serie                   String?
+  rfcEmisor               String
+  nombreEmisor            String
+  rfcReceptor             String
+  nombreReceptor          String
+  usoCFDI                 String
+  subTotal                Float
+  descuento               Float?    @default(0)
+  totalIEPS               Float?    @default(0)
+  iva16                   Float?    @default(0)
+  retenidoIVA             Float?    @default(0)
+  retenidoISR             Float?    @default(0)
+  ish                     Float?    @default(0)
+  total                   Float
+  moneda                  String?   @default("MXN")
+  tipoCambio              Float?    @default(0)
+  formaPago               String
+  metodoPago              String
+  conceptos               String
+  regimenFiscalReceptor   String?
   domicilioFiscalReceptor String?
-  fechaPago   DateTime?
-  bancoPago   String?
-  folioPago   String?
-  
+  fechaPago               DateTime?
+  bancoPago               String?
+  folioPago               String?
+
   // Relación con Gasto
-  gasto       Gasto?    @relation("GastoToFacturas", fields: [gastoId], references: [id])
-  gastoId     Int?
-  createdAt   DateTime  @default(now())
+  gasto     Gasto?   @relation("GastoToFacturas", fields: [gastoId], references: [id])
+  gastoId   Int?
+  createdAt DateTime @default(now())
 
   // Index
   @@index([gastoId])

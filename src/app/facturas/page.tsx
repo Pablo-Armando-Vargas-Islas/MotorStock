@@ -1,3 +1,5 @@
+'use client'
+
 import FacturaForm from "@/components/FacturaForm/FacturaForm";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +12,8 @@ import {
 import { columns, Factura } from "./FacturasTable/columns";
 import { DataTable } from "@/app/registro-gastos/GastosTable/data-table";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { RefreshCcw } from "lucide-react";
 
 async function getFacturas(): Promise<Factura[]> {
   const base = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
@@ -21,21 +25,40 @@ async function getFacturas(): Promise<Factura[]> {
   }
 }
 
-const FacturasPage = async () => {
-  const data = await getFacturas();
+const FacturasPage =  () => {
+  const [open, setOpen] = useState(false)
+
+  const handleSuccess = () => {
+    setOpen(false)
+  }
+
+  const [data, setData] = useState<Factura[]>([])
+
+  useEffect(() => {
+    getFacturas().then(setData)
+  }, [])
+
+
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100 gap-5 dark:bg-neutral-800">
       <div className="flex justify-between items-center w-full max-w-4xl mx-auto px-4">
         <h1 className="text-3xl font-bold">Registro de facturas</h1>
 
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white">Registrar</Button>
+            <div className="flex space-between gap-4">
+              <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white">Registrar</Button>
+              <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white"
+                onClick={() => window.location.reload()}
+              >
+                <RefreshCcw /> Recargar
+              </Button>
+            </div>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
               <DialogTitle className="mb-4">Registra una nueva factura</DialogTitle>
-              <FacturaForm />
+              <FacturaForm onSuccess={handleSuccess} />
             </DialogHeader>
           </DialogContent>
         </Dialog>

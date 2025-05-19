@@ -115,7 +115,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(result)
   } catch (error) {
-    console.error("Error in POST /api/seguro: ", error);
+    console.error("Error in POST /api/factura: ", error);
     return NextResponse.json(
       {
         error: "Internal Server Error",
@@ -125,6 +125,7 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
 
 export async function GET() {
   const facturas = await prisma.factura.findMany()

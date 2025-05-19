@@ -20,8 +20,15 @@ import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover
 import { CalendarIcon } from "lucide-react"
 import { format } from "date-fns"
 import axios from "axios"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
 
-const GastosForm = () => {
+type GastoFormProps = {
+  onSuccess: () => void
+}
+
+const GastosForm = ({ onSuccess } : GastoFormProps) => {
+  const router = useRouter()
   const form = useForm<z.infer<typeof gastosFormSchema>>({
     resolver: zodResolver(gastosFormSchema),
     defaultValues: {
@@ -51,9 +58,12 @@ const GastosForm = () => {
         ...values,
         fecha: values.fecha.toISOString()
       };
-      const response = await axios.post("/api/gastos", datosToSend);
-      console.log("Gasto creado:", response.data);
-      // Puedes añadir un toast de éxito aquí
+      await axios.post("/api/gastos", datosToSend);
+
+      router.refresh()
+      toast.success("Gasto creado correctamente")
+      onSuccess?.()
+      
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Error al crear el gasto:", {

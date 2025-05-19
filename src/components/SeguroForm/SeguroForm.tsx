@@ -14,6 +14,12 @@ import { Button } from "../ui/button"
 import { Calendar } from "../ui/calendar"
 import axios from "axios"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command"
+import { useRouter } from "next/navigation"
+import { toast } from "sonner"
+
+type SeguroFormProps = {
+  onSuccess: () => void
+}
 
 const company = [
   { label: "GM", value: "GM" },
@@ -21,7 +27,8 @@ const company = [
   { label: "RC", value: "RC" }
 ] as const
 
-const SeguroForm = () => {
+const SeguroForm = ({ onSuccess } :  SeguroFormProps) => {
+  const router = useRouter()
   const form = useForm<z.infer<typeof seguroFormSchema>>({
     resolver: zodResolver(seguroFormSchema),
     defaultValues: {
@@ -44,11 +51,11 @@ const SeguroForm = () => {
         fechaVencimiento: data.fechaVencimiento.toISOString()
       }
 
-      console.log("[DATA TO SEND]: ", datosToSend)
+      await axios.post("/api/seguro", datosToSend)
 
-      const response = await axios.post("/api/seguro", datosToSend)
-      console.log("[RESPONSE]: ", response)
-      console.log("Respuesta del servidor: ", response.data)
+      router.refresh()
+      toast.success("Gasto creado correctamente")
+      onSuccess?.()
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Error al registrar el seguro: ", {

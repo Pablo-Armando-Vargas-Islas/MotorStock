@@ -4,6 +4,7 @@ import "./globals.css";
 import { AppProviders } from "@/components/AppProviders";
 import { AdminSidebar } from "@/components/AdminSidebar/AdminSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </div>
                 {children}
               </main>
+              <Toaster richColors />
           </SidebarProvider>
         </AppProviders>
       </body>

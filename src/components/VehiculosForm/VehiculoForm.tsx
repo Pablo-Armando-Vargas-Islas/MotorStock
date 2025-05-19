@@ -8,8 +8,16 @@ import axios from 'axios'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form'
 import { Input } from '../ui/input'
 import { Button } from '../ui/button'
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 
-const VehiculoForm = () => {
+type VehiculoFormProps = {
+  onSuccess: () => void
+}
+
+const VehiculoForm = ({ onSuccess } : VehiculoFormProps) => {
+  const router = useRouter()
+
   const form = useForm<z.infer<typeof vehiculoFormSchema>>({
     resolver: zodResolver(vehiculoFormSchema),
     defaultValues: {
@@ -25,6 +33,10 @@ const VehiculoForm = () => {
       }
 
       await axios.post("/api/vehiculos", datosToSend)
+
+      router.refresh()
+      toast.success("Vehiculo registrado correctamente")
+      onSuccess?.()
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Error al regsitrar el seguro: ", {
