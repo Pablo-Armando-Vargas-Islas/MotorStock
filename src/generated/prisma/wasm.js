@@ -129,12 +129,21 @@ exports.Prisma.UserScalarFieldEnum = {
   canEditGastos: 'canEditGastos',
   canEditFacturas: 'canEditFacturas',
   canManageUsers: 'canManageUsers',
-  allowedCompanies: 'allowedCompanies'
+  allowedCompanies: 'allowedCompanies',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.VehiculoScalarFieldEnum = {
   id: 'id',
   placa: 'placa',
+  marca: 'marca',
+  tipo: 'tipo',
+  modelo: 'modelo',
+  serie: 'serie',
+  motor: 'motor',
+  ubicacion: 'ubicacion',
+  proyecto: 'proyecto',
   versionActual: 'versionActual',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -146,18 +155,18 @@ exports.Prisma.VersionVehiculoScalarFieldEnum = {
   placa: 'placa',
   placaAnterior: 'placaAnterior',
   marca: 'marca',
-  tipo: 'tipo',
   modelo: 'modelo',
-  color: 'color',
+  anio: 'anio',
   serie: 'serie',
   motor: 'motor',
-  proyecto: 'proyecto',
   ubicacion: 'ubicacion',
+  proyecto: 'proyecto',
   version: 'version',
-  esActual: 'esActual',
   fechaCambio: 'fechaCambio',
   motivoCambio: 'motivoCambio',
-  usuarioCambio: 'usuarioCambio'
+  usuarioCambio: 'usuarioCambio',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SeguroScalarFieldEnum = {
@@ -168,8 +177,7 @@ exports.Prisma.SeguroScalarFieldEnum = {
   fechaInicio: 'fechaInicio',
   fechaVencimiento: 'fechaVencimiento',
   comentario: 'comentario',
-  esActual: 'esActual',
-  version: 'version',
+  versionActual: 'versionActual',
   createdAt: 'createdAt'
 };
 
@@ -191,11 +199,13 @@ exports.Prisma.GastoScalarFieldEnum = {
   entrada: 'entrada',
   salida: 'salida',
   saldo: 'saldo',
+  versionActual: 'versionActual',
   createdAt: 'createdAt'
 };
 
 exports.Prisma.FacturaScalarFieldEnum = {
   id: 'id',
+  gastoId: 'gastoId',
   uuid: 'uuid',
   estadoSAT: 'estadoSAT',
   tipoComprobante: 'tipoComprobante',
@@ -225,7 +235,7 @@ exports.Prisma.FacturaScalarFieldEnum = {
   fechaPago: 'fechaPago',
   bancoPago: 'bancoPago',
   folioPago: 'folioPago',
-  gastoId: 'gastoId',
+  versionActual: 'versionActual',
   createdAt: 'createdAt'
 };
 
