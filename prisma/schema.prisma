@@ -47,8 +47,8 @@ model Vehiculo {
   id        String  @id @default(uuid())
   placa     String  @unique
   marca     String
-  tipo    String
-  modelo      Int
+  tipo      String
+  modelo    Int
   serie     String
   motor     String?
   ubicacion String?
@@ -71,17 +71,15 @@ model VersionVehiculo {
   placa         String
   placaAnterior String?
   marca         String
-  modelo        String
-  anio          Int
+  tipo          String
+  modelo        Int
   serie         String
   motor         String?
   ubicacion     String?
   proyecto      String?
 
-  version       Int
-  fechaCambio   DateTime @default(now())
-  motivoCambio  String?
-  usuarioCambio String?
+  version     Int
+  fechaCambio DateTime @default(now())
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -80,6 +80,11 @@ export const columns: ColumnDef<Vehiculo>[] = [
                 Editar vehiculo
               </Link>
             </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href={`/vehiculos/history/${vehiculo.id}`}>
+                Ver historial
+              </Link>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

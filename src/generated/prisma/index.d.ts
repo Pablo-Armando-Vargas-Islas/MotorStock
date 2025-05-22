@@ -3814,13 +3814,13 @@ export namespace Prisma {
 
   export type VersionVehiculoAvgAggregateOutputType = {
     id: number | null
-    anio: number | null
+    modelo: number | null
     version: number | null
   }
 
   export type VersionVehiculoSumAggregateOutputType = {
     id: number | null
-    anio: number | null
+    modelo: number | null
     version: number | null
   }
 
@@ -3830,16 +3830,14 @@ export namespace Prisma {
     placa: string | null
     placaAnterior: string | null
     marca: string | null
-    modelo: string | null
-    anio: number | null
+    tipo: string | null
+    modelo: number | null
     serie: string | null
     motor: string | null
     ubicacion: string | null
     proyecto: string | null
     version: number | null
     fechaCambio: Date | null
-    motivoCambio: string | null
-    usuarioCambio: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3850,16 +3848,14 @@ export namespace Prisma {
     placa: string | null
     placaAnterior: string | null
     marca: string | null
-    modelo: string | null
-    anio: number | null
+    tipo: string | null
+    modelo: number | null
     serie: string | null
     motor: string | null
     ubicacion: string | null
     proyecto: string | null
     version: number | null
     fechaCambio: Date | null
-    motivoCambio: string | null
-    usuarioCambio: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3870,16 +3866,14 @@ export namespace Prisma {
     placa: number
     placaAnterior: number
     marca: number
+    tipo: number
     modelo: number
-    anio: number
     serie: number
     motor: number
     ubicacion: number
     proyecto: number
     version: number
     fechaCambio: number
-    motivoCambio: number
-    usuarioCambio: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3888,13 +3882,13 @@ export namespace Prisma {
 
   export type VersionVehiculoAvgAggregateInputType = {
     id?: true
-    anio?: true
+    modelo?: true
     version?: true
   }
 
   export type VersionVehiculoSumAggregateInputType = {
     id?: true
-    anio?: true
+    modelo?: true
     version?: true
   }
 
@@ -3904,16 +3898,14 @@ export namespace Prisma {
     placa?: true
     placaAnterior?: true
     marca?: true
+    tipo?: true
     modelo?: true
-    anio?: true
     serie?: true
     motor?: true
     ubicacion?: true
     proyecto?: true
     version?: true
     fechaCambio?: true
-    motivoCambio?: true
-    usuarioCambio?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3924,16 +3916,14 @@ export namespace Prisma {
     placa?: true
     placaAnterior?: true
     marca?: true
+    tipo?: true
     modelo?: true
-    anio?: true
     serie?: true
     motor?: true
     ubicacion?: true
     proyecto?: true
     version?: true
     fechaCambio?: true
-    motivoCambio?: true
-    usuarioCambio?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3944,16 +3934,14 @@ export namespace Prisma {
     placa?: true
     placaAnterior?: true
     marca?: true
+    tipo?: true
     modelo?: true
-    anio?: true
     serie?: true
     motor?: true
     ubicacion?: true
     proyecto?: true
     version?: true
     fechaCambio?: true
-    motivoCambio?: true
-    usuarioCambio?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -4051,16 +4039,14 @@ export namespace Prisma {
     placa: string
     placaAnterior: string | null
     marca: string
-    modelo: string
-    anio: number
+    tipo: string
+    modelo: number
     serie: string
     motor: string | null
     ubicacion: string | null
     proyecto: string | null
     version: number
     fechaCambio: Date
-    motivoCambio: string | null
-    usuarioCambio: string | null
     createdAt: Date
     updatedAt: Date
     _count: VersionVehiculoCountAggregateOutputType | null
@@ -4090,16 +4076,14 @@ export namespace Prisma {
     placa?: boolean
     placaAnterior?: boolean
     marca?: boolean
+    tipo?: boolean
     modelo?: boolean
-    anio?: boolean
     serie?: boolean
     motor?: boolean
     ubicacion?: boolean
     proyecto?: boolean
     version?: boolean
     fechaCambio?: boolean
-    motivoCambio?: boolean
-    usuarioCambio?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
@@ -4111,16 +4095,14 @@ export namespace Prisma {
     placa?: boolean
     placaAnterior?: boolean
     marca?: boolean
+    tipo?: boolean
     modelo?: boolean
-    anio?: boolean
     serie?: boolean
     motor?: boolean
     ubicacion?: boolean
     proyecto?: boolean
     version?: boolean
     fechaCambio?: boolean
-    motivoCambio?: boolean
-    usuarioCambio?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
@@ -4132,16 +4114,14 @@ export namespace Prisma {
     placa?: boolean
     placaAnterior?: boolean
     marca?: boolean
+    tipo?: boolean
     modelo?: boolean
-    anio?: boolean
     serie?: boolean
     motor?: boolean
     ubicacion?: boolean
     proyecto?: boolean
     version?: boolean
     fechaCambio?: boolean
-    motivoCambio?: boolean
-    usuarioCambio?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
@@ -4153,21 +4133,19 @@ export namespace Prisma {
     placa?: boolean
     placaAnterior?: boolean
     marca?: boolean
+    tipo?: boolean
     modelo?: boolean
-    anio?: boolean
     serie?: boolean
     motor?: boolean
     ubicacion?: boolean
     proyecto?: boolean
     version?: boolean
     fechaCambio?: boolean
-    motivoCambio?: boolean
-    usuarioCambio?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type VersionVehiculoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehiculoId" | "placa" | "placaAnterior" | "marca" | "modelo" | "anio" | "serie" | "motor" | "ubicacion" | "proyecto" | "version" | "fechaCambio" | "motivoCambio" | "usuarioCambio" | "createdAt" | "updatedAt", ExtArgs["result"]["versionVehiculo"]>
+  export type VersionVehiculoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehiculoId" | "placa" | "placaAnterior" | "marca" | "tipo" | "modelo" | "serie" | "motor" | "ubicacion" | "proyecto" | "version" | "fechaCambio" | "createdAt" | "updatedAt", ExtArgs["result"]["versionVehiculo"]>
   export type VersionVehiculoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }
@@ -4189,16 +4167,14 @@ export namespace Prisma {
       placa: string
       placaAnterior: string | null
       marca: string
-      modelo: string
-      anio: number
+      tipo: string
+      modelo: number
       serie: string
       motor: string | null
       ubicacion: string | null
       proyecto: string | null
       version: number
       fechaCambio: Date
-      motivoCambio: string | null
-      usuarioCambio: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["versionVehiculo"]>
@@ -4630,16 +4606,14 @@ export namespace Prisma {
     readonly placa: FieldRef<"VersionVehiculo", 'String'>
     readonly placaAnterior: FieldRef<"VersionVehiculo", 'String'>
     readonly marca: FieldRef<"VersionVehiculo", 'String'>
-    readonly modelo: FieldRef<"VersionVehiculo", 'String'>
-    readonly anio: FieldRef<"VersionVehiculo", 'Int'>
+    readonly tipo: FieldRef<"VersionVehiculo", 'String'>
+    readonly modelo: FieldRef<"VersionVehiculo", 'Int'>
     readonly serie: FieldRef<"VersionVehiculo", 'String'>
     readonly motor: FieldRef<"VersionVehiculo", 'String'>
     readonly ubicacion: FieldRef<"VersionVehiculo", 'String'>
     readonly proyecto: FieldRef<"VersionVehiculo", 'String'>
     readonly version: FieldRef<"VersionVehiculo", 'Int'>
     readonly fechaCambio: FieldRef<"VersionVehiculo", 'DateTime'>
-    readonly motivoCambio: FieldRef<"VersionVehiculo", 'String'>
-    readonly usuarioCambio: FieldRef<"VersionVehiculo", 'String'>
     readonly createdAt: FieldRef<"VersionVehiculo", 'DateTime'>
     readonly updatedAt: FieldRef<"VersionVehiculo", 'DateTime'>
   }
@@ -9090,16 +9064,14 @@ export namespace Prisma {
     placa: 'placa',
     placaAnterior: 'placaAnterior',
     marca: 'marca',
+    tipo: 'tipo',
     modelo: 'modelo',
-    anio: 'anio',
     serie: 'serie',
     motor: 'motor',
     ubicacion: 'ubicacion',
     proyecto: 'proyecto',
     version: 'version',
     fechaCambio: 'fechaCambio',
-    motivoCambio: 'motivoCambio',
-    usuarioCambio: 'usuarioCambio',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -9513,16 +9485,14 @@ export namespace Prisma {
     placa?: StringFilter<"VersionVehiculo"> | string
     placaAnterior?: StringNullableFilter<"VersionVehiculo"> | string | null
     marca?: StringFilter<"VersionVehiculo"> | string
-    modelo?: StringFilter<"VersionVehiculo"> | string
-    anio?: IntFilter<"VersionVehiculo"> | number
+    tipo?: StringFilter<"VersionVehiculo"> | string
+    modelo?: IntFilter<"VersionVehiculo"> | number
     serie?: StringFilter<"VersionVehiculo"> | string
     motor?: StringNullableFilter<"VersionVehiculo"> | string | null
     ubicacion?: StringNullableFilter<"VersionVehiculo"> | string | null
     proyecto?: StringNullableFilter<"VersionVehiculo"> | string | null
     version?: IntFilter<"VersionVehiculo"> | number
     fechaCambio?: DateTimeFilter<"VersionVehiculo"> | Date | string
-    motivoCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
-    usuarioCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
     createdAt?: DateTimeFilter<"VersionVehiculo"> | Date | string
     updatedAt?: DateTimeFilter<"VersionVehiculo"> | Date | string
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
@@ -9534,16 +9504,14 @@ export namespace Prisma {
     placa?: SortOrder
     placaAnterior?: SortOrderInput | SortOrder
     marca?: SortOrder
+    tipo?: SortOrder
     modelo?: SortOrder
-    anio?: SortOrder
     serie?: SortOrder
     motor?: SortOrderInput | SortOrder
     ubicacion?: SortOrderInput | SortOrder
     proyecto?: SortOrderInput | SortOrder
     version?: SortOrder
     fechaCambio?: SortOrder
-    motivoCambio?: SortOrderInput | SortOrder
-    usuarioCambio?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     vehiculo?: VehiculoOrderByWithRelationInput
@@ -9559,16 +9527,14 @@ export namespace Prisma {
     placa?: StringFilter<"VersionVehiculo"> | string
     placaAnterior?: StringNullableFilter<"VersionVehiculo"> | string | null
     marca?: StringFilter<"VersionVehiculo"> | string
-    modelo?: StringFilter<"VersionVehiculo"> | string
-    anio?: IntFilter<"VersionVehiculo"> | number
+    tipo?: StringFilter<"VersionVehiculo"> | string
+    modelo?: IntFilter<"VersionVehiculo"> | number
     serie?: StringFilter<"VersionVehiculo"> | string
     motor?: StringNullableFilter<"VersionVehiculo"> | string | null
     ubicacion?: StringNullableFilter<"VersionVehiculo"> | string | null
     proyecto?: StringNullableFilter<"VersionVehiculo"> | string | null
     version?: IntFilter<"VersionVehiculo"> | number
     fechaCambio?: DateTimeFilter<"VersionVehiculo"> | Date | string
-    motivoCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
-    usuarioCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
     createdAt?: DateTimeFilter<"VersionVehiculo"> | Date | string
     updatedAt?: DateTimeFilter<"VersionVehiculo"> | Date | string
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
@@ -9580,16 +9546,14 @@ export namespace Prisma {
     placa?: SortOrder
     placaAnterior?: SortOrderInput | SortOrder
     marca?: SortOrder
+    tipo?: SortOrder
     modelo?: SortOrder
-    anio?: SortOrder
     serie?: SortOrder
     motor?: SortOrderInput | SortOrder
     ubicacion?: SortOrderInput | SortOrder
     proyecto?: SortOrderInput | SortOrder
     version?: SortOrder
     fechaCambio?: SortOrder
-    motivoCambio?: SortOrderInput | SortOrder
-    usuarioCambio?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: VersionVehiculoCountOrderByAggregateInput
@@ -9608,16 +9572,14 @@ export namespace Prisma {
     placa?: StringWithAggregatesFilter<"VersionVehiculo"> | string
     placaAnterior?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
     marca?: StringWithAggregatesFilter<"VersionVehiculo"> | string
-    modelo?: StringWithAggregatesFilter<"VersionVehiculo"> | string
-    anio?: IntWithAggregatesFilter<"VersionVehiculo"> | number
+    tipo?: StringWithAggregatesFilter<"VersionVehiculo"> | string
+    modelo?: IntWithAggregatesFilter<"VersionVehiculo"> | number
     serie?: StringWithAggregatesFilter<"VersionVehiculo"> | string
     motor?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
     ubicacion?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
     proyecto?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
     version?: IntWithAggregatesFilter<"VersionVehiculo"> | number
     fechaCambio?: DateTimeWithAggregatesFilter<"VersionVehiculo"> | Date | string
-    motivoCambio?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
-    usuarioCambio?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"VersionVehiculo"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"VersionVehiculo"> | Date | string
   }
@@ -10266,16 +10228,14 @@ export namespace Prisma {
     placa: string
     placaAnterior?: string | null
     marca: string
-    modelo: string
-    anio: number
+    tipo: string
+    modelo: number
     serie: string
     motor?: string | null
     ubicacion?: string | null
     proyecto?: string | null
     version: number
     fechaCambio?: Date | string
-    motivoCambio?: string | null
-    usuarioCambio?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     vehiculo: VehiculoCreateNestedOneWithoutVersionesInput
@@ -10287,16 +10247,14 @@ export namespace Prisma {
     placa: string
     placaAnterior?: string | null
     marca: string
-    modelo: string
-    anio: number
+    tipo: string
+    modelo: number
     serie: string
     motor?: string | null
     ubicacion?: string | null
     proyecto?: string | null
     version: number
     fechaCambio?: Date | string
-    motivoCambio?: string | null
-    usuarioCambio?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10305,16 +10263,14 @@ export namespace Prisma {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    modelo?: StringFieldUpdateOperationsInput | string
-    anio?: IntFieldUpdateOperationsInput | number
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
-    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
-    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vehiculo?: VehiculoUpdateOneRequiredWithoutVersionesNestedInput
@@ -10326,16 +10282,14 @@ export namespace Prisma {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    modelo?: StringFieldUpdateOperationsInput | string
-    anio?: IntFieldUpdateOperationsInput | number
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
-    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
-    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10346,16 +10300,14 @@ export namespace Prisma {
     placa: string
     placaAnterior?: string | null
     marca: string
-    modelo: string
-    anio: number
+    tipo: string
+    modelo: number
     serie: string
     motor?: string | null
     ubicacion?: string | null
     proyecto?: string | null
     version: number
     fechaCambio?: Date | string
-    motivoCambio?: string | null
-    usuarioCambio?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10364,16 +10316,14 @@ export namespace Prisma {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    modelo?: StringFieldUpdateOperationsInput | string
-    anio?: IntFieldUpdateOperationsInput | number
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
-    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
-    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10384,16 +10334,14 @@ export namespace Prisma {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    modelo?: StringFieldUpdateOperationsInput | string
-    anio?: IntFieldUpdateOperationsInput | number
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
-    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
-    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11191,23 +11139,21 @@ export namespace Prisma {
     placa?: SortOrder
     placaAnterior?: SortOrder
     marca?: SortOrder
+    tipo?: SortOrder
     modelo?: SortOrder
-    anio?: SortOrder
     serie?: SortOrder
     motor?: SortOrder
     ubicacion?: SortOrder
     proyecto?: SortOrder
     version?: SortOrder
     fechaCambio?: SortOrder
-    motivoCambio?: SortOrder
-    usuarioCambio?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type VersionVehiculoAvgOrderByAggregateInput = {
     id?: SortOrder
-    anio?: SortOrder
+    modelo?: SortOrder
     version?: SortOrder
   }
 
@@ -11217,16 +11163,14 @@ export namespace Prisma {
     placa?: SortOrder
     placaAnterior?: SortOrder
     marca?: SortOrder
+    tipo?: SortOrder
     modelo?: SortOrder
-    anio?: SortOrder
     serie?: SortOrder
     motor?: SortOrder
     ubicacion?: SortOrder
     proyecto?: SortOrder
     version?: SortOrder
     fechaCambio?: SortOrder
-    motivoCambio?: SortOrder
-    usuarioCambio?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -11237,23 +11181,21 @@ export namespace Prisma {
     placa?: SortOrder
     placaAnterior?: SortOrder
     marca?: SortOrder
+    tipo?: SortOrder
     modelo?: SortOrder
-    anio?: SortOrder
     serie?: SortOrder
     motor?: SortOrder
     ubicacion?: SortOrder
     proyecto?: SortOrder
     version?: SortOrder
     fechaCambio?: SortOrder
-    motivoCambio?: SortOrder
-    usuarioCambio?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type VersionVehiculoSumOrderByAggregateInput = {
     id?: SortOrder
-    anio?: SortOrder
+    modelo?: SortOrder
     version?: SortOrder
   }
 
@@ -12178,16 +12120,14 @@ export namespace Prisma {
     placa: string
     placaAnterior?: string | null
     marca: string
-    modelo: string
-    anio: number
+    tipo: string
+    modelo: number
     serie: string
     motor?: string | null
     ubicacion?: string | null
     proyecto?: string | null
     version: number
     fechaCambio?: Date | string
-    motivoCambio?: string | null
-    usuarioCambio?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12197,16 +12137,14 @@ export namespace Prisma {
     placa: string
     placaAnterior?: string | null
     marca: string
-    modelo: string
-    anio: number
+    tipo: string
+    modelo: number
     serie: string
     motor?: string | null
     ubicacion?: string | null
     proyecto?: string | null
     version: number
     fechaCambio?: Date | string
-    motivoCambio?: string | null
-    usuarioCambio?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12330,16 +12268,14 @@ export namespace Prisma {
     placa?: StringFilter<"VersionVehiculo"> | string
     placaAnterior?: StringNullableFilter<"VersionVehiculo"> | string | null
     marca?: StringFilter<"VersionVehiculo"> | string
-    modelo?: StringFilter<"VersionVehiculo"> | string
-    anio?: IntFilter<"VersionVehiculo"> | number
+    tipo?: StringFilter<"VersionVehiculo"> | string
+    modelo?: IntFilter<"VersionVehiculo"> | number
     serie?: StringFilter<"VersionVehiculo"> | string
     motor?: StringNullableFilter<"VersionVehiculo"> | string | null
     ubicacion?: StringNullableFilter<"VersionVehiculo"> | string | null
     proyecto?: StringNullableFilter<"VersionVehiculo"> | string | null
     version?: IntFilter<"VersionVehiculo"> | number
     fechaCambio?: DateTimeFilter<"VersionVehiculo"> | Date | string
-    motivoCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
-    usuarioCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
     createdAt?: DateTimeFilter<"VersionVehiculo"> | Date | string
     updatedAt?: DateTimeFilter<"VersionVehiculo"> | Date | string
   }
@@ -12909,16 +12845,14 @@ export namespace Prisma {
     placa: string
     placaAnterior?: string | null
     marca: string
-    modelo: string
-    anio: number
+    tipo: string
+    modelo: number
     serie: string
     motor?: string | null
     ubicacion?: string | null
     proyecto?: string | null
     version: number
     fechaCambio?: Date | string
-    motivoCambio?: string | null
-    usuarioCambio?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12959,16 +12893,14 @@ export namespace Prisma {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    modelo?: StringFieldUpdateOperationsInput | string
-    anio?: IntFieldUpdateOperationsInput | number
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
-    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
-    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12978,16 +12910,14 @@ export namespace Prisma {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    modelo?: StringFieldUpdateOperationsInput | string
-    anio?: IntFieldUpdateOperationsInput | number
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
-    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
-    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12997,16 +12927,14 @@ export namespace Prisma {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    modelo?: StringFieldUpdateOperationsInput | string
-    anio?: IntFieldUpdateOperationsInput | number
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
-    motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
-    usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
