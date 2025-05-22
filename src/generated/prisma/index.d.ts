@@ -1459,6 +1459,8 @@ export namespace Prisma {
     canEditGastos: boolean | null
     canEditFacturas: boolean | null
     canManageUsers: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1473,6 +1475,8 @@ export namespace Prisma {
     canEditGastos: boolean | null
     canEditFacturas: boolean | null
     canManageUsers: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1488,6 +1492,8 @@ export namespace Prisma {
     canEditFacturas: number
     canManageUsers: number
     allowedCompanies: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -1504,6 +1510,8 @@ export namespace Prisma {
     canEditGastos?: true
     canEditFacturas?: true
     canManageUsers?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1518,6 +1526,8 @@ export namespace Prisma {
     canEditGastos?: true
     canEditFacturas?: true
     canManageUsers?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1533,6 +1543,8 @@ export namespace Prisma {
     canEditFacturas?: true
     canManageUsers?: true
     allowedCompanies?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -1621,6 +1633,8 @@ export namespace Prisma {
     canEditFacturas: boolean
     canManageUsers: boolean
     allowedCompanies: $Enums.Compania[]
+    createdAt: Date
+    updatedAt: Date
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1653,6 +1667,8 @@ export namespace Prisma {
     canEditFacturas?: boolean
     canManageUsers?: boolean
     allowedCompanies?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1668,6 +1684,8 @@ export namespace Prisma {
     canEditFacturas?: boolean
     canManageUsers?: boolean
     allowedCompanies?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1683,6 +1701,8 @@ export namespace Prisma {
     canEditFacturas?: boolean
     canManageUsers?: boolean
     allowedCompanies?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1698,9 +1718,11 @@ export namespace Prisma {
     canEditFacturas?: boolean
     canManageUsers?: boolean
     allowedCompanies?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user" | "password" | "role" | "canViewSeguros" | "canViewGastos" | "canViewFacturas" | "canEditSeguros" | "canEditGastos" | "canEditFacturas" | "canManageUsers" | "allowedCompanies", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user" | "password" | "role" | "canViewSeguros" | "canViewGastos" | "canViewFacturas" | "canEditSeguros" | "canEditGastos" | "canEditFacturas" | "canManageUsers" | "allowedCompanies" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
@@ -1718,6 +1740,8 @@ export namespace Prisma {
       canEditFacturas: boolean
       canManageUsers: boolean
       allowedCompanies: $Enums.Compania[]
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2153,6 +2177,8 @@ export namespace Prisma {
     readonly canEditFacturas: FieldRef<"User", 'Boolean'>
     readonly canManageUsers: FieldRef<"User", 'Boolean'>
     readonly allowedCompanies: FieldRef<"User", 'Compania[]'>
+    readonly createdAt: FieldRef<"User", 'DateTime'>
+    readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
     
 
@@ -2532,16 +2558,25 @@ export namespace Prisma {
   }
 
   export type VehiculoAvgAggregateOutputType = {
+    modelo: number | null
     versionActual: number | null
   }
 
   export type VehiculoSumAggregateOutputType = {
+    modelo: number | null
     versionActual: number | null
   }
 
   export type VehiculoMinAggregateOutputType = {
     id: string | null
     placa: string | null
+    marca: string | null
+    tipo: string | null
+    modelo: number | null
+    serie: string | null
+    motor: string | null
+    ubicacion: string | null
+    proyecto: string | null
     versionActual: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2550,6 +2585,13 @@ export namespace Prisma {
   export type VehiculoMaxAggregateOutputType = {
     id: string | null
     placa: string | null
+    marca: string | null
+    tipo: string | null
+    modelo: number | null
+    serie: string | null
+    motor: string | null
+    ubicacion: string | null
+    proyecto: string | null
     versionActual: number | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -2558,6 +2600,13 @@ export namespace Prisma {
   export type VehiculoCountAggregateOutputType = {
     id: number
     placa: number
+    marca: number
+    tipo: number
+    modelo: number
+    serie: number
+    motor: number
+    ubicacion: number
+    proyecto: number
     versionActual: number
     createdAt: number
     updatedAt: number
@@ -2566,16 +2615,25 @@ export namespace Prisma {
 
 
   export type VehiculoAvgAggregateInputType = {
+    modelo?: true
     versionActual?: true
   }
 
   export type VehiculoSumAggregateInputType = {
+    modelo?: true
     versionActual?: true
   }
 
   export type VehiculoMinAggregateInputType = {
     id?: true
     placa?: true
+    marca?: true
+    tipo?: true
+    modelo?: true
+    serie?: true
+    motor?: true
+    ubicacion?: true
+    proyecto?: true
     versionActual?: true
     createdAt?: true
     updatedAt?: true
@@ -2584,6 +2642,13 @@ export namespace Prisma {
   export type VehiculoMaxAggregateInputType = {
     id?: true
     placa?: true
+    marca?: true
+    tipo?: true
+    modelo?: true
+    serie?: true
+    motor?: true
+    ubicacion?: true
+    proyecto?: true
     versionActual?: true
     createdAt?: true
     updatedAt?: true
@@ -2592,6 +2657,13 @@ export namespace Prisma {
   export type VehiculoCountAggregateInputType = {
     id?: true
     placa?: true
+    marca?: true
+    tipo?: true
+    modelo?: true
+    serie?: true
+    motor?: true
+    ubicacion?: true
+    proyecto?: true
     versionActual?: true
     createdAt?: true
     updatedAt?: true
@@ -2687,6 +2759,13 @@ export namespace Prisma {
   export type VehiculoGroupByOutputType = {
     id: string
     placa: string
+    marca: string
+    tipo: string
+    modelo: number
+    serie: string
+    motor: string | null
+    ubicacion: string | null
+    proyecto: string | null
     versionActual: number
     createdAt: Date
     updatedAt: Date
@@ -2714,6 +2793,13 @@ export namespace Prisma {
   export type VehiculoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     placa?: boolean
+    marca?: boolean
+    tipo?: boolean
+    modelo?: boolean
+    serie?: boolean
+    motor?: boolean
+    ubicacion?: boolean
+    proyecto?: boolean
     versionActual?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2726,6 +2812,13 @@ export namespace Prisma {
   export type VehiculoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     placa?: boolean
+    marca?: boolean
+    tipo?: boolean
+    modelo?: boolean
+    serie?: boolean
+    motor?: boolean
+    ubicacion?: boolean
+    proyecto?: boolean
     versionActual?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2734,6 +2827,13 @@ export namespace Prisma {
   export type VehiculoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     placa?: boolean
+    marca?: boolean
+    tipo?: boolean
+    modelo?: boolean
+    serie?: boolean
+    motor?: boolean
+    ubicacion?: boolean
+    proyecto?: boolean
     versionActual?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -2742,12 +2842,19 @@ export namespace Prisma {
   export type VehiculoSelectScalar = {
     id?: boolean
     placa?: boolean
+    marca?: boolean
+    tipo?: boolean
+    modelo?: boolean
+    serie?: boolean
+    motor?: boolean
+    ubicacion?: boolean
+    proyecto?: boolean
     versionActual?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type VehiculoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "placa" | "versionActual" | "createdAt" | "updatedAt", ExtArgs["result"]["vehiculo"]>
+  export type VehiculoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "placa" | "marca" | "tipo" | "modelo" | "serie" | "motor" | "ubicacion" | "proyecto" | "versionActual" | "createdAt" | "updatedAt", ExtArgs["result"]["vehiculo"]>
   export type VehiculoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     versiones?: boolean | Vehiculo$versionesArgs<ExtArgs>
     seguros?: boolean | Vehiculo$segurosArgs<ExtArgs>
@@ -2767,6 +2874,13 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       placa: string
+      marca: string
+      tipo: string
+      modelo: number
+      serie: string
+      motor: string | null
+      ubicacion: string | null
+      proyecto: string | null
       versionActual: number
       createdAt: Date
       updatedAt: Date
@@ -3198,6 +3312,13 @@ export namespace Prisma {
   interface VehiculoFieldRefs {
     readonly id: FieldRef<"Vehiculo", 'String'>
     readonly placa: FieldRef<"Vehiculo", 'String'>
+    readonly marca: FieldRef<"Vehiculo", 'String'>
+    readonly tipo: FieldRef<"Vehiculo", 'String'>
+    readonly modelo: FieldRef<"Vehiculo", 'Int'>
+    readonly serie: FieldRef<"Vehiculo", 'String'>
+    readonly motor: FieldRef<"Vehiculo", 'String'>
+    readonly ubicacion: FieldRef<"Vehiculo", 'String'>
+    readonly proyecto: FieldRef<"Vehiculo", 'String'>
     readonly versionActual: FieldRef<"Vehiculo", 'Int'>
     readonly createdAt: FieldRef<"Vehiculo", 'DateTime'>
     readonly updatedAt: FieldRef<"Vehiculo", 'DateTime'>
@@ -3693,11 +3814,13 @@ export namespace Prisma {
 
   export type VersionVehiculoAvgAggregateOutputType = {
     id: number | null
+    anio: number | null
     version: number | null
   }
 
   export type VersionVehiculoSumAggregateOutputType = {
     id: number | null
+    anio: number | null
     version: number | null
   }
 
@@ -3707,18 +3830,18 @@ export namespace Prisma {
     placa: string | null
     placaAnterior: string | null
     marca: string | null
-    tipo: string | null
     modelo: string | null
-    color: string | null
+    anio: number | null
     serie: string | null
     motor: string | null
-    proyecto: string | null
     ubicacion: string | null
+    proyecto: string | null
     version: number | null
-    esActual: boolean | null
     fechaCambio: Date | null
     motivoCambio: string | null
     usuarioCambio: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type VersionVehiculoMaxAggregateOutputType = {
@@ -3727,18 +3850,18 @@ export namespace Prisma {
     placa: string | null
     placaAnterior: string | null
     marca: string | null
-    tipo: string | null
     modelo: string | null
-    color: string | null
+    anio: number | null
     serie: string | null
     motor: string | null
-    proyecto: string | null
     ubicacion: string | null
+    proyecto: string | null
     version: number | null
-    esActual: boolean | null
     fechaCambio: Date | null
     motivoCambio: string | null
     usuarioCambio: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type VersionVehiculoCountAggregateOutputType = {
@@ -3747,29 +3870,31 @@ export namespace Prisma {
     placa: number
     placaAnterior: number
     marca: number
-    tipo: number
     modelo: number
-    color: number
+    anio: number
     serie: number
     motor: number
-    proyecto: number
     ubicacion: number
+    proyecto: number
     version: number
-    esActual: number
     fechaCambio: number
     motivoCambio: number
     usuarioCambio: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
 
   export type VersionVehiculoAvgAggregateInputType = {
     id?: true
+    anio?: true
     version?: true
   }
 
   export type VersionVehiculoSumAggregateInputType = {
     id?: true
+    anio?: true
     version?: true
   }
 
@@ -3779,18 +3904,18 @@ export namespace Prisma {
     placa?: true
     placaAnterior?: true
     marca?: true
-    tipo?: true
     modelo?: true
-    color?: true
+    anio?: true
     serie?: true
     motor?: true
-    proyecto?: true
     ubicacion?: true
+    proyecto?: true
     version?: true
-    esActual?: true
     fechaCambio?: true
     motivoCambio?: true
     usuarioCambio?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type VersionVehiculoMaxAggregateInputType = {
@@ -3799,18 +3924,18 @@ export namespace Prisma {
     placa?: true
     placaAnterior?: true
     marca?: true
-    tipo?: true
     modelo?: true
-    color?: true
+    anio?: true
     serie?: true
     motor?: true
-    proyecto?: true
     ubicacion?: true
+    proyecto?: true
     version?: true
-    esActual?: true
     fechaCambio?: true
     motivoCambio?: true
     usuarioCambio?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type VersionVehiculoCountAggregateInputType = {
@@ -3819,18 +3944,18 @@ export namespace Prisma {
     placa?: true
     placaAnterior?: true
     marca?: true
-    tipo?: true
     modelo?: true
-    color?: true
+    anio?: true
     serie?: true
     motor?: true
-    proyecto?: true
     ubicacion?: true
+    proyecto?: true
     version?: true
-    esActual?: true
     fechaCambio?: true
     motivoCambio?: true
     usuarioCambio?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -3926,18 +4051,18 @@ export namespace Prisma {
     placa: string
     placaAnterior: string | null
     marca: string
-    tipo: string
     modelo: string
-    color: string
+    anio: number
     serie: string
     motor: string | null
-    proyecto: string | null
     ubicacion: string | null
+    proyecto: string | null
     version: number
-    esActual: boolean
     fechaCambio: Date
     motivoCambio: string | null
     usuarioCambio: string | null
+    createdAt: Date
+    updatedAt: Date
     _count: VersionVehiculoCountAggregateOutputType | null
     _avg: VersionVehiculoAvgAggregateOutputType | null
     _sum: VersionVehiculoSumAggregateOutputType | null
@@ -3965,18 +4090,18 @@ export namespace Prisma {
     placa?: boolean
     placaAnterior?: boolean
     marca?: boolean
-    tipo?: boolean
     modelo?: boolean
-    color?: boolean
+    anio?: boolean
     serie?: boolean
     motor?: boolean
-    proyecto?: boolean
     ubicacion?: boolean
+    proyecto?: boolean
     version?: boolean
-    esActual?: boolean
     fechaCambio?: boolean
     motivoCambio?: boolean
     usuarioCambio?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["versionVehiculo"]>
 
@@ -3986,18 +4111,18 @@ export namespace Prisma {
     placa?: boolean
     placaAnterior?: boolean
     marca?: boolean
-    tipo?: boolean
     modelo?: boolean
-    color?: boolean
+    anio?: boolean
     serie?: boolean
     motor?: boolean
-    proyecto?: boolean
     ubicacion?: boolean
+    proyecto?: boolean
     version?: boolean
-    esActual?: boolean
     fechaCambio?: boolean
     motivoCambio?: boolean
     usuarioCambio?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["versionVehiculo"]>
 
@@ -4007,18 +4132,18 @@ export namespace Prisma {
     placa?: boolean
     placaAnterior?: boolean
     marca?: boolean
-    tipo?: boolean
     modelo?: boolean
-    color?: boolean
+    anio?: boolean
     serie?: boolean
     motor?: boolean
-    proyecto?: boolean
     ubicacion?: boolean
+    proyecto?: boolean
     version?: boolean
-    esActual?: boolean
     fechaCambio?: boolean
     motivoCambio?: boolean
     usuarioCambio?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["versionVehiculo"]>
 
@@ -4028,21 +4153,21 @@ export namespace Prisma {
     placa?: boolean
     placaAnterior?: boolean
     marca?: boolean
-    tipo?: boolean
     modelo?: boolean
-    color?: boolean
+    anio?: boolean
     serie?: boolean
     motor?: boolean
-    proyecto?: boolean
     ubicacion?: boolean
+    proyecto?: boolean
     version?: boolean
-    esActual?: boolean
     fechaCambio?: boolean
     motivoCambio?: boolean
     usuarioCambio?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type VersionVehiculoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehiculoId" | "placa" | "placaAnterior" | "marca" | "tipo" | "modelo" | "color" | "serie" | "motor" | "proyecto" | "ubicacion" | "version" | "esActual" | "fechaCambio" | "motivoCambio" | "usuarioCambio", ExtArgs["result"]["versionVehiculo"]>
+  export type VersionVehiculoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehiculoId" | "placa" | "placaAnterior" | "marca" | "modelo" | "anio" | "serie" | "motor" | "ubicacion" | "proyecto" | "version" | "fechaCambio" | "motivoCambio" | "usuarioCambio" | "createdAt" | "updatedAt", ExtArgs["result"]["versionVehiculo"]>
   export type VersionVehiculoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }
@@ -4064,18 +4189,18 @@ export namespace Prisma {
       placa: string
       placaAnterior: string | null
       marca: string
-      tipo: string
       modelo: string
-      color: string
+      anio: number
       serie: string
       motor: string | null
-      proyecto: string | null
       ubicacion: string | null
+      proyecto: string | null
       version: number
-      esActual: boolean
       fechaCambio: Date
       motivoCambio: string | null
       usuarioCambio: string | null
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["versionVehiculo"]>
     composites: {}
   }
@@ -4505,18 +4630,18 @@ export namespace Prisma {
     readonly placa: FieldRef<"VersionVehiculo", 'String'>
     readonly placaAnterior: FieldRef<"VersionVehiculo", 'String'>
     readonly marca: FieldRef<"VersionVehiculo", 'String'>
-    readonly tipo: FieldRef<"VersionVehiculo", 'String'>
     readonly modelo: FieldRef<"VersionVehiculo", 'String'>
-    readonly color: FieldRef<"VersionVehiculo", 'String'>
+    readonly anio: FieldRef<"VersionVehiculo", 'Int'>
     readonly serie: FieldRef<"VersionVehiculo", 'String'>
     readonly motor: FieldRef<"VersionVehiculo", 'String'>
-    readonly proyecto: FieldRef<"VersionVehiculo", 'String'>
     readonly ubicacion: FieldRef<"VersionVehiculo", 'String'>
+    readonly proyecto: FieldRef<"VersionVehiculo", 'String'>
     readonly version: FieldRef<"VersionVehiculo", 'Int'>
-    readonly esActual: FieldRef<"VersionVehiculo", 'Boolean'>
     readonly fechaCambio: FieldRef<"VersionVehiculo", 'DateTime'>
     readonly motivoCambio: FieldRef<"VersionVehiculo", 'String'>
     readonly usuarioCambio: FieldRef<"VersionVehiculo", 'String'>
+    readonly createdAt: FieldRef<"VersionVehiculo", 'DateTime'>
+    readonly updatedAt: FieldRef<"VersionVehiculo", 'DateTime'>
   }
     
 
@@ -4946,13 +5071,13 @@ export namespace Prisma {
   export type SeguroAvgAggregateOutputType = {
     id: number | null
     precio: number | null
-    version: number | null
+    versionActual: number | null
   }
 
   export type SeguroSumAggregateOutputType = {
     id: number | null
     precio: number | null
-    version: number | null
+    versionActual: number | null
   }
 
   export type SeguroMinAggregateOutputType = {
@@ -4963,8 +5088,7 @@ export namespace Prisma {
     fechaInicio: Date | null
     fechaVencimiento: Date | null
     comentario: string | null
-    esActual: boolean | null
-    version: number | null
+    versionActual: number | null
     createdAt: Date | null
   }
 
@@ -4976,8 +5100,7 @@ export namespace Prisma {
     fechaInicio: Date | null
     fechaVencimiento: Date | null
     comentario: string | null
-    esActual: boolean | null
-    version: number | null
+    versionActual: number | null
     createdAt: Date | null
   }
 
@@ -4989,8 +5112,7 @@ export namespace Prisma {
     fechaInicio: number
     fechaVencimiento: number
     comentario: number
-    esActual: number
-    version: number
+    versionActual: number
     createdAt: number
     _all: number
   }
@@ -4999,13 +5121,13 @@ export namespace Prisma {
   export type SeguroAvgAggregateInputType = {
     id?: true
     precio?: true
-    version?: true
+    versionActual?: true
   }
 
   export type SeguroSumAggregateInputType = {
     id?: true
     precio?: true
-    version?: true
+    versionActual?: true
   }
 
   export type SeguroMinAggregateInputType = {
@@ -5016,8 +5138,7 @@ export namespace Prisma {
     fechaInicio?: true
     fechaVencimiento?: true
     comentario?: true
-    esActual?: true
-    version?: true
+    versionActual?: true
     createdAt?: true
   }
 
@@ -5029,8 +5150,7 @@ export namespace Prisma {
     fechaInicio?: true
     fechaVencimiento?: true
     comentario?: true
-    esActual?: true
-    version?: true
+    versionActual?: true
     createdAt?: true
   }
 
@@ -5042,8 +5162,7 @@ export namespace Prisma {
     fechaInicio?: true
     fechaVencimiento?: true
     comentario?: true
-    esActual?: true
-    version?: true
+    versionActual?: true
     createdAt?: true
     _all?: true
   }
@@ -5142,8 +5261,7 @@ export namespace Prisma {
     fechaInicio: Date
     fechaVencimiento: Date
     comentario: string | null
-    esActual: boolean
-    version: number
+    versionActual: number
     createdAt: Date
     _count: SeguroCountAggregateOutputType | null
     _avg: SeguroAvgAggregateOutputType | null
@@ -5174,8 +5292,7 @@ export namespace Prisma {
     fechaInicio?: boolean
     fechaVencimiento?: boolean
     comentario?: boolean
-    esActual?: boolean
-    version?: boolean
+    versionActual?: boolean
     createdAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seguro"]>
@@ -5188,8 +5305,7 @@ export namespace Prisma {
     fechaInicio?: boolean
     fechaVencimiento?: boolean
     comentario?: boolean
-    esActual?: boolean
-    version?: boolean
+    versionActual?: boolean
     createdAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seguro"]>
@@ -5202,8 +5318,7 @@ export namespace Prisma {
     fechaInicio?: boolean
     fechaVencimiento?: boolean
     comentario?: boolean
-    esActual?: boolean
-    version?: boolean
+    versionActual?: boolean
     createdAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seguro"]>
@@ -5216,12 +5331,11 @@ export namespace Prisma {
     fechaInicio?: boolean
     fechaVencimiento?: boolean
     comentario?: boolean
-    esActual?: boolean
-    version?: boolean
+    versionActual?: boolean
     createdAt?: boolean
   }
 
-  export type SeguroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehiculoId" | "compania" | "precio" | "fechaInicio" | "fechaVencimiento" | "comentario" | "esActual" | "version" | "createdAt", ExtArgs["result"]["seguro"]>
+  export type SeguroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehiculoId" | "compania" | "precio" | "fechaInicio" | "fechaVencimiento" | "comentario" | "versionActual" | "createdAt", ExtArgs["result"]["seguro"]>
   export type SeguroInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }
@@ -5245,8 +5359,7 @@ export namespace Prisma {
       fechaInicio: Date
       fechaVencimiento: Date
       comentario: string | null
-      esActual: boolean
-      version: number
+      versionActual: number
       createdAt: Date
     }, ExtArgs["result"]["seguro"]>
     composites: {}
@@ -5679,8 +5792,7 @@ export namespace Prisma {
     readonly fechaInicio: FieldRef<"Seguro", 'DateTime'>
     readonly fechaVencimiento: FieldRef<"Seguro", 'DateTime'>
     readonly comentario: FieldRef<"Seguro", 'String'>
-    readonly esActual: FieldRef<"Seguro", 'Boolean'>
-    readonly version: FieldRef<"Seguro", 'Int'>
+    readonly versionActual: FieldRef<"Seguro", 'Int'>
     readonly createdAt: FieldRef<"Seguro", 'DateTime'>
   }
     
@@ -6110,16 +6222,20 @@ export namespace Prisma {
 
   export type GastoAvgAggregateOutputType = {
     id: number | null
+    transferencia: number | null
     entrada: number | null
     salida: number | null
     saldo: number | null
+    versionActual: number | null
   }
 
   export type GastoSumAggregateOutputType = {
     id: number | null
+    transferencia: number | null
     entrada: number | null
     salida: number | null
     saldo: number | null
+    versionActual: number | null
   }
 
   export type GastoMinAggregateOutputType = {
@@ -6136,10 +6252,11 @@ export namespace Prisma {
     documento: string | null
     proyecto: string | null
     responsable: string | null
-    transferencia: string | null
+    transferencia: number | null
     entrada: number | null
     salida: number | null
     saldo: number | null
+    versionActual: number | null
     createdAt: Date | null
   }
 
@@ -6157,10 +6274,11 @@ export namespace Prisma {
     documento: string | null
     proyecto: string | null
     responsable: string | null
-    transferencia: string | null
+    transferencia: number | null
     entrada: number | null
     salida: number | null
     saldo: number | null
+    versionActual: number | null
     createdAt: Date | null
   }
 
@@ -6182,6 +6300,7 @@ export namespace Prisma {
     entrada: number
     salida: number
     saldo: number
+    versionActual: number
     createdAt: number
     _all: number
   }
@@ -6189,16 +6308,20 @@ export namespace Prisma {
 
   export type GastoAvgAggregateInputType = {
     id?: true
+    transferencia?: true
     entrada?: true
     salida?: true
     saldo?: true
+    versionActual?: true
   }
 
   export type GastoSumAggregateInputType = {
     id?: true
+    transferencia?: true
     entrada?: true
     salida?: true
     saldo?: true
+    versionActual?: true
   }
 
   export type GastoMinAggregateInputType = {
@@ -6219,6 +6342,7 @@ export namespace Prisma {
     entrada?: true
     salida?: true
     saldo?: true
+    versionActual?: true
     createdAt?: true
   }
 
@@ -6240,6 +6364,7 @@ export namespace Prisma {
     entrada?: true
     salida?: true
     saldo?: true
+    versionActual?: true
     createdAt?: true
   }
 
@@ -6261,6 +6386,7 @@ export namespace Prisma {
     entrada?: true
     salida?: true
     saldo?: true
+    versionActual?: true
     createdAt?: true
     _all?: true
   }
@@ -6354,7 +6480,7 @@ export namespace Prisma {
   export type GastoGroupByOutputType = {
     id: number
     folio: string
-    vehiculoId: string | null
+    vehiculoId: string
     fecha: Date
     razonSocial: string
     banco: string | null
@@ -6365,10 +6491,11 @@ export namespace Prisma {
     documento: string | null
     proyecto: string | null
     responsable: string
-    transferencia: string | null
+    transferencia: number | null
     entrada: number | null
     salida: number | null
     saldo: number | null
+    versionActual: number
     createdAt: Date
     _count: GastoCountAggregateOutputType | null
     _avg: GastoAvgAggregateOutputType | null
@@ -6409,8 +6536,9 @@ export namespace Prisma {
     entrada?: boolean
     salida?: boolean
     saldo?: boolean
+    versionActual?: boolean
     createdAt?: boolean
-    vehiculo?: boolean | Gasto$vehiculoArgs<ExtArgs>
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
     facturas?: boolean | Gasto$facturasArgs<ExtArgs>
     _count?: boolean | GastoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["gasto"]>
@@ -6433,8 +6561,9 @@ export namespace Prisma {
     entrada?: boolean
     salida?: boolean
     saldo?: boolean
+    versionActual?: boolean
     createdAt?: boolean
-    vehiculo?: boolean | Gasto$vehiculoArgs<ExtArgs>
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["gasto"]>
 
   export type GastoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6455,8 +6584,9 @@ export namespace Prisma {
     entrada?: boolean
     salida?: boolean
     saldo?: boolean
+    versionActual?: boolean
     createdAt?: boolean
-    vehiculo?: boolean | Gasto$vehiculoArgs<ExtArgs>
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["gasto"]>
 
   export type GastoSelectScalar = {
@@ -6477,32 +6607,33 @@ export namespace Prisma {
     entrada?: boolean
     salida?: boolean
     saldo?: boolean
+    versionActual?: boolean
     createdAt?: boolean
   }
 
-  export type GastoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "folio" | "vehiculoId" | "fecha" | "razonSocial" | "banco" | "tdc" | "proveedor" | "concepto" | "referencia" | "documento" | "proyecto" | "responsable" | "transferencia" | "entrada" | "salida" | "saldo" | "createdAt", ExtArgs["result"]["gasto"]>
+  export type GastoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "folio" | "vehiculoId" | "fecha" | "razonSocial" | "banco" | "tdc" | "proveedor" | "concepto" | "referencia" | "documento" | "proyecto" | "responsable" | "transferencia" | "entrada" | "salida" | "saldo" | "versionActual" | "createdAt", ExtArgs["result"]["gasto"]>
   export type GastoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    vehiculo?: boolean | Gasto$vehiculoArgs<ExtArgs>
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
     facturas?: boolean | Gasto$facturasArgs<ExtArgs>
     _count?: boolean | GastoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type GastoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    vehiculo?: boolean | Gasto$vehiculoArgs<ExtArgs>
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }
   export type GastoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    vehiculo?: boolean | Gasto$vehiculoArgs<ExtArgs>
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }
 
   export type $GastoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Gasto"
     objects: {
-      vehiculo: Prisma.$VehiculoPayload<ExtArgs> | null
+      vehiculo: Prisma.$VehiculoPayload<ExtArgs>
       facturas: Prisma.$FacturaPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       folio: string
-      vehiculoId: string | null
+      vehiculoId: string
       fecha: Date
       razonSocial: string
       banco: string | null
@@ -6513,10 +6644,11 @@ export namespace Prisma {
       documento: string | null
       proyecto: string | null
       responsable: string
-      transferencia: string | null
+      transferencia: number | null
       entrada: number | null
       salida: number | null
       saldo: number | null
+      versionActual: number
       createdAt: Date
     }, ExtArgs["result"]["gasto"]>
     composites: {}
@@ -6912,7 +7044,7 @@ export namespace Prisma {
    */
   export interface Prisma__GastoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    vehiculo<T extends Gasto$vehiculoArgs<ExtArgs> = {}>(args?: Subset<T, Gasto$vehiculoArgs<ExtArgs>>): Prisma__VehiculoClient<$Result.GetResult<Prisma.$VehiculoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    vehiculo<T extends VehiculoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VehiculoDefaultArgs<ExtArgs>>): Prisma__VehiculoClient<$Result.GetResult<Prisma.$VehiculoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     facturas<T extends Gasto$facturasArgs<ExtArgs> = {}>(args?: Subset<T, Gasto$facturasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FacturaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6956,10 +7088,11 @@ export namespace Prisma {
     readonly documento: FieldRef<"Gasto", 'String'>
     readonly proyecto: FieldRef<"Gasto", 'String'>
     readonly responsable: FieldRef<"Gasto", 'String'>
-    readonly transferencia: FieldRef<"Gasto", 'String'>
+    readonly transferencia: FieldRef<"Gasto", 'Float'>
     readonly entrada: FieldRef<"Gasto", 'Float'>
     readonly salida: FieldRef<"Gasto", 'Float'>
     readonly saldo: FieldRef<"Gasto", 'Float'>
+    readonly versionActual: FieldRef<"Gasto", 'Int'>
     readonly createdAt: FieldRef<"Gasto", 'DateTime'>
   }
     
@@ -7357,25 +7490,6 @@ export namespace Prisma {
   }
 
   /**
-   * Gasto.vehiculo
-   */
-  export type Gasto$vehiculoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Vehiculo
-     */
-    select?: VehiculoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Vehiculo
-     */
-    omit?: VehiculoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: VehiculoInclude<ExtArgs> | null
-    where?: VehiculoWhereInput
-  }
-
-  /**
    * Gasto.facturas
    */
   export type Gasto$facturasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7432,6 +7546,7 @@ export namespace Prisma {
 
   export type FacturaAvgAggregateOutputType = {
     id: number | null
+    gastoId: number | null
     subTotal: number | null
     descuento: number | null
     totalIEPS: number | null
@@ -7441,11 +7556,12 @@ export namespace Prisma {
     ish: number | null
     total: number | null
     tipoCambio: number | null
-    gastoId: number | null
+    versionActual: number | null
   }
 
   export type FacturaSumAggregateOutputType = {
     id: number | null
+    gastoId: number | null
     subTotal: number | null
     descuento: number | null
     totalIEPS: number | null
@@ -7455,11 +7571,12 @@ export namespace Prisma {
     ish: number | null
     total: number | null
     tipoCambio: number | null
-    gastoId: number | null
+    versionActual: number | null
   }
 
   export type FacturaMinAggregateOutputType = {
     id: number | null
+    gastoId: number | null
     uuid: string | null
     estadoSAT: string | null
     tipoComprobante: string | null
@@ -7489,12 +7606,13 @@ export namespace Prisma {
     fechaPago: Date | null
     bancoPago: string | null
     folioPago: string | null
-    gastoId: number | null
+    versionActual: number | null
     createdAt: Date | null
   }
 
   export type FacturaMaxAggregateOutputType = {
     id: number | null
+    gastoId: number | null
     uuid: string | null
     estadoSAT: string | null
     tipoComprobante: string | null
@@ -7524,12 +7642,13 @@ export namespace Prisma {
     fechaPago: Date | null
     bancoPago: string | null
     folioPago: string | null
-    gastoId: number | null
+    versionActual: number | null
     createdAt: Date | null
   }
 
   export type FacturaCountAggregateOutputType = {
     id: number
+    gastoId: number
     uuid: number
     estadoSAT: number
     tipoComprobante: number
@@ -7559,7 +7678,7 @@ export namespace Prisma {
     fechaPago: number
     bancoPago: number
     folioPago: number
-    gastoId: number
+    versionActual: number
     createdAt: number
     _all: number
   }
@@ -7567,6 +7686,7 @@ export namespace Prisma {
 
   export type FacturaAvgAggregateInputType = {
     id?: true
+    gastoId?: true
     subTotal?: true
     descuento?: true
     totalIEPS?: true
@@ -7576,11 +7696,12 @@ export namespace Prisma {
     ish?: true
     total?: true
     tipoCambio?: true
-    gastoId?: true
+    versionActual?: true
   }
 
   export type FacturaSumAggregateInputType = {
     id?: true
+    gastoId?: true
     subTotal?: true
     descuento?: true
     totalIEPS?: true
@@ -7590,11 +7711,12 @@ export namespace Prisma {
     ish?: true
     total?: true
     tipoCambio?: true
-    gastoId?: true
+    versionActual?: true
   }
 
   export type FacturaMinAggregateInputType = {
     id?: true
+    gastoId?: true
     uuid?: true
     estadoSAT?: true
     tipoComprobante?: true
@@ -7624,12 +7746,13 @@ export namespace Prisma {
     fechaPago?: true
     bancoPago?: true
     folioPago?: true
-    gastoId?: true
+    versionActual?: true
     createdAt?: true
   }
 
   export type FacturaMaxAggregateInputType = {
     id?: true
+    gastoId?: true
     uuid?: true
     estadoSAT?: true
     tipoComprobante?: true
@@ -7659,12 +7782,13 @@ export namespace Prisma {
     fechaPago?: true
     bancoPago?: true
     folioPago?: true
-    gastoId?: true
+    versionActual?: true
     createdAt?: true
   }
 
   export type FacturaCountAggregateInputType = {
     id?: true
+    gastoId?: true
     uuid?: true
     estadoSAT?: true
     tipoComprobante?: true
@@ -7694,7 +7818,7 @@ export namespace Prisma {
     fechaPago?: true
     bancoPago?: true
     folioPago?: true
-    gastoId?: true
+    versionActual?: true
     createdAt?: true
     _all?: true
   }
@@ -7787,6 +7911,7 @@ export namespace Prisma {
 
   export type FacturaGroupByOutputType = {
     id: number
+    gastoId: number
     uuid: string | null
     estadoSAT: string | null
     tipoComprobante: string | null
@@ -7816,7 +7941,7 @@ export namespace Prisma {
     fechaPago: Date | null
     bancoPago: string | null
     folioPago: string | null
-    gastoId: number | null
+    versionActual: number
     createdAt: Date
     _count: FacturaCountAggregateOutputType | null
     _avg: FacturaAvgAggregateOutputType | null
@@ -7841,6 +7966,7 @@ export namespace Prisma {
 
   export type FacturaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    gastoId?: boolean
     uuid?: boolean
     estadoSAT?: boolean
     tipoComprobante?: boolean
@@ -7870,13 +7996,14 @@ export namespace Prisma {
     fechaPago?: boolean
     bancoPago?: boolean
     folioPago?: boolean
-    gastoId?: boolean
+    versionActual?: boolean
     createdAt?: boolean
-    gasto?: boolean | Factura$gastoArgs<ExtArgs>
+    gasto?: boolean | GastoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["factura"]>
 
   export type FacturaSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    gastoId?: boolean
     uuid?: boolean
     estadoSAT?: boolean
     tipoComprobante?: boolean
@@ -7906,13 +8033,14 @@ export namespace Prisma {
     fechaPago?: boolean
     bancoPago?: boolean
     folioPago?: boolean
-    gastoId?: boolean
+    versionActual?: boolean
     createdAt?: boolean
-    gasto?: boolean | Factura$gastoArgs<ExtArgs>
+    gasto?: boolean | GastoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["factura"]>
 
   export type FacturaSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    gastoId?: boolean
     uuid?: boolean
     estadoSAT?: boolean
     tipoComprobante?: boolean
@@ -7942,13 +8070,14 @@ export namespace Prisma {
     fechaPago?: boolean
     bancoPago?: boolean
     folioPago?: boolean
-    gastoId?: boolean
+    versionActual?: boolean
     createdAt?: boolean
-    gasto?: boolean | Factura$gastoArgs<ExtArgs>
+    gasto?: boolean | GastoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["factura"]>
 
   export type FacturaSelectScalar = {
     id?: boolean
+    gastoId?: boolean
     uuid?: boolean
     estadoSAT?: boolean
     tipoComprobante?: boolean
@@ -7978,28 +8107,29 @@ export namespace Prisma {
     fechaPago?: boolean
     bancoPago?: boolean
     folioPago?: boolean
-    gastoId?: boolean
+    versionActual?: boolean
     createdAt?: boolean
   }
 
-  export type FacturaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "uuid" | "estadoSAT" | "tipoComprobante" | "tipo" | "fechaEmision" | "serie" | "rfcEmisor" | "nombreEmisor" | "rfcReceptor" | "nombreReceptor" | "usoCFDI" | "subTotal" | "descuento" | "totalIEPS" | "iva16" | "retenidoIVA" | "retenidoISR" | "ish" | "total" | "moneda" | "tipoCambio" | "formaPago" | "metodoPago" | "conceptos" | "regimenFiscalReceptor" | "domicilioFiscalReceptor" | "fechaPago" | "bancoPago" | "folioPago" | "gastoId" | "createdAt", ExtArgs["result"]["factura"]>
+  export type FacturaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "gastoId" | "uuid" | "estadoSAT" | "tipoComprobante" | "tipo" | "fechaEmision" | "serie" | "rfcEmisor" | "nombreEmisor" | "rfcReceptor" | "nombreReceptor" | "usoCFDI" | "subTotal" | "descuento" | "totalIEPS" | "iva16" | "retenidoIVA" | "retenidoISR" | "ish" | "total" | "moneda" | "tipoCambio" | "formaPago" | "metodoPago" | "conceptos" | "regimenFiscalReceptor" | "domicilioFiscalReceptor" | "fechaPago" | "bancoPago" | "folioPago" | "versionActual" | "createdAt", ExtArgs["result"]["factura"]>
   export type FacturaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    gasto?: boolean | Factura$gastoArgs<ExtArgs>
+    gasto?: boolean | GastoDefaultArgs<ExtArgs>
   }
   export type FacturaIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    gasto?: boolean | Factura$gastoArgs<ExtArgs>
+    gasto?: boolean | GastoDefaultArgs<ExtArgs>
   }
   export type FacturaIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    gasto?: boolean | Factura$gastoArgs<ExtArgs>
+    gasto?: boolean | GastoDefaultArgs<ExtArgs>
   }
 
   export type $FacturaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Factura"
     objects: {
-      gasto: Prisma.$GastoPayload<ExtArgs> | null
+      gasto: Prisma.$GastoPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
+      gastoId: number
       uuid: string | null
       estadoSAT: string | null
       tipoComprobante: string | null
@@ -8029,7 +8159,7 @@ export namespace Prisma {
       fechaPago: Date | null
       bancoPago: string | null
       folioPago: string | null
-      gastoId: number | null
+      versionActual: number
       createdAt: Date
     }, ExtArgs["result"]["factura"]>
     composites: {}
@@ -8425,7 +8555,7 @@ export namespace Prisma {
    */
   export interface Prisma__FacturaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    gasto<T extends Factura$gastoArgs<ExtArgs> = {}>(args?: Subset<T, Factura$gastoArgs<ExtArgs>>): Prisma__GastoClient<$Result.GetResult<Prisma.$GastoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    gasto<T extends GastoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, GastoDefaultArgs<ExtArgs>>): Prisma__GastoClient<$Result.GetResult<Prisma.$GastoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8456,6 +8586,7 @@ export namespace Prisma {
    */
   interface FacturaFieldRefs {
     readonly id: FieldRef<"Factura", 'Int'>
+    readonly gastoId: FieldRef<"Factura", 'Int'>
     readonly uuid: FieldRef<"Factura", 'String'>
     readonly estadoSAT: FieldRef<"Factura", 'String'>
     readonly tipoComprobante: FieldRef<"Factura", 'String'>
@@ -8485,7 +8616,7 @@ export namespace Prisma {
     readonly fechaPago: FieldRef<"Factura", 'DateTime'>
     readonly bancoPago: FieldRef<"Factura", 'String'>
     readonly folioPago: FieldRef<"Factura", 'String'>
-    readonly gastoId: FieldRef<"Factura", 'Int'>
+    readonly versionActual: FieldRef<"Factura", 'Int'>
     readonly createdAt: FieldRef<"Factura", 'DateTime'>
   }
     
@@ -8883,25 +9014,6 @@ export namespace Prisma {
   }
 
   /**
-   * Factura.gasto
-   */
-  export type Factura$gastoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Gasto
-     */
-    select?: GastoSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Gasto
-     */
-    omit?: GastoOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: GastoInclude<ExtArgs> | null
-    where?: GastoWhereInput
-  }
-
-  /**
    * Factura without action
    */
   export type FacturaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8946,7 +9058,9 @@ export namespace Prisma {
     canEditGastos: 'canEditGastos',
     canEditFacturas: 'canEditFacturas',
     canManageUsers: 'canManageUsers',
-    allowedCompanies: 'allowedCompanies'
+    allowedCompanies: 'allowedCompanies',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -8955,6 +9069,13 @@ export namespace Prisma {
   export const VehiculoScalarFieldEnum: {
     id: 'id',
     placa: 'placa',
+    marca: 'marca',
+    tipo: 'tipo',
+    modelo: 'modelo',
+    serie: 'serie',
+    motor: 'motor',
+    ubicacion: 'ubicacion',
+    proyecto: 'proyecto',
     versionActual: 'versionActual',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -8969,18 +9090,18 @@ export namespace Prisma {
     placa: 'placa',
     placaAnterior: 'placaAnterior',
     marca: 'marca',
-    tipo: 'tipo',
     modelo: 'modelo',
-    color: 'color',
+    anio: 'anio',
     serie: 'serie',
     motor: 'motor',
-    proyecto: 'proyecto',
     ubicacion: 'ubicacion',
+    proyecto: 'proyecto',
     version: 'version',
-    esActual: 'esActual',
     fechaCambio: 'fechaCambio',
     motivoCambio: 'motivoCambio',
-    usuarioCambio: 'usuarioCambio'
+    usuarioCambio: 'usuarioCambio',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type VersionVehiculoScalarFieldEnum = (typeof VersionVehiculoScalarFieldEnum)[keyof typeof VersionVehiculoScalarFieldEnum]
@@ -8994,8 +9115,7 @@ export namespace Prisma {
     fechaInicio: 'fechaInicio',
     fechaVencimiento: 'fechaVencimiento',
     comentario: 'comentario',
-    esActual: 'esActual',
-    version: 'version',
+    versionActual: 'versionActual',
     createdAt: 'createdAt'
   };
 
@@ -9020,6 +9140,7 @@ export namespace Prisma {
     entrada: 'entrada',
     salida: 'salida',
     saldo: 'saldo',
+    versionActual: 'versionActual',
     createdAt: 'createdAt'
   };
 
@@ -9028,6 +9149,7 @@ export namespace Prisma {
 
   export const FacturaScalarFieldEnum: {
     id: 'id',
+    gastoId: 'gastoId',
     uuid: 'uuid',
     estadoSAT: 'estadoSAT',
     tipoComprobante: 'tipoComprobante',
@@ -9057,7 +9179,7 @@ export namespace Prisma {
     fechaPago: 'fechaPago',
     bancoPago: 'bancoPago',
     folioPago: 'folioPago',
-    gastoId: 'gastoId',
+    versionActual: 'versionActual',
     createdAt: 'createdAt'
   };
 
@@ -9143,20 +9265,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-  /**
-   * Reference to a field of type 'Int[]'
-   */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -9167,6 +9275,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -9203,6 +9325,8 @@ export namespace Prisma {
     canEditFacturas?: BoolFilter<"User"> | boolean
     canManageUsers?: BoolFilter<"User"> | boolean
     allowedCompanies?: EnumCompaniaNullableListFilter<"User">
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
   }
 
   export type UserOrderByWithRelationInput = {
@@ -9218,6 +9342,8 @@ export namespace Prisma {
     canEditFacturas?: SortOrder
     canManageUsers?: SortOrder
     allowedCompanies?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -9236,6 +9362,8 @@ export namespace Prisma {
     canEditFacturas?: BoolFilter<"User"> | boolean
     canManageUsers?: BoolFilter<"User"> | boolean
     allowedCompanies?: EnumCompaniaNullableListFilter<"User">
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
   }, "id" | "user">
 
   export type UserOrderByWithAggregationInput = {
@@ -9251,6 +9379,8 @@ export namespace Prisma {
     canEditFacturas?: SortOrder
     canManageUsers?: SortOrder
     allowedCompanies?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -9272,6 +9402,8 @@ export namespace Prisma {
     canEditFacturas?: BoolWithAggregatesFilter<"User"> | boolean
     canManageUsers?: BoolWithAggregatesFilter<"User"> | boolean
     allowedCompanies?: EnumCompaniaNullableListFilter<"User">
+    createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
   export type VehiculoWhereInput = {
@@ -9280,6 +9412,13 @@ export namespace Prisma {
     NOT?: VehiculoWhereInput | VehiculoWhereInput[]
     id?: StringFilter<"Vehiculo"> | string
     placa?: StringFilter<"Vehiculo"> | string
+    marca?: StringFilter<"Vehiculo"> | string
+    tipo?: StringFilter<"Vehiculo"> | string
+    modelo?: IntFilter<"Vehiculo"> | number
+    serie?: StringFilter<"Vehiculo"> | string
+    motor?: StringNullableFilter<"Vehiculo"> | string | null
+    ubicacion?: StringNullableFilter<"Vehiculo"> | string | null
+    proyecto?: StringNullableFilter<"Vehiculo"> | string | null
     versionActual?: IntFilter<"Vehiculo"> | number
     createdAt?: DateTimeFilter<"Vehiculo"> | Date | string
     updatedAt?: DateTimeFilter<"Vehiculo"> | Date | string
@@ -9291,6 +9430,13 @@ export namespace Prisma {
   export type VehiculoOrderByWithRelationInput = {
     id?: SortOrder
     placa?: SortOrder
+    marca?: SortOrder
+    tipo?: SortOrder
+    modelo?: SortOrder
+    serie?: SortOrder
+    motor?: SortOrderInput | SortOrder
+    ubicacion?: SortOrderInput | SortOrder
+    proyecto?: SortOrderInput | SortOrder
     versionActual?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9305,6 +9451,13 @@ export namespace Prisma {
     AND?: VehiculoWhereInput | VehiculoWhereInput[]
     OR?: VehiculoWhereInput[]
     NOT?: VehiculoWhereInput | VehiculoWhereInput[]
+    marca?: StringFilter<"Vehiculo"> | string
+    tipo?: StringFilter<"Vehiculo"> | string
+    modelo?: IntFilter<"Vehiculo"> | number
+    serie?: StringFilter<"Vehiculo"> | string
+    motor?: StringNullableFilter<"Vehiculo"> | string | null
+    ubicacion?: StringNullableFilter<"Vehiculo"> | string | null
+    proyecto?: StringNullableFilter<"Vehiculo"> | string | null
     versionActual?: IntFilter<"Vehiculo"> | number
     createdAt?: DateTimeFilter<"Vehiculo"> | Date | string
     updatedAt?: DateTimeFilter<"Vehiculo"> | Date | string
@@ -9316,6 +9469,13 @@ export namespace Prisma {
   export type VehiculoOrderByWithAggregationInput = {
     id?: SortOrder
     placa?: SortOrder
+    marca?: SortOrder
+    tipo?: SortOrder
+    modelo?: SortOrder
+    serie?: SortOrder
+    motor?: SortOrderInput | SortOrder
+    ubicacion?: SortOrderInput | SortOrder
+    proyecto?: SortOrderInput | SortOrder
     versionActual?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9332,6 +9492,13 @@ export namespace Prisma {
     NOT?: VehiculoScalarWhereWithAggregatesInput | VehiculoScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Vehiculo"> | string
     placa?: StringWithAggregatesFilter<"Vehiculo"> | string
+    marca?: StringWithAggregatesFilter<"Vehiculo"> | string
+    tipo?: StringWithAggregatesFilter<"Vehiculo"> | string
+    modelo?: IntWithAggregatesFilter<"Vehiculo"> | number
+    serie?: StringWithAggregatesFilter<"Vehiculo"> | string
+    motor?: StringNullableWithAggregatesFilter<"Vehiculo"> | string | null
+    ubicacion?: StringNullableWithAggregatesFilter<"Vehiculo"> | string | null
+    proyecto?: StringNullableWithAggregatesFilter<"Vehiculo"> | string | null
     versionActual?: IntWithAggregatesFilter<"Vehiculo"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Vehiculo"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Vehiculo"> | Date | string
@@ -9346,18 +9513,18 @@ export namespace Prisma {
     placa?: StringFilter<"VersionVehiculo"> | string
     placaAnterior?: StringNullableFilter<"VersionVehiculo"> | string | null
     marca?: StringFilter<"VersionVehiculo"> | string
-    tipo?: StringFilter<"VersionVehiculo"> | string
     modelo?: StringFilter<"VersionVehiculo"> | string
-    color?: StringFilter<"VersionVehiculo"> | string
+    anio?: IntFilter<"VersionVehiculo"> | number
     serie?: StringFilter<"VersionVehiculo"> | string
     motor?: StringNullableFilter<"VersionVehiculo"> | string | null
-    proyecto?: StringNullableFilter<"VersionVehiculo"> | string | null
     ubicacion?: StringNullableFilter<"VersionVehiculo"> | string | null
+    proyecto?: StringNullableFilter<"VersionVehiculo"> | string | null
     version?: IntFilter<"VersionVehiculo"> | number
-    esActual?: BoolFilter<"VersionVehiculo"> | boolean
     fechaCambio?: DateTimeFilter<"VersionVehiculo"> | Date | string
     motivoCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
     usuarioCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
+    createdAt?: DateTimeFilter<"VersionVehiculo"> | Date | string
+    updatedAt?: DateTimeFilter<"VersionVehiculo"> | Date | string
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
   }
 
@@ -9367,23 +9534,24 @@ export namespace Prisma {
     placa?: SortOrder
     placaAnterior?: SortOrderInput | SortOrder
     marca?: SortOrder
-    tipo?: SortOrder
     modelo?: SortOrder
-    color?: SortOrder
+    anio?: SortOrder
     serie?: SortOrder
     motor?: SortOrderInput | SortOrder
-    proyecto?: SortOrderInput | SortOrder
     ubicacion?: SortOrderInput | SortOrder
+    proyecto?: SortOrderInput | SortOrder
     version?: SortOrder
-    esActual?: SortOrder
     fechaCambio?: SortOrder
     motivoCambio?: SortOrderInput | SortOrder
     usuarioCambio?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     vehiculo?: VehiculoOrderByWithRelationInput
   }
 
   export type VersionVehiculoWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    vehiculoId_version?: VersionVehiculoVehiculoIdVersionCompoundUniqueInput
     AND?: VersionVehiculoWhereInput | VersionVehiculoWhereInput[]
     OR?: VersionVehiculoWhereInput[]
     NOT?: VersionVehiculoWhereInput | VersionVehiculoWhereInput[]
@@ -9391,20 +9559,20 @@ export namespace Prisma {
     placa?: StringFilter<"VersionVehiculo"> | string
     placaAnterior?: StringNullableFilter<"VersionVehiculo"> | string | null
     marca?: StringFilter<"VersionVehiculo"> | string
-    tipo?: StringFilter<"VersionVehiculo"> | string
     modelo?: StringFilter<"VersionVehiculo"> | string
-    color?: StringFilter<"VersionVehiculo"> | string
+    anio?: IntFilter<"VersionVehiculo"> | number
     serie?: StringFilter<"VersionVehiculo"> | string
     motor?: StringNullableFilter<"VersionVehiculo"> | string | null
-    proyecto?: StringNullableFilter<"VersionVehiculo"> | string | null
     ubicacion?: StringNullableFilter<"VersionVehiculo"> | string | null
+    proyecto?: StringNullableFilter<"VersionVehiculo"> | string | null
     version?: IntFilter<"VersionVehiculo"> | number
-    esActual?: BoolFilter<"VersionVehiculo"> | boolean
     fechaCambio?: DateTimeFilter<"VersionVehiculo"> | Date | string
     motivoCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
     usuarioCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
+    createdAt?: DateTimeFilter<"VersionVehiculo"> | Date | string
+    updatedAt?: DateTimeFilter<"VersionVehiculo"> | Date | string
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
-  }, "id">
+  }, "id" | "vehiculoId_version">
 
   export type VersionVehiculoOrderByWithAggregationInput = {
     id?: SortOrder
@@ -9412,18 +9580,18 @@ export namespace Prisma {
     placa?: SortOrder
     placaAnterior?: SortOrderInput | SortOrder
     marca?: SortOrder
-    tipo?: SortOrder
     modelo?: SortOrder
-    color?: SortOrder
+    anio?: SortOrder
     serie?: SortOrder
     motor?: SortOrderInput | SortOrder
-    proyecto?: SortOrderInput | SortOrder
     ubicacion?: SortOrderInput | SortOrder
+    proyecto?: SortOrderInput | SortOrder
     version?: SortOrder
-    esActual?: SortOrder
     fechaCambio?: SortOrder
     motivoCambio?: SortOrderInput | SortOrder
     usuarioCambio?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: VersionVehiculoCountOrderByAggregateInput
     _avg?: VersionVehiculoAvgOrderByAggregateInput
     _max?: VersionVehiculoMaxOrderByAggregateInput
@@ -9440,18 +9608,18 @@ export namespace Prisma {
     placa?: StringWithAggregatesFilter<"VersionVehiculo"> | string
     placaAnterior?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
     marca?: StringWithAggregatesFilter<"VersionVehiculo"> | string
-    tipo?: StringWithAggregatesFilter<"VersionVehiculo"> | string
     modelo?: StringWithAggregatesFilter<"VersionVehiculo"> | string
-    color?: StringWithAggregatesFilter<"VersionVehiculo"> | string
+    anio?: IntWithAggregatesFilter<"VersionVehiculo"> | number
     serie?: StringWithAggregatesFilter<"VersionVehiculo"> | string
     motor?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
-    proyecto?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
     ubicacion?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
+    proyecto?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
     version?: IntWithAggregatesFilter<"VersionVehiculo"> | number
-    esActual?: BoolWithAggregatesFilter<"VersionVehiculo"> | boolean
     fechaCambio?: DateTimeWithAggregatesFilter<"VersionVehiculo"> | Date | string
     motivoCambio?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
     usuarioCambio?: StringNullableWithAggregatesFilter<"VersionVehiculo"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"VersionVehiculo"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"VersionVehiculo"> | Date | string
   }
 
   export type SeguroWhereInput = {
@@ -9465,8 +9633,7 @@ export namespace Prisma {
     fechaInicio?: DateTimeFilter<"Seguro"> | Date | string
     fechaVencimiento?: DateTimeFilter<"Seguro"> | Date | string
     comentario?: StringNullableFilter<"Seguro"> | string | null
-    esActual?: BoolFilter<"Seguro"> | boolean
-    version?: IntFilter<"Seguro"> | number
+    versionActual?: IntFilter<"Seguro"> | number
     createdAt?: DateTimeFilter<"Seguro"> | Date | string
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
   }
@@ -9479,8 +9646,7 @@ export namespace Prisma {
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
     comentario?: SortOrderInput | SortOrder
-    esActual?: SortOrder
-    version?: SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
     vehiculo?: VehiculoOrderByWithRelationInput
   }
@@ -9496,8 +9662,7 @@ export namespace Prisma {
     fechaInicio?: DateTimeFilter<"Seguro"> | Date | string
     fechaVencimiento?: DateTimeFilter<"Seguro"> | Date | string
     comentario?: StringNullableFilter<"Seguro"> | string | null
-    esActual?: BoolFilter<"Seguro"> | boolean
-    version?: IntFilter<"Seguro"> | number
+    versionActual?: IntFilter<"Seguro"> | number
     createdAt?: DateTimeFilter<"Seguro"> | Date | string
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
   }, "id">
@@ -9510,8 +9675,7 @@ export namespace Prisma {
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
     comentario?: SortOrderInput | SortOrder
-    esActual?: SortOrder
-    version?: SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
     _count?: SeguroCountOrderByAggregateInput
     _avg?: SeguroAvgOrderByAggregateInput
@@ -9531,8 +9695,7 @@ export namespace Prisma {
     fechaInicio?: DateTimeWithAggregatesFilter<"Seguro"> | Date | string
     fechaVencimiento?: DateTimeWithAggregatesFilter<"Seguro"> | Date | string
     comentario?: StringNullableWithAggregatesFilter<"Seguro"> | string | null
-    esActual?: BoolWithAggregatesFilter<"Seguro"> | boolean
-    version?: IntWithAggregatesFilter<"Seguro"> | number
+    versionActual?: IntWithAggregatesFilter<"Seguro"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Seguro"> | Date | string
   }
 
@@ -9542,7 +9705,7 @@ export namespace Prisma {
     NOT?: GastoWhereInput | GastoWhereInput[]
     id?: IntFilter<"Gasto"> | number
     folio?: StringFilter<"Gasto"> | string
-    vehiculoId?: StringNullableFilter<"Gasto"> | string | null
+    vehiculoId?: StringFilter<"Gasto"> | string
     fecha?: DateTimeFilter<"Gasto"> | Date | string
     razonSocial?: StringFilter<"Gasto"> | string
     banco?: StringNullableFilter<"Gasto"> | string | null
@@ -9553,19 +9716,20 @@ export namespace Prisma {
     documento?: StringNullableFilter<"Gasto"> | string | null
     proyecto?: StringNullableFilter<"Gasto"> | string | null
     responsable?: StringFilter<"Gasto"> | string
-    transferencia?: StringNullableFilter<"Gasto"> | string | null
+    transferencia?: FloatNullableFilter<"Gasto"> | number | null
     entrada?: FloatNullableFilter<"Gasto"> | number | null
     salida?: FloatNullableFilter<"Gasto"> | number | null
     saldo?: FloatNullableFilter<"Gasto"> | number | null
+    versionActual?: IntFilter<"Gasto"> | number
     createdAt?: DateTimeFilter<"Gasto"> | Date | string
-    vehiculo?: XOR<VehiculoNullableScalarRelationFilter, VehiculoWhereInput> | null
+    vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
     facturas?: FacturaListRelationFilter
   }
 
   export type GastoOrderByWithRelationInput = {
     id?: SortOrder
     folio?: SortOrder
-    vehiculoId?: SortOrderInput | SortOrder
+    vehiculoId?: SortOrder
     fecha?: SortOrder
     razonSocial?: SortOrder
     banco?: SortOrderInput | SortOrder
@@ -9580,6 +9744,7 @@ export namespace Prisma {
     entrada?: SortOrderInput | SortOrder
     salida?: SortOrderInput | SortOrder
     saldo?: SortOrderInput | SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
     vehiculo?: VehiculoOrderByWithRelationInput
     facturas?: FacturaOrderByRelationAggregateInput
@@ -9591,7 +9756,7 @@ export namespace Prisma {
     OR?: GastoWhereInput[]
     NOT?: GastoWhereInput | GastoWhereInput[]
     folio?: StringFilter<"Gasto"> | string
-    vehiculoId?: StringNullableFilter<"Gasto"> | string | null
+    vehiculoId?: StringFilter<"Gasto"> | string
     fecha?: DateTimeFilter<"Gasto"> | Date | string
     razonSocial?: StringFilter<"Gasto"> | string
     banco?: StringNullableFilter<"Gasto"> | string | null
@@ -9602,19 +9767,20 @@ export namespace Prisma {
     documento?: StringNullableFilter<"Gasto"> | string | null
     proyecto?: StringNullableFilter<"Gasto"> | string | null
     responsable?: StringFilter<"Gasto"> | string
-    transferencia?: StringNullableFilter<"Gasto"> | string | null
+    transferencia?: FloatNullableFilter<"Gasto"> | number | null
     entrada?: FloatNullableFilter<"Gasto"> | number | null
     salida?: FloatNullableFilter<"Gasto"> | number | null
     saldo?: FloatNullableFilter<"Gasto"> | number | null
+    versionActual?: IntFilter<"Gasto"> | number
     createdAt?: DateTimeFilter<"Gasto"> | Date | string
-    vehiculo?: XOR<VehiculoNullableScalarRelationFilter, VehiculoWhereInput> | null
+    vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
     facturas?: FacturaListRelationFilter
   }, "id">
 
   export type GastoOrderByWithAggregationInput = {
     id?: SortOrder
     folio?: SortOrder
-    vehiculoId?: SortOrderInput | SortOrder
+    vehiculoId?: SortOrder
     fecha?: SortOrder
     razonSocial?: SortOrder
     banco?: SortOrderInput | SortOrder
@@ -9629,6 +9795,7 @@ export namespace Prisma {
     entrada?: SortOrderInput | SortOrder
     salida?: SortOrderInput | SortOrder
     saldo?: SortOrderInput | SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
     _count?: GastoCountOrderByAggregateInput
     _avg?: GastoAvgOrderByAggregateInput
@@ -9643,7 +9810,7 @@ export namespace Prisma {
     NOT?: GastoScalarWhereWithAggregatesInput | GastoScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Gasto"> | number
     folio?: StringWithAggregatesFilter<"Gasto"> | string
-    vehiculoId?: StringNullableWithAggregatesFilter<"Gasto"> | string | null
+    vehiculoId?: StringWithAggregatesFilter<"Gasto"> | string
     fecha?: DateTimeWithAggregatesFilter<"Gasto"> | Date | string
     razonSocial?: StringWithAggregatesFilter<"Gasto"> | string
     banco?: StringNullableWithAggregatesFilter<"Gasto"> | string | null
@@ -9654,10 +9821,11 @@ export namespace Prisma {
     documento?: StringNullableWithAggregatesFilter<"Gasto"> | string | null
     proyecto?: StringNullableWithAggregatesFilter<"Gasto"> | string | null
     responsable?: StringWithAggregatesFilter<"Gasto"> | string
-    transferencia?: StringNullableWithAggregatesFilter<"Gasto"> | string | null
+    transferencia?: FloatNullableWithAggregatesFilter<"Gasto"> | number | null
     entrada?: FloatNullableWithAggregatesFilter<"Gasto"> | number | null
     salida?: FloatNullableWithAggregatesFilter<"Gasto"> | number | null
     saldo?: FloatNullableWithAggregatesFilter<"Gasto"> | number | null
+    versionActual?: IntWithAggregatesFilter<"Gasto"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Gasto"> | Date | string
   }
 
@@ -9666,6 +9834,7 @@ export namespace Prisma {
     OR?: FacturaWhereInput[]
     NOT?: FacturaWhereInput | FacturaWhereInput[]
     id?: IntFilter<"Factura"> | number
+    gastoId?: IntFilter<"Factura"> | number
     uuid?: StringNullableFilter<"Factura"> | string | null
     estadoSAT?: StringNullableFilter<"Factura"> | string | null
     tipoComprobante?: StringNullableFilter<"Factura"> | string | null
@@ -9695,13 +9864,14 @@ export namespace Prisma {
     fechaPago?: DateTimeNullableFilter<"Factura"> | Date | string | null
     bancoPago?: StringNullableFilter<"Factura"> | string | null
     folioPago?: StringNullableFilter<"Factura"> | string | null
-    gastoId?: IntNullableFilter<"Factura"> | number | null
+    versionActual?: IntFilter<"Factura"> | number
     createdAt?: DateTimeFilter<"Factura"> | Date | string
-    gasto?: XOR<GastoNullableScalarRelationFilter, GastoWhereInput> | null
+    gasto?: XOR<GastoScalarRelationFilter, GastoWhereInput>
   }
 
   export type FacturaOrderByWithRelationInput = {
     id?: SortOrder
+    gastoId?: SortOrder
     uuid?: SortOrderInput | SortOrder
     estadoSAT?: SortOrderInput | SortOrder
     tipoComprobante?: SortOrderInput | SortOrder
@@ -9731,7 +9901,7 @@ export namespace Prisma {
     fechaPago?: SortOrderInput | SortOrder
     bancoPago?: SortOrderInput | SortOrder
     folioPago?: SortOrderInput | SortOrder
-    gastoId?: SortOrderInput | SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
     gasto?: GastoOrderByWithRelationInput
   }
@@ -9741,6 +9911,7 @@ export namespace Prisma {
     AND?: FacturaWhereInput | FacturaWhereInput[]
     OR?: FacturaWhereInput[]
     NOT?: FacturaWhereInput | FacturaWhereInput[]
+    gastoId?: IntFilter<"Factura"> | number
     uuid?: StringNullableFilter<"Factura"> | string | null
     estadoSAT?: StringNullableFilter<"Factura"> | string | null
     tipoComprobante?: StringNullableFilter<"Factura"> | string | null
@@ -9770,13 +9941,14 @@ export namespace Prisma {
     fechaPago?: DateTimeNullableFilter<"Factura"> | Date | string | null
     bancoPago?: StringNullableFilter<"Factura"> | string | null
     folioPago?: StringNullableFilter<"Factura"> | string | null
-    gastoId?: IntNullableFilter<"Factura"> | number | null
+    versionActual?: IntFilter<"Factura"> | number
     createdAt?: DateTimeFilter<"Factura"> | Date | string
-    gasto?: XOR<GastoNullableScalarRelationFilter, GastoWhereInput> | null
+    gasto?: XOR<GastoScalarRelationFilter, GastoWhereInput>
   }, "id">
 
   export type FacturaOrderByWithAggregationInput = {
     id?: SortOrder
+    gastoId?: SortOrder
     uuid?: SortOrderInput | SortOrder
     estadoSAT?: SortOrderInput | SortOrder
     tipoComprobante?: SortOrderInput | SortOrder
@@ -9806,7 +9978,7 @@ export namespace Prisma {
     fechaPago?: SortOrderInput | SortOrder
     bancoPago?: SortOrderInput | SortOrder
     folioPago?: SortOrderInput | SortOrder
-    gastoId?: SortOrderInput | SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
     _count?: FacturaCountOrderByAggregateInput
     _avg?: FacturaAvgOrderByAggregateInput
@@ -9820,6 +9992,7 @@ export namespace Prisma {
     OR?: FacturaScalarWhereWithAggregatesInput[]
     NOT?: FacturaScalarWhereWithAggregatesInput | FacturaScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Factura"> | number
+    gastoId?: IntWithAggregatesFilter<"Factura"> | number
     uuid?: StringNullableWithAggregatesFilter<"Factura"> | string | null
     estadoSAT?: StringNullableWithAggregatesFilter<"Factura"> | string | null
     tipoComprobante?: StringNullableWithAggregatesFilter<"Factura"> | string | null
@@ -9849,7 +10022,7 @@ export namespace Prisma {
     fechaPago?: DateTimeNullableWithAggregatesFilter<"Factura"> | Date | string | null
     bancoPago?: StringNullableWithAggregatesFilter<"Factura"> | string | null
     folioPago?: StringNullableWithAggregatesFilter<"Factura"> | string | null
-    gastoId?: IntNullableWithAggregatesFilter<"Factura"> | number | null
+    versionActual?: IntWithAggregatesFilter<"Factura"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Factura"> | Date | string
   }
 
@@ -9866,6 +10039,8 @@ export namespace Prisma {
     canEditFacturas?: boolean
     canManageUsers?: boolean
     allowedCompanies?: UserCreateallowedCompaniesInput | $Enums.Compania[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUncheckedCreateInput = {
@@ -9881,6 +10056,8 @@ export namespace Prisma {
     canEditFacturas?: boolean
     canManageUsers?: boolean
     allowedCompanies?: UserCreateallowedCompaniesInput | $Enums.Compania[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateInput = {
@@ -9896,6 +10073,8 @@ export namespace Prisma {
     canEditFacturas?: BoolFieldUpdateOperationsInput | boolean
     canManageUsers?: BoolFieldUpdateOperationsInput | boolean
     allowedCompanies?: UserUpdateallowedCompaniesInput | $Enums.Compania[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateInput = {
@@ -9911,6 +10090,8 @@ export namespace Prisma {
     canEditFacturas?: BoolFieldUpdateOperationsInput | boolean
     canManageUsers?: BoolFieldUpdateOperationsInput | boolean
     allowedCompanies?: UserUpdateallowedCompaniesInput | $Enums.Compania[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateManyInput = {
@@ -9926,6 +10107,8 @@ export namespace Prisma {
     canEditFacturas?: boolean
     canManageUsers?: boolean
     allowedCompanies?: UserCreateallowedCompaniesInput | $Enums.Compania[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -9941,6 +10124,8 @@ export namespace Prisma {
     canEditFacturas?: BoolFieldUpdateOperationsInput | boolean
     canManageUsers?: BoolFieldUpdateOperationsInput | boolean
     allowedCompanies?: UserUpdateallowedCompaniesInput | $Enums.Compania[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -9956,11 +10141,20 @@ export namespace Prisma {
     canEditFacturas?: BoolFieldUpdateOperationsInput | boolean
     canManageUsers?: BoolFieldUpdateOperationsInput | boolean
     allowedCompanies?: UserUpdateallowedCompaniesInput | $Enums.Compania[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VehiculoCreateInput = {
     id?: string
     placa: string
+    marca: string
+    tipo: string
+    modelo: number
+    serie: string
+    motor?: string | null
+    ubicacion?: string | null
+    proyecto?: string | null
     versionActual?: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9972,6 +10166,13 @@ export namespace Prisma {
   export type VehiculoUncheckedCreateInput = {
     id?: string
     placa: string
+    marca: string
+    tipo: string
+    modelo: number
+    serie: string
+    motor?: string | null
+    ubicacion?: string | null
+    proyecto?: string | null
     versionActual?: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9983,6 +10184,13 @@ export namespace Prisma {
   export type VehiculoUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9994,6 +10202,13 @@ export namespace Prisma {
   export type VehiculoUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10005,6 +10220,13 @@ export namespace Prisma {
   export type VehiculoCreateManyInput = {
     id?: string
     placa: string
+    marca: string
+    tipo: string
+    modelo: number
+    serie: string
+    motor?: string | null
+    ubicacion?: string | null
+    proyecto?: string | null
     versionActual?: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10013,6 +10235,13 @@ export namespace Prisma {
   export type VehiculoUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10021,6 +10250,13 @@ export namespace Prisma {
   export type VehiculoUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10030,18 +10266,18 @@ export namespace Prisma {
     placa: string
     placaAnterior?: string | null
     marca: string
-    tipo: string
     modelo: string
-    color: string
+    anio: number
     serie: string
     motor?: string | null
-    proyecto?: string | null
     ubicacion?: string | null
+    proyecto?: string | null
     version: number
-    esActual?: boolean
     fechaCambio?: Date | string
     motivoCambio?: string | null
     usuarioCambio?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
     vehiculo: VehiculoCreateNestedOneWithoutVersionesInput
   }
 
@@ -10051,36 +10287,36 @@ export namespace Prisma {
     placa: string
     placaAnterior?: string | null
     marca: string
-    tipo: string
     modelo: string
-    color: string
+    anio: number
     serie: string
     motor?: string | null
-    proyecto?: string | null
     ubicacion?: string | null
+    proyecto?: string | null
     version: number
-    esActual?: boolean
     fechaCambio?: Date | string
     motivoCambio?: string | null
     usuarioCambio?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type VersionVehiculoUpdateInput = {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
     modelo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
-    esActual?: BoolFieldUpdateOperationsInput | boolean
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
     motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
     usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vehiculo?: VehiculoUpdateOneRequiredWithoutVersionesNestedInput
   }
 
@@ -10090,18 +10326,18 @@ export namespace Prisma {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
     modelo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
-    esActual?: BoolFieldUpdateOperationsInput | boolean
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
     motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
     usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VersionVehiculoCreateManyInput = {
@@ -10110,36 +10346,36 @@ export namespace Prisma {
     placa: string
     placaAnterior?: string | null
     marca: string
-    tipo: string
     modelo: string
-    color: string
+    anio: number
     serie: string
     motor?: string | null
-    proyecto?: string | null
     ubicacion?: string | null
+    proyecto?: string | null
     version: number
-    esActual?: boolean
     fechaCambio?: Date | string
     motivoCambio?: string | null
     usuarioCambio?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type VersionVehiculoUpdateManyMutationInput = {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
     modelo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
-    esActual?: BoolFieldUpdateOperationsInput | boolean
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
     motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
     usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VersionVehiculoUncheckedUpdateManyInput = {
@@ -10148,18 +10384,18 @@ export namespace Prisma {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
     modelo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
-    esActual?: BoolFieldUpdateOperationsInput | boolean
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
     motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
     usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SeguroCreateInput = {
@@ -10168,8 +10404,7 @@ export namespace Prisma {
     fechaInicio: Date | string
     fechaVencimiento: Date | string
     comentario?: string | null
-    esActual?: boolean
-    version?: number
+    versionActual?: number
     createdAt?: Date | string
     vehiculo: VehiculoCreateNestedOneWithoutSegurosInput
   }
@@ -10182,8 +10417,7 @@ export namespace Prisma {
     fechaInicio: Date | string
     fechaVencimiento: Date | string
     comentario?: string | null
-    esActual?: boolean
-    version?: number
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -10193,8 +10427,7 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    esActual?: BoolFieldUpdateOperationsInput | boolean
-    version?: IntFieldUpdateOperationsInput | number
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vehiculo?: VehiculoUpdateOneRequiredWithoutSegurosNestedInput
   }
@@ -10207,8 +10440,7 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    esActual?: BoolFieldUpdateOperationsInput | boolean
-    version?: IntFieldUpdateOperationsInput | number
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10220,8 +10452,7 @@ export namespace Prisma {
     fechaInicio: Date | string
     fechaVencimiento: Date | string
     comentario?: string | null
-    esActual?: boolean
-    version?: number
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -10231,8 +10462,7 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    esActual?: BoolFieldUpdateOperationsInput | boolean
-    version?: IntFieldUpdateOperationsInput | number
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10244,8 +10474,7 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    esActual?: BoolFieldUpdateOperationsInput | boolean
-    version?: IntFieldUpdateOperationsInput | number
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10261,19 +10490,20 @@ export namespace Prisma {
     documento?: string | null
     proyecto?: string | null
     responsable: string
-    transferencia?: string | null
+    transferencia?: number | null
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    versionActual?: number
     createdAt?: Date | string
-    vehiculo?: VehiculoCreateNestedOneWithoutGastosInput
+    vehiculo: VehiculoCreateNestedOneWithoutGastosInput
     facturas?: FacturaCreateNestedManyWithoutGastoInput
   }
 
   export type GastoUncheckedCreateInput = {
     id?: number
     folio: string
-    vehiculoId?: string | null
+    vehiculoId: string
     fecha: Date | string
     razonSocial: string
     banco?: string | null
@@ -10284,10 +10514,11 @@ export namespace Prisma {
     documento?: string | null
     proyecto?: string | null
     responsable: string
-    transferencia?: string | null
+    transferencia?: number | null
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    versionActual?: number
     createdAt?: Date | string
     facturas?: FacturaUncheckedCreateNestedManyWithoutGastoInput
   }
@@ -10304,19 +10535,20 @@ export namespace Prisma {
     documento?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     responsable?: StringFieldUpdateOperationsInput | string
-    transferencia?: NullableStringFieldUpdateOperationsInput | string | null
+    transferencia?: NullableFloatFieldUpdateOperationsInput | number | null
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    vehiculo?: VehiculoUpdateOneWithoutGastosNestedInput
+    vehiculo?: VehiculoUpdateOneRequiredWithoutGastosNestedInput
     facturas?: FacturaUpdateManyWithoutGastoNestedInput
   }
 
   export type GastoUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     folio?: StringFieldUpdateOperationsInput | string
-    vehiculoId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehiculoId?: StringFieldUpdateOperationsInput | string
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     razonSocial?: StringFieldUpdateOperationsInput | string
     banco?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10327,10 +10559,11 @@ export namespace Prisma {
     documento?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     responsable?: StringFieldUpdateOperationsInput | string
-    transferencia?: NullableStringFieldUpdateOperationsInput | string | null
+    transferencia?: NullableFloatFieldUpdateOperationsInput | number | null
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     facturas?: FacturaUncheckedUpdateManyWithoutGastoNestedInput
   }
@@ -10338,7 +10571,7 @@ export namespace Prisma {
   export type GastoCreateManyInput = {
     id?: number
     folio: string
-    vehiculoId?: string | null
+    vehiculoId: string
     fecha: Date | string
     razonSocial: string
     banco?: string | null
@@ -10349,10 +10582,11 @@ export namespace Prisma {
     documento?: string | null
     proyecto?: string | null
     responsable: string
-    transferencia?: string | null
+    transferencia?: number | null
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -10368,17 +10602,18 @@ export namespace Prisma {
     documento?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     responsable?: StringFieldUpdateOperationsInput | string
-    transferencia?: NullableStringFieldUpdateOperationsInput | string | null
+    transferencia?: NullableFloatFieldUpdateOperationsInput | number | null
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type GastoUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     folio?: StringFieldUpdateOperationsInput | string
-    vehiculoId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehiculoId?: StringFieldUpdateOperationsInput | string
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     razonSocial?: StringFieldUpdateOperationsInput | string
     banco?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10389,10 +10624,11 @@ export namespace Prisma {
     documento?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     responsable?: StringFieldUpdateOperationsInput | string
-    transferencia?: NullableStringFieldUpdateOperationsInput | string | null
+    transferencia?: NullableFloatFieldUpdateOperationsInput | number | null
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10426,12 +10662,14 @@ export namespace Prisma {
     fechaPago?: Date | string | null
     bancoPago?: string | null
     folioPago?: string | null
+    versionActual?: number
     createdAt?: Date | string
-    gasto?: GastoCreateNestedOneWithoutFacturasInput
+    gasto: GastoCreateNestedOneWithoutFacturasInput
   }
 
   export type FacturaUncheckedCreateInput = {
     id?: number
+    gastoId: number
     uuid?: string | null
     estadoSAT?: string | null
     tipoComprobante?: string | null
@@ -10461,7 +10699,7 @@ export namespace Prisma {
     fechaPago?: Date | string | null
     bancoPago?: string | null
     folioPago?: string | null
-    gastoId?: number | null
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -10495,12 +10733,14 @@ export namespace Prisma {
     fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    gasto?: GastoUpdateOneWithoutFacturasNestedInput
+    gasto?: GastoUpdateOneRequiredWithoutFacturasNestedInput
   }
 
   export type FacturaUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
+    gastoId?: IntFieldUpdateOperationsInput | number
     uuid?: NullableStringFieldUpdateOperationsInput | string | null
     estadoSAT?: NullableStringFieldUpdateOperationsInput | string | null
     tipoComprobante?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10530,12 +10770,13 @@ export namespace Prisma {
     fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
-    gastoId?: NullableIntFieldUpdateOperationsInput | number | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FacturaCreateManyInput = {
     id?: number
+    gastoId: number
     uuid?: string | null
     estadoSAT?: string | null
     tipoComprobante?: string | null
@@ -10565,7 +10806,7 @@ export namespace Prisma {
     fechaPago?: Date | string | null
     bancoPago?: string | null
     folioPago?: string | null
-    gastoId?: number | null
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -10599,11 +10840,13 @@ export namespace Prisma {
     fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FacturaUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
+    gastoId?: IntFieldUpdateOperationsInput | number
     uuid?: NullableStringFieldUpdateOperationsInput | string | null
     estadoSAT?: NullableStringFieldUpdateOperationsInput | string | null
     tipoComprobante?: NullableStringFieldUpdateOperationsInput | string | null
@@ -10633,7 +10876,7 @@ export namespace Prisma {
     fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
-    gastoId?: NullableIntFieldUpdateOperationsInput | number | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10672,6 +10915,17 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     user?: SortOrder
@@ -10685,6 +10939,8 @@ export namespace Prisma {
     canEditFacturas?: SortOrder
     canManageUsers?: SortOrder
     allowedCompanies?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -10699,6 +10955,8 @@ export namespace Prisma {
     canEditGastos?: SortOrder
     canEditFacturas?: SortOrder
     canManageUsers?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -10713,6 +10971,8 @@ export namespace Prisma {
     canEditGastos?: SortOrder
     canEditFacturas?: SortOrder
     canManageUsers?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -10751,6 +11011,20 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -10762,15 +11036,19 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type VersionVehiculoListRelationFilter = {
@@ -10791,6 +11069,11 @@ export namespace Prisma {
     none?: GastoWhereInput
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type VersionVehiculoOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -10806,18 +11089,33 @@ export namespace Prisma {
   export type VehiculoCountOrderByAggregateInput = {
     id?: SortOrder
     placa?: SortOrder
+    marca?: SortOrder
+    tipo?: SortOrder
+    modelo?: SortOrder
+    serie?: SortOrder
+    motor?: SortOrder
+    ubicacion?: SortOrder
+    proyecto?: SortOrder
     versionActual?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type VehiculoAvgOrderByAggregateInput = {
+    modelo?: SortOrder
     versionActual?: SortOrder
   }
 
   export type VehiculoMaxOrderByAggregateInput = {
     id?: SortOrder
     placa?: SortOrder
+    marca?: SortOrder
+    tipo?: SortOrder
+    modelo?: SortOrder
+    serie?: SortOrder
+    motor?: SortOrder
+    ubicacion?: SortOrder
+    proyecto?: SortOrder
     versionActual?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -10826,12 +11124,20 @@ export namespace Prisma {
   export type VehiculoMinOrderByAggregateInput = {
     id?: SortOrder
     placa?: SortOrder
+    marca?: SortOrder
+    tipo?: SortOrder
+    modelo?: SortOrder
+    serie?: SortOrder
+    motor?: SortOrder
+    ubicacion?: SortOrder
+    proyecto?: SortOrder
     versionActual?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type VehiculoSumOrderByAggregateInput = {
+    modelo?: SortOrder
     versionActual?: SortOrder
   }
 
@@ -10851,115 +11157,6 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type VehiculoScalarRelationFilter = {
-    is?: VehiculoWhereInput
-    isNot?: VehiculoWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
-  }
-
-  export type VersionVehiculoCountOrderByAggregateInput = {
-    id?: SortOrder
-    vehiculoId?: SortOrder
-    placa?: SortOrder
-    placaAnterior?: SortOrder
-    marca?: SortOrder
-    tipo?: SortOrder
-    modelo?: SortOrder
-    color?: SortOrder
-    serie?: SortOrder
-    motor?: SortOrder
-    proyecto?: SortOrder
-    ubicacion?: SortOrder
-    version?: SortOrder
-    esActual?: SortOrder
-    fechaCambio?: SortOrder
-    motivoCambio?: SortOrder
-    usuarioCambio?: SortOrder
-  }
-
-  export type VersionVehiculoAvgOrderByAggregateInput = {
-    id?: SortOrder
-    version?: SortOrder
-  }
-
-  export type VersionVehiculoMaxOrderByAggregateInput = {
-    id?: SortOrder
-    vehiculoId?: SortOrder
-    placa?: SortOrder
-    placaAnterior?: SortOrder
-    marca?: SortOrder
-    tipo?: SortOrder
-    modelo?: SortOrder
-    color?: SortOrder
-    serie?: SortOrder
-    motor?: SortOrder
-    proyecto?: SortOrder
-    ubicacion?: SortOrder
-    version?: SortOrder
-    esActual?: SortOrder
-    fechaCambio?: SortOrder
-    motivoCambio?: SortOrder
-    usuarioCambio?: SortOrder
-  }
-
-  export type VersionVehiculoMinOrderByAggregateInput = {
-    id?: SortOrder
-    vehiculoId?: SortOrder
-    placa?: SortOrder
-    placaAnterior?: SortOrder
-    marca?: SortOrder
-    tipo?: SortOrder
-    modelo?: SortOrder
-    color?: SortOrder
-    serie?: SortOrder
-    motor?: SortOrder
-    proyecto?: SortOrder
-    ubicacion?: SortOrder
-    version?: SortOrder
-    esActual?: SortOrder
-    fechaCambio?: SortOrder
-    motivoCambio?: SortOrder
-    usuarioCambio?: SortOrder
-  }
-
-  export type VersionVehiculoSumOrderByAggregateInput = {
-    id?: SortOrder
-    version?: SortOrder
-  }
-
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -10976,6 +11173,88 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type VehiculoScalarRelationFilter = {
+    is?: VehiculoWhereInput
+    isNot?: VehiculoWhereInput
+  }
+
+  export type VersionVehiculoVehiculoIdVersionCompoundUniqueInput = {
+    vehiculoId: string
+    version: number
+  }
+
+  export type VersionVehiculoCountOrderByAggregateInput = {
+    id?: SortOrder
+    vehiculoId?: SortOrder
+    placa?: SortOrder
+    placaAnterior?: SortOrder
+    marca?: SortOrder
+    modelo?: SortOrder
+    anio?: SortOrder
+    serie?: SortOrder
+    motor?: SortOrder
+    ubicacion?: SortOrder
+    proyecto?: SortOrder
+    version?: SortOrder
+    fechaCambio?: SortOrder
+    motivoCambio?: SortOrder
+    usuarioCambio?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VersionVehiculoAvgOrderByAggregateInput = {
+    id?: SortOrder
+    anio?: SortOrder
+    version?: SortOrder
+  }
+
+  export type VersionVehiculoMaxOrderByAggregateInput = {
+    id?: SortOrder
+    vehiculoId?: SortOrder
+    placa?: SortOrder
+    placaAnterior?: SortOrder
+    marca?: SortOrder
+    modelo?: SortOrder
+    anio?: SortOrder
+    serie?: SortOrder
+    motor?: SortOrder
+    ubicacion?: SortOrder
+    proyecto?: SortOrder
+    version?: SortOrder
+    fechaCambio?: SortOrder
+    motivoCambio?: SortOrder
+    usuarioCambio?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VersionVehiculoMinOrderByAggregateInput = {
+    id?: SortOrder
+    vehiculoId?: SortOrder
+    placa?: SortOrder
+    placaAnterior?: SortOrder
+    marca?: SortOrder
+    modelo?: SortOrder
+    anio?: SortOrder
+    serie?: SortOrder
+    motor?: SortOrder
+    ubicacion?: SortOrder
+    proyecto?: SortOrder
+    version?: SortOrder
+    fechaCambio?: SortOrder
+    motivoCambio?: SortOrder
+    usuarioCambio?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type VersionVehiculoSumOrderByAggregateInput = {
+    id?: SortOrder
+    anio?: SortOrder
+    version?: SortOrder
   }
 
   export type EnumCompaniaFilter<$PrismaModel = never> = {
@@ -11004,15 +11283,14 @@ export namespace Prisma {
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
     comentario?: SortOrder
-    esActual?: SortOrder
-    version?: SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
   }
 
   export type SeguroAvgOrderByAggregateInput = {
     id?: SortOrder
     precio?: SortOrder
-    version?: SortOrder
+    versionActual?: SortOrder
   }
 
   export type SeguroMaxOrderByAggregateInput = {
@@ -11023,8 +11301,7 @@ export namespace Prisma {
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
     comentario?: SortOrder
-    esActual?: SortOrder
-    version?: SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -11036,15 +11313,14 @@ export namespace Prisma {
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
     comentario?: SortOrder
-    esActual?: SortOrder
-    version?: SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
   }
 
   export type SeguroSumOrderByAggregateInput = {
     id?: SortOrder
     precio?: SortOrder
-    version?: SortOrder
+    versionActual?: SortOrder
   }
 
   export type EnumCompaniaWithAggregatesFilter<$PrismaModel = never> = {
@@ -11084,11 +11360,6 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type VehiculoNullableScalarRelationFilter = {
-    is?: VehiculoWhereInput | null
-    isNot?: VehiculoWhereInput | null
-  }
-
   export type FacturaListRelationFilter = {
     every?: FacturaWhereInput
     some?: FacturaWhereInput
@@ -11117,14 +11388,17 @@ export namespace Prisma {
     entrada?: SortOrder
     salida?: SortOrder
     saldo?: SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
   }
 
   export type GastoAvgOrderByAggregateInput = {
     id?: SortOrder
+    transferencia?: SortOrder
     entrada?: SortOrder
     salida?: SortOrder
     saldo?: SortOrder
+    versionActual?: SortOrder
   }
 
   export type GastoMaxOrderByAggregateInput = {
@@ -11145,6 +11419,7 @@ export namespace Prisma {
     entrada?: SortOrder
     salida?: SortOrder
     saldo?: SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -11166,14 +11441,17 @@ export namespace Prisma {
     entrada?: SortOrder
     salida?: SortOrder
     saldo?: SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
   }
 
   export type GastoSumOrderByAggregateInput = {
     id?: SortOrder
+    transferencia?: SortOrder
     entrada?: SortOrder
     salida?: SortOrder
     saldo?: SortOrder
+    versionActual?: SortOrder
   }
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11203,24 +11481,14 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type GastoNullableScalarRelationFilter = {
-    is?: GastoWhereInput | null
-    isNot?: GastoWhereInput | null
+  export type GastoScalarRelationFilter = {
+    is?: GastoWhereInput
+    isNot?: GastoWhereInput
   }
 
   export type FacturaCountOrderByAggregateInput = {
     id?: SortOrder
+    gastoId?: SortOrder
     uuid?: SortOrder
     estadoSAT?: SortOrder
     tipoComprobante?: SortOrder
@@ -11250,12 +11518,13 @@ export namespace Prisma {
     fechaPago?: SortOrder
     bancoPago?: SortOrder
     folioPago?: SortOrder
-    gastoId?: SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
   }
 
   export type FacturaAvgOrderByAggregateInput = {
     id?: SortOrder
+    gastoId?: SortOrder
     subTotal?: SortOrder
     descuento?: SortOrder
     totalIEPS?: SortOrder
@@ -11265,11 +11534,12 @@ export namespace Prisma {
     ish?: SortOrder
     total?: SortOrder
     tipoCambio?: SortOrder
-    gastoId?: SortOrder
+    versionActual?: SortOrder
   }
 
   export type FacturaMaxOrderByAggregateInput = {
     id?: SortOrder
+    gastoId?: SortOrder
     uuid?: SortOrder
     estadoSAT?: SortOrder
     tipoComprobante?: SortOrder
@@ -11299,12 +11569,13 @@ export namespace Prisma {
     fechaPago?: SortOrder
     bancoPago?: SortOrder
     folioPago?: SortOrder
-    gastoId?: SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
   }
 
   export type FacturaMinOrderByAggregateInput = {
     id?: SortOrder
+    gastoId?: SortOrder
     uuid?: SortOrder
     estadoSAT?: SortOrder
     tipoComprobante?: SortOrder
@@ -11334,12 +11605,13 @@ export namespace Prisma {
     fechaPago?: SortOrder
     bancoPago?: SortOrder
     folioPago?: SortOrder
-    gastoId?: SortOrder
+    versionActual?: SortOrder
     createdAt?: SortOrder
   }
 
   export type FacturaSumOrderByAggregateInput = {
     id?: SortOrder
+    gastoId?: SortOrder
     subTotal?: SortOrder
     descuento?: SortOrder
     totalIEPS?: SortOrder
@@ -11349,7 +11621,7 @@ export namespace Prisma {
     ish?: SortOrder
     total?: SortOrder
     tipoCambio?: SortOrder
-    gastoId?: SortOrder
+    versionActual?: SortOrder
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11364,22 +11636,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type UserCreateallowedCompaniesInput = {
@@ -11401,6 +11657,10 @@ export namespace Prisma {
   export type UserUpdateallowedCompaniesInput = {
     set?: $Enums.Compania[]
     push?: $Enums.Compania | $Enums.Compania[]
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
   }
 
   export type VersionVehiculoCreateNestedManyWithoutVehiculoInput = {
@@ -11453,8 +11713,8 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type VersionVehiculoUpdateManyWithoutVehiculoNestedInput = {
@@ -11547,10 +11807,6 @@ export namespace Prisma {
     connect?: VehiculoWhereUniqueInput
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type VehiculoUpdateOneRequiredWithoutVersionesNestedInput = {
     create?: XOR<VehiculoCreateWithoutVersionesInput, VehiculoUncheckedCreateWithoutVersionesInput>
     connectOrCreate?: VehiculoCreateOrConnectWithoutVersionesInput
@@ -11613,12 +11869,10 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type VehiculoUpdateOneWithoutGastosNestedInput = {
+  export type VehiculoUpdateOneRequiredWithoutGastosNestedInput = {
     create?: XOR<VehiculoCreateWithoutGastosInput, VehiculoUncheckedCreateWithoutGastosInput>
     connectOrCreate?: VehiculoCreateOrConnectWithoutGastosInput
     upsert?: VehiculoUpsertWithoutGastosInput
-    disconnect?: VehiculoWhereInput | boolean
-    delete?: VehiculoWhereInput | boolean
     connect?: VehiculoWhereUniqueInput
     update?: XOR<XOR<VehiculoUpdateToOneWithWhereWithoutGastosInput, VehiculoUpdateWithoutGastosInput>, VehiculoUncheckedUpdateWithoutGastosInput>
   }
@@ -11661,22 +11915,12 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type GastoUpdateOneWithoutFacturasNestedInput = {
+  export type GastoUpdateOneRequiredWithoutFacturasNestedInput = {
     create?: XOR<GastoCreateWithoutFacturasInput, GastoUncheckedCreateWithoutFacturasInput>
     connectOrCreate?: GastoCreateOrConnectWithoutFacturasInput
     upsert?: GastoUpsertWithoutFacturasInput
-    disconnect?: GastoWhereInput | boolean
-    delete?: GastoWhereInput | boolean
     connect?: GastoWhereUniqueInput
     update?: XOR<XOR<GastoUpdateToOneWithWhereWithoutFacturasInput, GastoUpdateWithoutFacturasInput>, GastoUncheckedUpdateWithoutFacturasInput>
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -11703,6 +11947,17 @@ export namespace Prisma {
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -11751,7 +12006,7 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -11759,7 +12014,24 @@ export namespace Prisma {
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -11787,34 +12059,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -11930,38 +12174,22 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type VersionVehiculoCreateWithoutVehiculoInput = {
     placa: string
     placaAnterior?: string | null
     marca: string
-    tipo: string
     modelo: string
-    color: string
+    anio: number
     serie: string
     motor?: string | null
-    proyecto?: string | null
     ubicacion?: string | null
+    proyecto?: string | null
     version: number
-    esActual?: boolean
     fechaCambio?: Date | string
     motivoCambio?: string | null
     usuarioCambio?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type VersionVehiculoUncheckedCreateWithoutVehiculoInput = {
@@ -11969,18 +12197,18 @@ export namespace Prisma {
     placa: string
     placaAnterior?: string | null
     marca: string
-    tipo: string
     modelo: string
-    color: string
+    anio: number
     serie: string
     motor?: string | null
-    proyecto?: string | null
     ubicacion?: string | null
+    proyecto?: string | null
     version: number
-    esActual?: boolean
     fechaCambio?: Date | string
     motivoCambio?: string | null
     usuarioCambio?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type VersionVehiculoCreateOrConnectWithoutVehiculoInput = {
@@ -11999,8 +12227,7 @@ export namespace Prisma {
     fechaInicio: Date | string
     fechaVencimiento: Date | string
     comentario?: string | null
-    esActual?: boolean
-    version?: number
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -12011,8 +12238,7 @@ export namespace Prisma {
     fechaInicio: Date | string
     fechaVencimiento: Date | string
     comentario?: string | null
-    esActual?: boolean
-    version?: number
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -12038,10 +12264,11 @@ export namespace Prisma {
     documento?: string | null
     proyecto?: string | null
     responsable: string
-    transferencia?: string | null
+    transferencia?: number | null
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    versionActual?: number
     createdAt?: Date | string
     facturas?: FacturaCreateNestedManyWithoutGastoInput
   }
@@ -12059,10 +12286,11 @@ export namespace Prisma {
     documento?: string | null
     proyecto?: string | null
     responsable: string
-    transferencia?: string | null
+    transferencia?: number | null
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    versionActual?: number
     createdAt?: Date | string
     facturas?: FacturaUncheckedCreateNestedManyWithoutGastoInput
   }
@@ -12102,18 +12330,18 @@ export namespace Prisma {
     placa?: StringFilter<"VersionVehiculo"> | string
     placaAnterior?: StringNullableFilter<"VersionVehiculo"> | string | null
     marca?: StringFilter<"VersionVehiculo"> | string
-    tipo?: StringFilter<"VersionVehiculo"> | string
     modelo?: StringFilter<"VersionVehiculo"> | string
-    color?: StringFilter<"VersionVehiculo"> | string
+    anio?: IntFilter<"VersionVehiculo"> | number
     serie?: StringFilter<"VersionVehiculo"> | string
     motor?: StringNullableFilter<"VersionVehiculo"> | string | null
-    proyecto?: StringNullableFilter<"VersionVehiculo"> | string | null
     ubicacion?: StringNullableFilter<"VersionVehiculo"> | string | null
+    proyecto?: StringNullableFilter<"VersionVehiculo"> | string | null
     version?: IntFilter<"VersionVehiculo"> | number
-    esActual?: BoolFilter<"VersionVehiculo"> | boolean
     fechaCambio?: DateTimeFilter<"VersionVehiculo"> | Date | string
     motivoCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
     usuarioCambio?: StringNullableFilter<"VersionVehiculo"> | string | null
+    createdAt?: DateTimeFilter<"VersionVehiculo"> | Date | string
+    updatedAt?: DateTimeFilter<"VersionVehiculo"> | Date | string
   }
 
   export type SeguroUpsertWithWhereUniqueWithoutVehiculoInput = {
@@ -12143,8 +12371,7 @@ export namespace Prisma {
     fechaInicio?: DateTimeFilter<"Seguro"> | Date | string
     fechaVencimiento?: DateTimeFilter<"Seguro"> | Date | string
     comentario?: StringNullableFilter<"Seguro"> | string | null
-    esActual?: BoolFilter<"Seguro"> | boolean
-    version?: IntFilter<"Seguro"> | number
+    versionActual?: IntFilter<"Seguro"> | number
     createdAt?: DateTimeFilter<"Seguro"> | Date | string
   }
 
@@ -12170,7 +12397,7 @@ export namespace Prisma {
     NOT?: GastoScalarWhereInput | GastoScalarWhereInput[]
     id?: IntFilter<"Gasto"> | number
     folio?: StringFilter<"Gasto"> | string
-    vehiculoId?: StringNullableFilter<"Gasto"> | string | null
+    vehiculoId?: StringFilter<"Gasto"> | string
     fecha?: DateTimeFilter<"Gasto"> | Date | string
     razonSocial?: StringFilter<"Gasto"> | string
     banco?: StringNullableFilter<"Gasto"> | string | null
@@ -12181,16 +12408,24 @@ export namespace Prisma {
     documento?: StringNullableFilter<"Gasto"> | string | null
     proyecto?: StringNullableFilter<"Gasto"> | string | null
     responsable?: StringFilter<"Gasto"> | string
-    transferencia?: StringNullableFilter<"Gasto"> | string | null
+    transferencia?: FloatNullableFilter<"Gasto"> | number | null
     entrada?: FloatNullableFilter<"Gasto"> | number | null
     salida?: FloatNullableFilter<"Gasto"> | number | null
     saldo?: FloatNullableFilter<"Gasto"> | number | null
+    versionActual?: IntFilter<"Gasto"> | number
     createdAt?: DateTimeFilter<"Gasto"> | Date | string
   }
 
   export type VehiculoCreateWithoutVersionesInput = {
     id?: string
     placa: string
+    marca: string
+    tipo: string
+    modelo: number
+    serie: string
+    motor?: string | null
+    ubicacion?: string | null
+    proyecto?: string | null
     versionActual?: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12201,6 +12436,13 @@ export namespace Prisma {
   export type VehiculoUncheckedCreateWithoutVersionesInput = {
     id?: string
     placa: string
+    marca: string
+    tipo: string
+    modelo: number
+    serie: string
+    motor?: string | null
+    ubicacion?: string | null
+    proyecto?: string | null
     versionActual?: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12227,6 +12469,13 @@ export namespace Prisma {
   export type VehiculoUpdateWithoutVersionesInput = {
     id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12237,6 +12486,13 @@ export namespace Prisma {
   export type VehiculoUncheckedUpdateWithoutVersionesInput = {
     id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12247,6 +12503,13 @@ export namespace Prisma {
   export type VehiculoCreateWithoutSegurosInput = {
     id?: string
     placa: string
+    marca: string
+    tipo: string
+    modelo: number
+    serie: string
+    motor?: string | null
+    ubicacion?: string | null
+    proyecto?: string | null
     versionActual?: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12257,6 +12520,13 @@ export namespace Prisma {
   export type VehiculoUncheckedCreateWithoutSegurosInput = {
     id?: string
     placa: string
+    marca: string
+    tipo: string
+    modelo: number
+    serie: string
+    motor?: string | null
+    ubicacion?: string | null
+    proyecto?: string | null
     versionActual?: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12283,6 +12553,13 @@ export namespace Prisma {
   export type VehiculoUpdateWithoutSegurosInput = {
     id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12293,6 +12570,13 @@ export namespace Prisma {
   export type VehiculoUncheckedUpdateWithoutSegurosInput = {
     id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12303,6 +12587,13 @@ export namespace Prisma {
   export type VehiculoCreateWithoutGastosInput = {
     id?: string
     placa: string
+    marca: string
+    tipo: string
+    modelo: number
+    serie: string
+    motor?: string | null
+    ubicacion?: string | null
+    proyecto?: string | null
     versionActual?: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12313,6 +12604,13 @@ export namespace Prisma {
   export type VehiculoUncheckedCreateWithoutGastosInput = {
     id?: string
     placa: string
+    marca: string
+    tipo: string
+    modelo: number
+    serie: string
+    motor?: string | null
+    ubicacion?: string | null
+    proyecto?: string | null
     versionActual?: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12355,6 +12653,7 @@ export namespace Prisma {
     fechaPago?: Date | string | null
     bancoPago?: string | null
     folioPago?: string | null
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -12389,6 +12688,7 @@ export namespace Prisma {
     fechaPago?: Date | string | null
     bancoPago?: string | null
     folioPago?: string | null
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -12416,6 +12716,13 @@ export namespace Prisma {
   export type VehiculoUpdateWithoutGastosInput = {
     id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12426,6 +12733,13 @@ export namespace Prisma {
   export type VehiculoUncheckedUpdateWithoutGastosInput = {
     id?: StringFieldUpdateOperationsInput | string
     placa?: StringFieldUpdateOperationsInput | string
+    marca?: StringFieldUpdateOperationsInput | string
+    tipo?: StringFieldUpdateOperationsInput | string
+    modelo?: IntFieldUpdateOperationsInput | number
+    serie?: StringFieldUpdateOperationsInput | string
+    motor?: NullableStringFieldUpdateOperationsInput | string | null
+    ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12454,6 +12768,7 @@ export namespace Prisma {
     OR?: FacturaScalarWhereInput[]
     NOT?: FacturaScalarWhereInput | FacturaScalarWhereInput[]
     id?: IntFilter<"Factura"> | number
+    gastoId?: IntFilter<"Factura"> | number
     uuid?: StringNullableFilter<"Factura"> | string | null
     estadoSAT?: StringNullableFilter<"Factura"> | string | null
     tipoComprobante?: StringNullableFilter<"Factura"> | string | null
@@ -12483,7 +12798,7 @@ export namespace Prisma {
     fechaPago?: DateTimeNullableFilter<"Factura"> | Date | string | null
     bancoPago?: StringNullableFilter<"Factura"> | string | null
     folioPago?: StringNullableFilter<"Factura"> | string | null
-    gastoId?: IntNullableFilter<"Factura"> | number | null
+    versionActual?: IntFilter<"Factura"> | number
     createdAt?: DateTimeFilter<"Factura"> | Date | string
   }
 
@@ -12499,18 +12814,19 @@ export namespace Prisma {
     documento?: string | null
     proyecto?: string | null
     responsable: string
-    transferencia?: string | null
+    transferencia?: number | null
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    versionActual?: number
     createdAt?: Date | string
-    vehiculo?: VehiculoCreateNestedOneWithoutGastosInput
+    vehiculo: VehiculoCreateNestedOneWithoutGastosInput
   }
 
   export type GastoUncheckedCreateWithoutFacturasInput = {
     id?: number
     folio: string
-    vehiculoId?: string | null
+    vehiculoId: string
     fecha: Date | string
     razonSocial: string
     banco?: string | null
@@ -12521,10 +12837,11 @@ export namespace Prisma {
     documento?: string | null
     proyecto?: string | null
     responsable: string
-    transferencia?: string | null
+    transferencia?: number | null
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -12556,18 +12873,19 @@ export namespace Prisma {
     documento?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     responsable?: StringFieldUpdateOperationsInput | string
-    transferencia?: NullableStringFieldUpdateOperationsInput | string | null
+    transferencia?: NullableFloatFieldUpdateOperationsInput | number | null
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    vehiculo?: VehiculoUpdateOneWithoutGastosNestedInput
+    vehiculo?: VehiculoUpdateOneRequiredWithoutGastosNestedInput
   }
 
   export type GastoUncheckedUpdateWithoutFacturasInput = {
     id?: IntFieldUpdateOperationsInput | number
     folio?: StringFieldUpdateOperationsInput | string
-    vehiculoId?: NullableStringFieldUpdateOperationsInput | string | null
+    vehiculoId?: StringFieldUpdateOperationsInput | string
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     razonSocial?: StringFieldUpdateOperationsInput | string
     banco?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12578,10 +12896,11 @@ export namespace Prisma {
     documento?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     responsable?: StringFieldUpdateOperationsInput | string
-    transferencia?: NullableStringFieldUpdateOperationsInput | string | null
+    transferencia?: NullableFloatFieldUpdateOperationsInput | number | null
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12590,18 +12909,18 @@ export namespace Prisma {
     placa: string
     placaAnterior?: string | null
     marca: string
-    tipo: string
     modelo: string
-    color: string
+    anio: number
     serie: string
     motor?: string | null
-    proyecto?: string | null
     ubicacion?: string | null
+    proyecto?: string | null
     version: number
-    esActual?: boolean
     fechaCambio?: Date | string
     motivoCambio?: string | null
     usuarioCambio?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type SeguroCreateManyVehiculoInput = {
@@ -12611,8 +12930,7 @@ export namespace Prisma {
     fechaInicio: Date | string
     fechaVencimiento: Date | string
     comentario?: string | null
-    esActual?: boolean
-    version?: number
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -12629,10 +12947,11 @@ export namespace Prisma {
     documento?: string | null
     proyecto?: string | null
     responsable: string
-    transferencia?: string | null
+    transferencia?: number | null
     entrada?: number | null
     salida?: number | null
     saldo?: number | null
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -12640,18 +12959,18 @@ export namespace Prisma {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
     modelo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
-    esActual?: BoolFieldUpdateOperationsInput | boolean
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
     motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
     usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VersionVehiculoUncheckedUpdateWithoutVehiculoInput = {
@@ -12659,18 +12978,18 @@ export namespace Prisma {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
     modelo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
-    esActual?: BoolFieldUpdateOperationsInput | boolean
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
     motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
     usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type VersionVehiculoUncheckedUpdateManyWithoutVehiculoInput = {
@@ -12678,18 +12997,18 @@ export namespace Prisma {
     placa?: StringFieldUpdateOperationsInput | string
     placaAnterior?: NullableStringFieldUpdateOperationsInput | string | null
     marca?: StringFieldUpdateOperationsInput | string
-    tipo?: StringFieldUpdateOperationsInput | string
     modelo?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
+    anio?: IntFieldUpdateOperationsInput | number
     serie?: StringFieldUpdateOperationsInput | string
     motor?: NullableStringFieldUpdateOperationsInput | string | null
-    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     ubicacion?: NullableStringFieldUpdateOperationsInput | string | null
+    proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
-    esActual?: BoolFieldUpdateOperationsInput | boolean
     fechaCambio?: DateTimeFieldUpdateOperationsInput | Date | string
     motivoCambio?: NullableStringFieldUpdateOperationsInput | string | null
     usuarioCambio?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type SeguroUpdateWithoutVehiculoInput = {
@@ -12698,8 +13017,7 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    esActual?: BoolFieldUpdateOperationsInput | boolean
-    version?: IntFieldUpdateOperationsInput | number
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12710,8 +13028,7 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    esActual?: BoolFieldUpdateOperationsInput | boolean
-    version?: IntFieldUpdateOperationsInput | number
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12722,8 +13039,7 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    esActual?: BoolFieldUpdateOperationsInput | boolean
-    version?: IntFieldUpdateOperationsInput | number
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12739,10 +13055,11 @@ export namespace Prisma {
     documento?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     responsable?: StringFieldUpdateOperationsInput | string
-    transferencia?: NullableStringFieldUpdateOperationsInput | string | null
+    transferencia?: NullableFloatFieldUpdateOperationsInput | number | null
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     facturas?: FacturaUpdateManyWithoutGastoNestedInput
   }
@@ -12760,10 +13077,11 @@ export namespace Prisma {
     documento?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     responsable?: StringFieldUpdateOperationsInput | string
-    transferencia?: NullableStringFieldUpdateOperationsInput | string | null
+    transferencia?: NullableFloatFieldUpdateOperationsInput | number | null
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     facturas?: FacturaUncheckedUpdateManyWithoutGastoNestedInput
   }
@@ -12781,10 +13099,11 @@ export namespace Prisma {
     documento?: NullableStringFieldUpdateOperationsInput | string | null
     proyecto?: NullableStringFieldUpdateOperationsInput | string | null
     responsable?: StringFieldUpdateOperationsInput | string
-    transferencia?: NullableStringFieldUpdateOperationsInput | string | null
+    transferencia?: NullableFloatFieldUpdateOperationsInput | number | null
     entrada?: NullableFloatFieldUpdateOperationsInput | number | null
     salida?: NullableFloatFieldUpdateOperationsInput | number | null
     saldo?: NullableFloatFieldUpdateOperationsInput | number | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12819,6 +13138,7 @@ export namespace Prisma {
     fechaPago?: Date | string | null
     bancoPago?: string | null
     folioPago?: string | null
+    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -12852,6 +13172,7 @@ export namespace Prisma {
     fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12886,6 +13207,7 @@ export namespace Prisma {
     fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12920,6 +13242,7 @@ export namespace Prisma {
     fechaPago?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bancoPago?: NullableStringFieldUpdateOperationsInput | string | null
     folioPago?: NullableStringFieldUpdateOperationsInput | string | null
+    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

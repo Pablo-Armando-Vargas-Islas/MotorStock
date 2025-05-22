@@ -27,7 +27,15 @@ export async function POST(req: NextRequest) {
 
     const result = await prisma.vehiculo.create({
       data: {
-        placa: validation.data.placa
+        placa: validation.data.placa,
+        marca: validation.data.marca,
+        modelo: validation.data.modelo,
+        tipo: validation.data.tipo,
+        serie: validation.data.serie,
+        motor: validation.data.motor,
+        ubicacion: validation.data.ubicacion,
+        proyecto: validation.data.proyecto,
+        versionActual: validation.data.versionActual,
       }
     })
 

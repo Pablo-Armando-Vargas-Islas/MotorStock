@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -17,18 +18,21 @@ import { z } from "zod"
 import { Calendar } from "../ui/calendar"
 import { cn } from "@/lib/utils"
 import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover"
-import { CalendarIcon } from "lucide-react"
+import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react"
 import { format } from "date-fns"
 import axios from "axios"
-import { useRouter } from "next/navigation"
 import { toast } from "sonner"
+import { useEffect, useState } from "react"
+import { Vehiculo } from "@/app/vehiculos/VehiculosTable/columns"
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command"
 
 type GastoFormProps = {
   onSuccess: () => void
 }
 
 const GastosForm = ({ onSuccess } : GastoFormProps) => {
-  const router = useRouter()
+  const [vehiculos, setVehiculos] = useState<Vehiculo[]>([])
+
   const form = useForm<z.infer<typeof gastosFormSchema>>({
     resolver: zodResolver(gastosFormSchema),
     defaultValues: {
@@ -45,10 +49,11 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
       documento: "",
       proyecto: "",
       responsable: "",
-      transferencia: "",
+      transferencia: 0,
       entrada: 0,
       salida: 0,
-      saldo: 0
+      saldo: 0,
+      versionActual: 1,
     }
   })
 
@@ -58,9 +63,10 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
         ...values,
         fecha: values.fecha.toISOString()
       };
+
       await axios.post("/api/gastos", datosToSend);
 
-      router.refresh()
+      window.location.reload()
       toast.success("Gasto creado correctamente")
       onSuccess?.()
       
@@ -77,6 +83,20 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
       // Puedes añadir un toast de error aquí
     }
   }
+
+  useEffect(() => {
+    const fetchVehiculos = async () => {
+      try {
+        const res = await fetch("/api/vehiculos")
+        const data = await res.json()
+        setVehiculos(data)
+      } catch (error) {
+        console.error("Error al obtener los vehículos:", error)
+      }
+    }
+
+    fetchVehiculos()
+  }, [])
 
   return (
     <div className="max-h-[80vh] overflow-y-auto px-4">
@@ -111,7 +131,71 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
             )}
           />
 
-          {/* vehiculoID */}
+          <FormField
+          control={form.control}
+          name="vehiculoId"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <FormLabel>Placa {'(id del vehiculo)'}</FormLabel>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <FormControl>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      className={cn(
+                        "w-full justify-between",
+                        !field.value && "text-muted-foreground"
+                      )}
+                    >
+                      {field.value
+                        ? vehiculos.find(
+                            (vehiculo) => String(vehiculo.id) === field.value
+                          )?.id
+                        : "Select vehiculo"}
+                      <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </FormControl>
+                </PopoverTrigger>
+                <PopoverContent className="w-[200px] p-0">
+                  <Command>
+                    <CommandInput placeholder="Search language..." />
+                    <CommandList>
+                      <CommandEmpty>No vehiculo found.</CommandEmpty>
+                      <CommandGroup>
+                        {vehiculos.map((vehiculos) => (
+                          <CommandItem
+                            value={String(vehiculos.placa)}
+                            key={vehiculos.id}
+                            onSelect={() => {
+                              form.setValue("vehiculoId", String(vehiculos.id))
+                            }}
+                          >
+                            {vehiculos.placa}
+                            <Check
+                              className={cn(
+                                "ml-auto",
+                                String(vehiculos.id) === field.value
+                                  ? "opacity-100"
+                                  : "opacity-0"
+                              )}
+                            />
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
+              <FormDescription>
+                Placa del vehiculo
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+          {/* vehiculoID
           <FormField 
             control={form.control}
             name="vehiculoId"
@@ -124,7 +208,7 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
 
           {/* Fecha */}
           <FormField
@@ -314,7 +398,7 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
               <FormItem>
                 <FormLabel>Transferencia</FormLabel>
                 <FormControl>
-                  <Input placeholder="Transferencia" {...field} />
+                  <Input type="number" placeholder="Transferencia" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -366,7 +450,11 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
             )}
           />
 
-          <Button>Submit</Button>
+          <Button>Submit</Button>7
+
+          {Object.keys(form.formState.errors).length > 0 && (
+  <pre className="text-red-500">{JSON.stringify(form.formState.errors, null, 2)}</pre>
+)}
         </form>
       </Form>
     </div>

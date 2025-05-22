@@ -22,6 +22,34 @@ export const columns: ColumnDef<Vehiculo>[] = [
     header: "Placa"
   },
   {
+    accessorKey: "marca",
+    header: "Marca"
+  },
+  {
+    accessorKey: "modelo",
+    header: "Modelo"
+  },
+  {
+    accessorKey: "tipo",
+    header: "Tipo"
+  },
+  {
+    accessorKey: "serie",
+    header: "Serie"
+  },
+  {
+    accessorKey: "motor",
+    header: "Motor"
+  },
+  {
+    accessorKey: "ubicacion",
+    header: "Ubicación"
+  },
+  {
+    accessorKey: "proyecto",
+    header: "Proyecto"
+  },
+  {
     accessorKey: "versionActual",
     header: "Version Actual"
   },

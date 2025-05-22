@@ -14,7 +14,6 @@ import { Gasto, columns } from "@/app/registro-gastos/GastosTable/columns";
 import { DataTable} from "@/app/registro-gastos/GastosTable/data-table";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { RefreshCcw } from "lucide-react";
 
 async function getData(): Promise<Gasto[]> {
   const baseURL = process.env.NEXT_BASE_URL || 'http://localhost:3000'
@@ -48,11 +47,6 @@ const RegistroGastosPage = () => {
           <DialogTrigger asChild>
             <div className="flex space-between gap-4">
               <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white">Registrar</Button>
-              <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white"
-                onClick={() => window.location.reload()}
-              >
-                <RefreshCcw /> Recargar
-              </Button>
             </div>
           </DialogTrigger>
           <DialogContent>
