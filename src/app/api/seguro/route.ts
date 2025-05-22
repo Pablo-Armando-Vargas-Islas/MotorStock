@@ -46,8 +46,6 @@ export async function POST(req: NextRequest) {
         fechaInicio: validation.data.fechaInicio,
         fechaVencimiento: validation.data.fechaVencimiento,
         comentario: validation.data.comentario,
-        esActual: validation.data.esActual,
-        version: validation.data.version
       }
     })
 

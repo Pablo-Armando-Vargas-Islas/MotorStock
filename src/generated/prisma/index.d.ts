@@ -5045,13 +5045,11 @@ export namespace Prisma {
   export type SeguroAvgAggregateOutputType = {
     id: number | null
     precio: number | null
-    versionActual: number | null
   }
 
   export type SeguroSumAggregateOutputType = {
     id: number | null
     precio: number | null
-    versionActual: number | null
   }
 
   export type SeguroMinAggregateOutputType = {
@@ -5062,7 +5060,6 @@ export namespace Prisma {
     fechaInicio: Date | null
     fechaVencimiento: Date | null
     comentario: string | null
-    versionActual: number | null
     createdAt: Date | null
   }
 
@@ -5074,7 +5071,6 @@ export namespace Prisma {
     fechaInicio: Date | null
     fechaVencimiento: Date | null
     comentario: string | null
-    versionActual: number | null
     createdAt: Date | null
   }
 
@@ -5086,7 +5082,6 @@ export namespace Prisma {
     fechaInicio: number
     fechaVencimiento: number
     comentario: number
-    versionActual: number
     createdAt: number
     _all: number
   }
@@ -5095,13 +5090,11 @@ export namespace Prisma {
   export type SeguroAvgAggregateInputType = {
     id?: true
     precio?: true
-    versionActual?: true
   }
 
   export type SeguroSumAggregateInputType = {
     id?: true
     precio?: true
-    versionActual?: true
   }
 
   export type SeguroMinAggregateInputType = {
@@ -5112,7 +5105,6 @@ export namespace Prisma {
     fechaInicio?: true
     fechaVencimiento?: true
     comentario?: true
-    versionActual?: true
     createdAt?: true
   }
 
@@ -5124,7 +5116,6 @@ export namespace Prisma {
     fechaInicio?: true
     fechaVencimiento?: true
     comentario?: true
-    versionActual?: true
     createdAt?: true
   }
 
@@ -5136,7 +5127,6 @@ export namespace Prisma {
     fechaInicio?: true
     fechaVencimiento?: true
     comentario?: true
-    versionActual?: true
     createdAt?: true
     _all?: true
   }
@@ -5235,7 +5225,6 @@ export namespace Prisma {
     fechaInicio: Date
     fechaVencimiento: Date
     comentario: string | null
-    versionActual: number
     createdAt: Date
     _count: SeguroCountAggregateOutputType | null
     _avg: SeguroAvgAggregateOutputType | null
@@ -5266,7 +5255,6 @@ export namespace Prisma {
     fechaInicio?: boolean
     fechaVencimiento?: boolean
     comentario?: boolean
-    versionActual?: boolean
     createdAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seguro"]>
@@ -5279,7 +5267,6 @@ export namespace Prisma {
     fechaInicio?: boolean
     fechaVencimiento?: boolean
     comentario?: boolean
-    versionActual?: boolean
     createdAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seguro"]>
@@ -5292,7 +5279,6 @@ export namespace Prisma {
     fechaInicio?: boolean
     fechaVencimiento?: boolean
     comentario?: boolean
-    versionActual?: boolean
     createdAt?: boolean
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["seguro"]>
@@ -5305,11 +5291,10 @@ export namespace Prisma {
     fechaInicio?: boolean
     fechaVencimiento?: boolean
     comentario?: boolean
-    versionActual?: boolean
     createdAt?: boolean
   }
 
-  export type SeguroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehiculoId" | "compania" | "precio" | "fechaInicio" | "fechaVencimiento" | "comentario" | "versionActual" | "createdAt", ExtArgs["result"]["seguro"]>
+  export type SeguroOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehiculoId" | "compania" | "precio" | "fechaInicio" | "fechaVencimiento" | "comentario" | "createdAt", ExtArgs["result"]["seguro"]>
   export type SeguroInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
   }
@@ -5333,7 +5318,6 @@ export namespace Prisma {
       fechaInicio: Date
       fechaVencimiento: Date
       comentario: string | null
-      versionActual: number
       createdAt: Date
     }, ExtArgs["result"]["seguro"]>
     composites: {}
@@ -5766,7 +5750,6 @@ export namespace Prisma {
     readonly fechaInicio: FieldRef<"Seguro", 'DateTime'>
     readonly fechaVencimiento: FieldRef<"Seguro", 'DateTime'>
     readonly comentario: FieldRef<"Seguro", 'String'>
-    readonly versionActual: FieldRef<"Seguro", 'Int'>
     readonly createdAt: FieldRef<"Seguro", 'DateTime'>
   }
     
@@ -9087,7 +9070,6 @@ export namespace Prisma {
     fechaInicio: 'fechaInicio',
     fechaVencimiento: 'fechaVencimiento',
     comentario: 'comentario',
-    versionActual: 'versionActual',
     createdAt: 'createdAt'
   };
 
@@ -9595,7 +9577,6 @@ export namespace Prisma {
     fechaInicio?: DateTimeFilter<"Seguro"> | Date | string
     fechaVencimiento?: DateTimeFilter<"Seguro"> | Date | string
     comentario?: StringNullableFilter<"Seguro"> | string | null
-    versionActual?: IntFilter<"Seguro"> | number
     createdAt?: DateTimeFilter<"Seguro"> | Date | string
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
   }
@@ -9608,7 +9589,6 @@ export namespace Prisma {
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
     comentario?: SortOrderInput | SortOrder
-    versionActual?: SortOrder
     createdAt?: SortOrder
     vehiculo?: VehiculoOrderByWithRelationInput
   }
@@ -9624,7 +9604,6 @@ export namespace Prisma {
     fechaInicio?: DateTimeFilter<"Seguro"> | Date | string
     fechaVencimiento?: DateTimeFilter<"Seguro"> | Date | string
     comentario?: StringNullableFilter<"Seguro"> | string | null
-    versionActual?: IntFilter<"Seguro"> | number
     createdAt?: DateTimeFilter<"Seguro"> | Date | string
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
   }, "id">
@@ -9637,7 +9616,6 @@ export namespace Prisma {
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
     comentario?: SortOrderInput | SortOrder
-    versionActual?: SortOrder
     createdAt?: SortOrder
     _count?: SeguroCountOrderByAggregateInput
     _avg?: SeguroAvgOrderByAggregateInput
@@ -9657,7 +9635,6 @@ export namespace Prisma {
     fechaInicio?: DateTimeWithAggregatesFilter<"Seguro"> | Date | string
     fechaVencimiento?: DateTimeWithAggregatesFilter<"Seguro"> | Date | string
     comentario?: StringNullableWithAggregatesFilter<"Seguro"> | string | null
-    versionActual?: IntWithAggregatesFilter<"Seguro"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Seguro"> | Date | string
   }
 
@@ -10352,7 +10329,6 @@ export namespace Prisma {
     fechaInicio: Date | string
     fechaVencimiento: Date | string
     comentario?: string | null
-    versionActual?: number
     createdAt?: Date | string
     vehiculo: VehiculoCreateNestedOneWithoutSegurosInput
   }
@@ -10365,7 +10341,6 @@ export namespace Prisma {
     fechaInicio: Date | string
     fechaVencimiento: Date | string
     comentario?: string | null
-    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -10375,7 +10350,6 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vehiculo?: VehiculoUpdateOneRequiredWithoutSegurosNestedInput
   }
@@ -10388,7 +10362,6 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10400,7 +10373,6 @@ export namespace Prisma {
     fechaInicio: Date | string
     fechaVencimiento: Date | string
     comentario?: string | null
-    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -10410,7 +10382,6 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10422,7 +10393,6 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11225,14 +11195,12 @@ export namespace Prisma {
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
     comentario?: SortOrder
-    versionActual?: SortOrder
     createdAt?: SortOrder
   }
 
   export type SeguroAvgOrderByAggregateInput = {
     id?: SortOrder
     precio?: SortOrder
-    versionActual?: SortOrder
   }
 
   export type SeguroMaxOrderByAggregateInput = {
@@ -11243,7 +11211,6 @@ export namespace Prisma {
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
     comentario?: SortOrder
-    versionActual?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -11255,14 +11222,12 @@ export namespace Prisma {
     fechaInicio?: SortOrder
     fechaVencimiento?: SortOrder
     comentario?: SortOrder
-    versionActual?: SortOrder
     createdAt?: SortOrder
   }
 
   export type SeguroSumOrderByAggregateInput = {
     id?: SortOrder
     precio?: SortOrder
-    versionActual?: SortOrder
   }
 
   export type EnumCompaniaWithAggregatesFilter<$PrismaModel = never> = {
@@ -12165,7 +12130,6 @@ export namespace Prisma {
     fechaInicio: Date | string
     fechaVencimiento: Date | string
     comentario?: string | null
-    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -12176,7 +12140,6 @@ export namespace Prisma {
     fechaInicio: Date | string
     fechaVencimiento: Date | string
     comentario?: string | null
-    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -12307,7 +12270,6 @@ export namespace Prisma {
     fechaInicio?: DateTimeFilter<"Seguro"> | Date | string
     fechaVencimiento?: DateTimeFilter<"Seguro"> | Date | string
     comentario?: StringNullableFilter<"Seguro"> | string | null
-    versionActual?: IntFilter<"Seguro"> | number
     createdAt?: DateTimeFilter<"Seguro"> | Date | string
   }
 
@@ -12864,7 +12826,6 @@ export namespace Prisma {
     fechaInicio: Date | string
     fechaVencimiento: Date | string
     comentario?: string | null
-    versionActual?: number
     createdAt?: Date | string
   }
 
@@ -12945,7 +12906,6 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12956,7 +12916,6 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12967,7 +12926,6 @@ export namespace Prisma {
     fechaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
     fechaVencimiento?: DateTimeFieldUpdateOperationsInput | Date | string
     comentario?: NullableStringFieldUpdateOperationsInput | string | null
-    versionActual?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

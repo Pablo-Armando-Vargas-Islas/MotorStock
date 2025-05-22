@@ -175,7 +175,6 @@ exports.Prisma.SeguroScalarFieldEnum = {
   fechaInicio: 'fechaInicio',
   fechaVencimiento: 'fechaVencimiento',
   comentario: 'comentario',
-  versionActual: 'versionActual',
   createdAt: 'createdAt'
 };
 

@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 export const facturaFormSchema = z.object({
+  gastoId: z.coerce.number(),
   uuid: z.string().optional(),
   estadoSAT: z.string().optional(),
   tipoComprobante: z.string().optional(),

@@ -16,6 +16,8 @@ import axios from "axios"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
+import { useEffect, useState } from "react"
+import { Vehiculo } from "@/generated/prisma"
 
 type SeguroFormProps = {
   onSuccess: () => void
@@ -28,6 +30,7 @@ const company = [
 ] as const
 
 const SeguroForm = ({ onSuccess } :  SeguroFormProps) => {
+  const [vehiculos, setVehiculos] = useState<Vehiculo[]>([])
   const router = useRouter()
   const form = useForm<z.infer<typeof seguroFormSchema>>({
     resolver: zodResolver(seguroFormSchema),
@@ -38,8 +41,6 @@ const SeguroForm = ({ onSuccess } :  SeguroFormProps) => {
       fechaInicio: new Date(),
       fechaVencimiento: new Date(),
       comentario: "",
-      esActual: true,
-      version: 1
     }
   })
 
@@ -69,20 +70,84 @@ const SeguroForm = ({ onSuccess } :  SeguroFormProps) => {
     }
   }
 
+  useEffect(() => {
+    const fetchVehiculos = async () => {
+      try {
+        const res = await fetch("/api/vehiculos")
+        const data = await res.json()
+        setVehiculos(data)
+      } catch (error) {
+        console.error("Error al obtener los vehículos:", error)
+      }
+    }
+
+    fetchVehiculos()
+  }, [])
+
   return (
     <div className="max-h-[80vh] overflow-y-auto px-4">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           {/* vehiculoId */}
-          <FormField 
+          <FormField
             control={form.control}
             name="vehiculoId"
             render={({ field }) => (
-              <FormItem>
-                <FormLabel>ID Vehiculo</FormLabel>
-                <FormControl>
-                  <Input placeholder="Id vehiculo" {...field} />
-                </FormControl>
+              <FormItem className="flex flex-col">
+                <FormLabel>Placa {'(id del vehiculo)'}</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="outline"
+                        role="combobox"
+                        className={cn(
+                          "w-full justify-between",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        {field.value
+                          ? vehiculos.find(
+                              (vehiculo) => String(vehiculo.id) === field.value
+                            )?.id
+                          : "Select vehiculo"}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[200px] p-0">
+                    <Command>
+                      <CommandInput placeholder="Search language..." />
+                      <CommandList>
+                        <CommandEmpty>No vehiculo found.</CommandEmpty>
+                        <CommandGroup>
+                          {vehiculos.map((vehiculos) => (
+                            <CommandItem
+                              value={String(vehiculos.placa)}
+                              key={vehiculos.id}
+                              onSelect={() => {
+                                form.setValue("vehiculoId", String(vehiculos.id))
+                              }}
+                            >
+                              {vehiculos.placa}
+                              <Check
+                                className={cn(
+                                  "ml-auto",
+                                  String(vehiculos.id) === field.value
+                                    ? "opacity-100"
+                                    : "opacity-0"
+                                )}
+                              />
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+                <FormDescription>
+                  Placa del vehiculo
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -164,7 +229,7 @@ const SeguroForm = ({ onSuccess } :  SeguroFormProps) => {
               <FormItem>
                 <FormLabel>Precio</FormLabel>
                 <FormControl>
-                  <Input type="number" min={1} placeholder="Precio $1000" {...field} />
+                  <Input step="any" min={0.01} type="number" placeholder="Precio $1000" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -132,68 +132,68 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
           />
 
           <FormField
-          control={form.control}
-          name="vehiculoId"
-          render={({ field }) => (
-            <FormItem className="flex flex-col">
-              <FormLabel>Placa {'(id del vehiculo)'}</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className={cn(
-                        "w-full justify-between",
-                        !field.value && "text-muted-foreground"
-                      )}
-                    >
-                      {field.value
-                        ? vehiculos.find(
-                            (vehiculo) => String(vehiculo.id) === field.value
-                          )?.id
-                        : "Select vehiculo"}
-                      <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-[200px] p-0">
-                  <Command>
-                    <CommandInput placeholder="Search language..." />
-                    <CommandList>
-                      <CommandEmpty>No vehiculo found.</CommandEmpty>
-                      <CommandGroup>
-                        {vehiculos.map((vehiculos) => (
-                          <CommandItem
-                            value={String(vehiculos.placa)}
-                            key={vehiculos.id}
-                            onSelect={() => {
-                              form.setValue("vehiculoId", String(vehiculos.id))
-                            }}
-                          >
-                            {vehiculos.placa}
-                            <Check
-                              className={cn(
-                                "ml-auto",
-                                String(vehiculos.id) === field.value
-                                  ? "opacity-100"
-                                  : "opacity-0"
-                              )}
-                            />
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </CommandList>
-                  </Command>
-                </PopoverContent>
-              </Popover>
-              <FormDescription>
-                Placa del vehiculo
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+            control={form.control}
+            name="vehiculoId"
+            render={({ field }) => (
+              <FormItem className="flex flex-col">
+                <FormLabel>Placa {'(id del vehiculo)'}</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="outline"
+                        role="combobox"
+                        className={cn(
+                          "w-full justify-between",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        {field.value
+                          ? vehiculos.find(
+                              (vehiculo) => String(vehiculo.id) === field.value
+                            )?.id
+                          : "Select vehiculo"}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[200px] p-0">
+                    <Command>
+                      <CommandInput placeholder="Search language..." />
+                      <CommandList>
+                        <CommandEmpty>No vehiculo found.</CommandEmpty>
+                        <CommandGroup>
+                          {vehiculos.map((vehiculos) => (
+                            <CommandItem
+                              value={String(vehiculos.placa)}
+                              key={vehiculos.id}
+                              onSelect={() => {
+                                form.setValue("vehiculoId", String(vehiculos.id))
+                              }}
+                            >
+                              {vehiculos.placa}
+                              <Check
+                                className={cn(
+                                  "ml-auto",
+                                  String(vehiculos.id) === field.value
+                                    ? "opacity-100"
+                                    : "opacity-0"
+                                )}
+                              />
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+                <FormDescription>
+                  Placa del vehiculo
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
           {/* vehiculoID
           <FormField 
