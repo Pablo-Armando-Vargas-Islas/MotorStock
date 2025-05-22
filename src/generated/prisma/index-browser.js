@@ -155,16 +155,14 @@ exports.Prisma.VersionVehiculoScalarFieldEnum = {
   placa: 'placa',
   placaAnterior: 'placaAnterior',
   marca: 'marca',
+  tipo: 'tipo',
   modelo: 'modelo',
-  anio: 'anio',
   serie: 'serie',
   motor: 'motor',
   ubicacion: 'ubicacion',
   proyecto: 'proyecto',
   version: 'version',
   fechaCambio: 'fechaCambio',
-  motivoCambio: 'motivoCambio',
-  usuarioCambio: 'usuarioCambio',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

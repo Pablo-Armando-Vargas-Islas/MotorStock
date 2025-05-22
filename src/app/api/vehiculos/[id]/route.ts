@@ -13,7 +13,7 @@ export async function GET(
     return NextResponse.json(vehiculo)
   } catch {
     return NextResponse.json(
-      { error: 'Error al botener el gasto'},
+      { error: 'Error al obtener el gasto' },
       { status: 500 }
     )
   }
@@ -24,13 +24,39 @@ export async function PUT(
   { params } : { params: { id: string } }
 ) {
   try {
-    const data = await request.json()
+    const { versiones, seguros, gastos, ...rest} = await request.json()
 
-    console.log("[DATA]: ", JSON.stringify(data))
+    // obtener vehiculo actual
+    const vehiculoActual = await prisma.vehiculo.findUnique({
+      where: { id: params.id}
+    })
+
+    if (!vehiculoActual) {
+      return NextResponse.json(
+        { error: "Vehículo no encontrado" },
+        { status: 404 }
+      )
+    }
+
+    // guardar una copia 
+    await prisma.versionVehiculo.create({
+      data: {
+        vehiculoId: vehiculoActual.id,
+        placa: vehiculoActual.placa,
+        marca: vehiculoActual.marca,
+        modelo: vehiculoActual.modelo,
+        tipo: vehiculoActual.tipo,
+        serie: vehiculoActual.serie,
+        motor: vehiculoActual.motor,
+        ubicacion: vehiculoActual.ubicacion,
+        proyecto: vehiculoActual.proyecto,
+        version: vehiculoActual.versionActual,
+      }
+    })
 
     const updatedVehiculo = await prisma.vehiculo.update({
       where: { id: params.id },
-      data
+      data: rest
     })
 
     return NextResponse.json(updatedVehiculo)

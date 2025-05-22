@@ -451,10 +451,6 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
           />
 
           <Button>Submit</Button>7
-
-          {Object.keys(form.formState.errors).length > 0 && (
-  <pre className="text-red-500">{JSON.stringify(form.formState.errors, null, 2)}</pre>
-)}
         </form>
       </Form>
     </div>

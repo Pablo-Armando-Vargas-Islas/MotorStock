@@ -36,7 +36,6 @@ const VehiculoForm = ({ onSuccess } : VehiculoFormProps) => {
 
   const onSubmit = async (data: z.infer<typeof vehiculoFormSchema>) => {
     try {
-      console.log("[DATA]: ", data)
       const datosToSend = {
         ...data,
       }
