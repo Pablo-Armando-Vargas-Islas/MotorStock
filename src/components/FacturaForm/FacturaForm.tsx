@@ -5,9 +5,9 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { cn } from "@/lib/utils"
 import { Popover, PopoverTrigger, PopoverContent } from "@radix-ui/react-popover"
-import { CalendarIcon } from "lucide-react"
+import { CalendarIcon, Check, ChevronsUpDown } from "lucide-react"
 import { format } from "date-fns"
-import { FormField, FormItem, FormLabel, FormControl, FormMessage, Form } from "../ui/form"
+import { FormField, FormItem, FormLabel, FormControl, FormMessage, Form, FormDescription } from "../ui/form"
 import { Input } from "../ui/input"
 import { Button } from "../ui/button"
 import { Calendar } from "../ui/calendar"
@@ -15,16 +15,21 @@ import axios from "axios"
 import { facturaFormSchema } from "./FacturaForm.form"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
+import { useEffect, useState } from "react"
+import { Gasto } from "@/generated/prisma"
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "../ui/command"
 
 type FacturaFormProps = {
   onSuccess: () => void
 }
 
 const FacturaForm = ({ onSuccess } : FacturaFormProps) => {
+  const [gastos, setGastos] = useState<Gasto[]>([])
   const router = useRouter()
   const form = useForm<z.infer<typeof facturaFormSchema>>({
     resolver: zodResolver(facturaFormSchema),
     defaultValues: {
+      gastoId: 0,
       uuid: "",
       estadoSAT: "",
       tipoComprobante: "",
@@ -82,10 +87,88 @@ const FacturaForm = ({ onSuccess } : FacturaFormProps) => {
     }
   }
 
+  useEffect(() => {
+    const fetchGastos = async () => {
+      try {
+        const res = await fetch("/api/gastos")
+        const data = await res.json()
+        setGastos(data)
+      } catch (error) {
+        console.error("Error al obtener los gastos:", error)
+      }
+    }
+
+    fetchGastos()
+  }, [])
+
   return (
     <div className="max-h-[80vh] overflow-y-auto px-4">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <FormField
+            control={form.control}
+            name="gastoId"
+            render={({ field }) => (
+              <FormItem className="flex flex-col">
+                <FormLabel>Gasto id {'(folio del gasto)'}</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <FormControl>
+                      <Button
+                        variant="outline"
+                        role="combobox"
+                        className={cn(
+                          "w-full justify-between",
+                          !field.value && "text-muted-foreground"
+                        )}
+                      >
+                        {field.value
+                          ? gastos.find(
+                              (gasto) => gasto.id === field.value
+                            )?.id
+                          : "Select vehiculo"}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                      </Button>
+                    </FormControl>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-[200px] p-0">
+                    <Command>
+                      <CommandInput placeholder="Search language..." />
+                      <CommandList>
+                        <CommandEmpty>No vehiculo found.</CommandEmpty>
+                        <CommandGroup>
+                          {gastos.map((gastos) => (
+                            <CommandItem
+                              value={gastos.folio}
+                              key={gastos.id}
+                              onSelect={() => {
+                                form.setValue("gastoId", gastos.id)
+                              }}
+                            >
+                              {gastos.folio}
+                              <Check
+                                className={cn(
+                                  "ml-auto",
+                                  gastos.id === field.value
+                                    ? "opacity-100"
+                                    : "opacity-0"
+                                )}
+                              />
+                            </CommandItem>
+                          ))}
+                        </CommandGroup>
+                      </CommandList>
+                    </Command>
+                  </PopoverContent>
+                </Popover>
+                <FormDescription>
+                  Placa del vehiculo
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           {/* uuid */}
           <FormField 
             control={form.control}

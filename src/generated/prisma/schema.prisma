@@ -99,8 +99,7 @@ model Seguro {
   fechaVencimiento DateTime
   comentario       String?
 
-  versionActual Int      @default(1)
-  createdAt     DateTime @default(now())
+  createdAt DateTime @default(now())
 
   @@index([vehiculoId])
 }

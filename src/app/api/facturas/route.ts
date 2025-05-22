@@ -4,6 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod"
 
 const FacturaSchema = z.object({
+  gastoId: z.coerce.number({
+    required_error: "El gasto es requerido"
+  }),
   uuid: z.string().optional(),
   estadoSAT: z.string().optional(),
   tipoComprobante: z.string().optional(),
@@ -81,6 +84,7 @@ export async function POST(req: NextRequest) {
 
     const result = await prisma.factura.create({
       data: {
+        gastoId: validation.data.gastoId,
         uuid: validation.data.uuid,
         estadoSAT: validation.data.estadoSAT,
         tipoComprobante: validation.data.tipoComprobante,
