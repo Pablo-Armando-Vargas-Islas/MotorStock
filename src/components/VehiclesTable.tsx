@@ -1,3 +1,4 @@
+// src/components/VehiclesTable.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -7,7 +8,14 @@ import {
   ColumnDef,
   flexRender,
 } from "@tanstack/react-table";
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { SegurosSubTable } from "@/components/SegurosSubTable";
 import { GastosSubTable } from "@/components/GastosSubTable";
@@ -53,34 +61,39 @@ export type VehicleRaw = {
   }>;
 };
 
+
 interface VehiclesTableProps {
-  vehicles: VehicleRaw[];
+  vehicles?: VehicleRaw[];
   canViewSeguros: boolean;
   canViewGastos: boolean;
   canViewFacturas: boolean;
 }
 
 export default function VehiclesTable({
-  vehicles,
+  vehicles = [],
   canViewSeguros,
   canViewGastos,
   canViewFacturas,
 }: VehiclesTableProps) {
-  // filas expandidas
   const [expanded, setExpanded] = useState<Record<number, boolean>>({});
-  const toggleRow = (i: number) =>
-    setExpanded((prev) => ({ ...prev, [i]: !prev[i] }));
+  const toggleRow = (idx: number) =>
+    setExpanded((prev) => ({ ...prev, [idx]: !prev[idx] }));
 
-  // columnas base
   const columns: ColumnDef<VehicleRaw>[] = [
     {
       id: "expander",
       header: "",
-      cell: ({ row }) => (
-        <button onClick={() => toggleRow(row.index)}>
-          {expanded[row.index] ? <ChevronUp /> : <ChevronDown />}
-        </button>
-      ),
+      cell: ({ row }) => {
+        const hasSeguros = canViewSeguros && row.original.seguros.length > 0;
+        const hasGastos = canViewGastos && row.original.gastos.length > 0;
+        // Si no hay nada que expandir, no mostramos botón
+        if (!hasSeguros && !hasGastos) return null;
+        return (
+          <button onClick={() => toggleRow(row.index)}>
+            {expanded[row.index] ? <ChevronUp /> : <ChevronDown />}
+          </button>
+        );
+      },
     },
     { accessorKey: "placa", header: "Placa" },
     { accessorKey: "marca", header: "Marca" },
@@ -93,14 +106,12 @@ export default function VehiclesTable({
     { accessorKey: "versionActual", header: "Versión Actual" },
   ];
 
-  // tabla
   const table = useReactTable({
     data: vehicles,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
 
-  // obtenemos filas (usa core row model)
   const rows = table.getRowModel().rows;
 
   return (
@@ -111,13 +122,12 @@ export default function VehiclesTable({
             <TableRow key={hg.id}>
               {hg.headers.map((h) => (
                 <TableHead key={h.id}>
-                  {h.isPlaceholder ? null : flexRender(h.column.columnDef.header, h.getContext())}
+                  {!h.isPlaceholder && flexRender(h.column.columnDef.header, h.getContext())}
                 </TableHead>
               ))}
             </TableRow>
           ))}
         </TableHeader>
-
         <TableBody>
           {rows.length > 0 ? (
             rows.map((row) => (
@@ -133,7 +143,9 @@ export default function VehiclesTable({
                 {expanded[row.index] && (
                   <TableRow>
                     <TableCell colSpan={columns.length}>
-                      {canViewSeguros && <SegurosSubTable seguros={row.original.seguros} />}
+                      {canViewSeguros && (
+                        <SegurosSubTable seguros={row.original.seguros} />
+                      )}
                       {canViewGastos && (
                         <GastosSubTable
                           gastos={row.original.gastos}
