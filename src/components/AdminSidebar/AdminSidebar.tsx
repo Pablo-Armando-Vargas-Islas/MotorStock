@@ -1,3 +1,4 @@
+// src/components/AdminSidebar/AdminSidebar.tsx
 "use client";
 
 import React from "react";
@@ -20,26 +21,37 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { ModeToggle } from "../mode-toggle";
-import { useAuth } from "@/context/AuthContext";
 import { LogoutButton } from "@/components/ui/LogoutButton";
+import { useAuth } from "@/context/AuthContext";
 import {
   User2,
-  ChevronUp,
+  Search,
   File,
   LockKeyholeOpen,
   FileText,
-  Search,
   CarFront,
-  TruckElectric,
 } from "lucide-react";
 
 export function AdminSidebar() {
   const { user, status } = useAuth();
   if (status === "loading" || !user) return null;
 
-  // Construir menú dinámico según permisos
   const menuItems: { title: string; url: string; icon: React.FC }[] = [];
 
+  // — Datos Generales: si puede ver alguno
+  if (
+    user.canViewGastos ||
+    user.canViewSeguros ||
+    user.canViewFacturas
+  ) {
+    menuItems.push({
+      title: "Datos Generales",
+      url: "/admin/datos",
+      icon: Search,
+    });
+  }
+
+  // — Registro de Gastos
   if (user.canEditGastos) {
     menuItems.push({
       title: "Registro de Gastos",
@@ -47,17 +59,24 @@ export function AdminSidebar() {
       icon: File,
     });
   }
+
+  // — Registro de Seguros + Vehículos
   if (user.canEditSeguros) {
-    menuItems.push({
-      title: "Registro de Seguros",
-      url: "/seguros",
-      icon: LockKeyholeOpen,
-    }, {
-      title: "Vehiculos",
-      url: "/vehiculos",
-      icon: CarFront
-    });
+    menuItems.push(
+      {
+        title: "Registro de Seguros",
+        url: "/seguros",
+        icon: LockKeyholeOpen,
+      },
+      {
+        title: "Vehículos",
+        url: "/vehiculos",
+        icon: CarFront,
+      }
+    );
   }
+
+  // — Registro de Facturas
   if (user.canEditFacturas) {
     menuItems.push({
       title: "Registro de Facturas",
@@ -65,13 +84,8 @@ export function AdminSidebar() {
       icon: FileText,
     });
   }
-  if (user.canViewGastos || user.canViewSeguros || user.canViewFacturas) {
-    menuItems.push({
-      title: "Datos Generales",
-      url: "/admin/datos",
-      icon: Search,
-    });
-  }
+
+  // — Gestión de Usuarios
   if (user.canManageUsers) {
     menuItems.push({
       title: "Usuarios",
@@ -84,13 +98,6 @@ export function AdminSidebar() {
     <Sidebar collapsible="icon" variant="sidebar" className="h-full">
       <SidebarHeader />
       <SidebarContent>
-        <SidebarGroup>
-          <div className="p-1">
-            <Link href={"/"}>
-              <TruckElectric className="size-4" />
-            </Link>
-          </div>
-        </SidebarGroup>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -115,26 +122,18 @@ export function AdminSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
+                <SidebarMenuButton className="flex items-center gap-2">
                   <User2 className="size-4" />
                   <span>{user.name}</span>
-                  <ChevronUp className="ml-auto size-4" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
-              <DropdownMenuContent side="top" className="w-[--radix-popper-anchor-width]">
+              <DropdownMenuContent side="top">
                 <DropdownMenuItem>
-                  <span>Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Billing</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
                   <LogoutButton />
                 </DropdownMenuItem>
               </DropdownMenuContent>
