@@ -368,7 +368,7 @@ const FacturaForm = ({ onSuccess } : FacturaFormProps) => {
               <FormItem>
                 <FormLabel>Sub total</FormLabel>
                 <FormControl>
-                  <Input type="number" min={0} placeholder="Sub total $" {...field} />
+                  <Input type="number" min={0.01} step="any" placeholder="Sub total $" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -383,7 +383,7 @@ const FacturaForm = ({ onSuccess } : FacturaFormProps) => {
               <FormItem>
                 <FormLabel>Descuento</FormLabel>
                 <FormControl>
-                  <Input type="number" min={0} placeholder="Descuento" {...field} />
+                  <Input type="number" min={0.01} step="any" placeholder="Descuento" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -398,7 +398,7 @@ const FacturaForm = ({ onSuccess } : FacturaFormProps) => {
               <FormItem>
                 <FormLabel>Total IEPS</FormLabel>
                 <FormControl>
-                  <Input type="number" min={0} placeholder="Total IEPS" {...field} />
+                  <Input type="number" min={0.01} step="any" placeholder="Total IEPS" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -413,7 +413,7 @@ const FacturaForm = ({ onSuccess } : FacturaFormProps) => {
               <FormItem>
                 <FormLabel>IVA 16</FormLabel>
                 <FormControl>
-                  <Input type="number" min={0} placeholder="IVA 16" {...field} />
+                  <Input type="number" min={0.01} step="any" placeholder="IVA 16" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -428,7 +428,7 @@ const FacturaForm = ({ onSuccess } : FacturaFormProps) => {
               <FormItem>
                 <FormLabel>Retenido IVA</FormLabel>
                 <FormControl>
-                  <Input type="number" min={0} placeholder="Retenido IVA" {...field} />
+                  <Input type="number" min={0.01} step="any" placeholder="Retenido IVA" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -443,7 +443,7 @@ const FacturaForm = ({ onSuccess } : FacturaFormProps) => {
               <FormItem>
                 <FormLabel>Rertenido ISR</FormLabel>
                 <FormControl>
-                  <Input type="number" min={0} placeholder="Retenido ISR" {...field} />
+                  <Input type="number" min={0.01} step="any" placeholder="Retenido ISR" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -458,7 +458,7 @@ const FacturaForm = ({ onSuccess } : FacturaFormProps) => {
               <FormItem>
                 <FormLabel>ISH</FormLabel>
                 <FormControl>
-                  <Input type="number" min={0} placeholder="ISH" {...field} />
+                  <Input type="number" min={0.01} step="any" placeholder="ISH" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -473,7 +473,7 @@ const FacturaForm = ({ onSuccess } : FacturaFormProps) => {
               <FormItem>
                 <FormLabel>Total</FormLabel>
                 <FormControl>
-                  <Input type="number" min={0} placeholder="Total $" {...field} />
+                  <Input type="number" min={0.01} step="any" placeholder="Total $" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

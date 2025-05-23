@@ -18,16 +18,16 @@ export const facturaFormSchema = z.object({
 
   usoCFDI: z.string().min(1, { message: "El uso CFDI es requerido" }),
 
-  subTotal: z.coerce.number().refine(val => !isNaN(val), { message: "El sub total es requerido" }),
+  subTotal: z.coerce.number().min(0.01).refine(val => !isNaN(val), { message: "El sub total es requerido" }),
 
-  descuento: z.coerce.number().optional(),
-  totalIEPS: z.coerce.number().optional(),
-  iva16: z.coerce.number().optional(),
-  retenidoIVA: z.coerce.number().optional(),
-  retenidoISR: z.coerce.number().optional(),
-  ish: z.coerce.number().optional(),
+  descuento: z.coerce.number().min(0.01).optional(),
+  totalIEPS: z.coerce.number().min(0.01).optional(),
+  iva16: z.coerce.number().min(0.01).optional(),
+  retenidoIVA: z.coerce.number().min(0.01).optional(),
+  retenidoISR: z.coerce.number().min(0.01).optional(),
+  ish: z.coerce.number().min(0.01).optional(),
 
-  total: z.coerce.number().refine(val => !isNaN(val), { message: "El total es requerido" }),
+  total: z.coerce.number().min(0.01).refine(val => !isNaN(val), { message: "El total es requerido" }),
 
   moneda: z.string().optional(),
 
