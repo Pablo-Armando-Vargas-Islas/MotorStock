@@ -23,15 +23,15 @@ const updateUserSchema = z
   .object({
     user: z.string().min(1, "El usuario es requerido"),
 
-    // Preprocesa cadenas vacías a undefined, luego valida min 6 si está definido
-    password: z.preprocess(
-      (val) => (typeof val === "string" && val.trim() === "" ? undefined : val),
-      z.string().min(6, "La contraseña debe tener al menos 6 caracteres").optional()
-    ),
-    confirmPassword: z.preprocess(
-      (val) => (typeof val === "string" && val.trim() === "" ? undefined : val),
-      z.string().min(6, "Confirma la contraseña").optional()
-    ),
+    password: z.union([
+      z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
+      z.literal(""),
+    ]).optional(),
+
+    confirmPassword: z.union([
+      z.string().min(6, "Confirma la contraseña"),
+      z.literal(""),
+    ]).optional(),
 
     role: z.enum([
       "REGISTRO_GASTOS",
@@ -52,7 +52,6 @@ const updateUserSchema = z
 
     allowedCompanies: z.array(z.enum(["HM", "GM", "RC"])),
   })
-  // Solo valida el match de contraseñas si envías password
   .refine(
     (data) =>
       !data.password ||

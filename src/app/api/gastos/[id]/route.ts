@@ -1,13 +1,16 @@
 import { prisma } from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
+// GET /api/gastos/[id]
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params;
+
   try {
     const gasto = await prisma.gasto.findUnique({
-      where: { id: Number(params.id) },
+      where: { id: Number(id) },
     });
     return NextResponse.json(gasto);
   } catch {
@@ -18,18 +21,21 @@ export async function GET(
   }
 }
 
+// PUT /api/gastos/[id]
 export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params;
+
   try {
     const dataReq = await request.json();
     const data = {
       ...dataReq,
-      fecha: new Date(dataReq.fecha)
-    }
+      fecha: new Date(dataReq.fecha),
+    };
     const updatedGasto = await prisma.gasto.update({
-      where: { id: Number(params.id) },
+      where: { id: Number(id) },
       data,
     });
     return NextResponse.json(updatedGasto);
