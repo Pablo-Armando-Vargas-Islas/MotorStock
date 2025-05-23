@@ -398,7 +398,7 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
               <FormItem>
                 <FormLabel>Transferencia</FormLabel>
                 <FormControl>
-                  <Input type="number" placeholder="Transferencia" {...field} />
+                  <Input type="number" min={0.01} step="any" placeholder="Transferencia" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -413,7 +413,7 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
               <FormItem>
                 <FormLabel>Entrada</FormLabel>
                 <FormControl>
-                  <Input type="number" min={0} placeholder="Entrada" {...field} />
+                  <Input type="number" min={0.01} step="any" placeholder="Entrada" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -428,7 +428,7 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
               <FormItem>
                 <FormLabel>Salida</FormLabel>
                 <FormControl>
-                  <Input type="number" min={0} placeholder="Salida" {...field} />
+                  <Input type="number" min={0.01} step="any" placeholder="Salida" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -443,14 +443,14 @@ const GastosForm = ({ onSuccess } : GastoFormProps) => {
               <FormItem>
                 <FormLabel>Saldo</FormLabel>
                 <FormControl>
-                  <Input type="number" min={0} placeholder="Saldo" {...field} />
+                  <Input type="number" min={0.01} step="any" placeholder="Saldo" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button>Submit</Button>7
+          <Button>Submit</Button>
         </form>
       </Form>
     </div>

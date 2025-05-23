@@ -16,10 +16,10 @@ export const gastosFormSchema = z.object({
   documento: z.string().optional(),
   proyecto: z.string().optional(),
   responsable: z.string().min(1, "El responsable es requerido"),
-  transferencia: z.coerce.number().optional(),
-  entrada: z.coerce.number().min(0, "El valor debe ser positivo").optional(),
-  salida: z.coerce.number().min(0, "El valor debe ser positivo").optional(),
-  saldo: z.coerce.number().optional(),
+  transferencia: z.coerce.number().min(0.01).optional(),
+  entrada: z.coerce.number().min(0.01, "El valor debe ser positivo").optional(),
+  salida: z.coerce.number().min(0.01, "El valor debe ser positivo").optional(),
+  saldo: z.coerce.number().min(0.01).optional(),
   versionActual: z.number().optional(),
 })
 
