@@ -37,9 +37,14 @@ const SeguroPage = () => {
       <div className="flex justify-between items-center w-full max-w-4xl mx-auto px-4">
         <h1 className="text-3xl font-bold">Registro de seguros</h1>
 
+        <a href="/api/descargar-seguros" target="_blank" rel="noopener noreferrer">
+          <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white">Descargar seguros</Button>
+        </a>
+
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white">Registrar</Button>
+
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>

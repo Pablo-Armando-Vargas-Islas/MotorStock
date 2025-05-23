@@ -36,6 +36,10 @@ const VehiculosPage = () => {
       <div className="flex justify-between items-center w-full max-w-4xl mx-auto px-4">
         <h1 className="text-3xl font-bold">Registro de vehiculos</h1>
 
+        <a href="/api/descargar-vehiculos" target="_blank" rel="noopener noreferrer">
+          <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white">Descargar vehiculos</Button>
+        </a>
+
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white">Registrar</Button>

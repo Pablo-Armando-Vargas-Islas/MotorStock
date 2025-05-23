@@ -13,7 +13,6 @@ import { columns, Factura } from "./FacturasTable/columns";
 import { DataTable } from "@/app/registro-gastos/GastosTable/data-table";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { RefreshCcw } from "lucide-react";
 
 async function getFacturas(): Promise<Factura[]> {
   const base = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
@@ -44,15 +43,14 @@ const FacturasPage =  () => {
       <div className="flex justify-between items-center w-full max-w-4xl mx-auto px-4">
         <h1 className="text-3xl font-bold">Registro de facturas</h1>
 
+        <a href="/api/descargar-facturas" target="_blank" rel="noopener noreferrer">
+          <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white">Descargar facturas</Button>
+        </a>
+
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <div className="flex space-between gap-4">
               <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white">Registrar</Button>
-              <Button variant='outline' className="cursor-pointer bg-neutral-950 text-white"
-                onClick={() => window.location.reload()}
-              >
-                <RefreshCcw /> Recargar
-              </Button>
             </div>
           </DialogTrigger>
           <DialogContent>

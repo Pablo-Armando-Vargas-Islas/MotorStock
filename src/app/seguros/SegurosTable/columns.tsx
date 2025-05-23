@@ -27,7 +27,7 @@ export const columns: ColumnDef<Seguro>[] = [
   },
   {
     accessorKey: "compania",
-    header: "Compañía"
+    header: "RZ"
   },
   {
     accessorKey: "precio",
