@@ -14,7 +14,7 @@ import { FacturasSubTable } from "@/components/FacturasSubTable";
 
 interface Factura {
   id: number;
-  uuid?: string;
+  uuid: string;
   fechaEmision: string;
   subTotal: number;
   total: number;
@@ -55,6 +55,7 @@ export function GastosSubTable({ gastos, canViewFacturas }: GastosSubTableProps)
   const toggle = (idx: number) => {
     setExpandedRows((prev) => {
       const next = new Set(prev);
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       next.has(idx) ? next.delete(idx) : next.add(idx);
       return next;
     });

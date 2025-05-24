@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/context/AuthContext";
 import SearchBar from "@/components/SearchBar";
-import VehiclesTable from "@/components/VehiclesTable";
+import VehiclesTable, { VehicleRaw } from "@/components/VehiclesTable";
 
 export default function DatosGeneralesPage() {
   const { user, status } = useAuth();

@@ -40,6 +40,9 @@ export type VehicleRaw = {
     comentario?: string;
   }>;
   gastos: Array<{
+    versionActual: number;
+    createdAt: string;
+    razonSocial: string;
     id: number;
     folio: string;
     fecha: string;
@@ -148,7 +151,16 @@ export default function VehiclesTable({
                       )}
                       {canViewGastos && (
                         <GastosSubTable
-                          gastos={row.original.gastos}
+                          gastos={row.original.gastos.map(gasto => ({
+                            ...gasto,
+                            razonSocial: gasto.razonSocial ?? "",
+                            versionActual: gasto.versionActual ?? 1,
+                            createdAt: gasto.createdAt ?? "",
+                            facturas: gasto.facturas.map(factura => ({
+                              ...factura,
+                              uuid: factura.uuid ?? "",
+                            })),
+                          }))}
                           canViewFacturas={canViewFacturas}
                         />
                       )}

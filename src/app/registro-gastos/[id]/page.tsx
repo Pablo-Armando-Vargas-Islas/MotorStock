@@ -32,7 +32,7 @@ export default function EditarGastoPage({ params }: { params: Promise<{ id: stri
       documento: "",
       proyecto: "",
       responsable: "",
-      transferencia: "",
+      transferencia: 0,
       entrada: 0,
       salida: 0,
       saldo: 0

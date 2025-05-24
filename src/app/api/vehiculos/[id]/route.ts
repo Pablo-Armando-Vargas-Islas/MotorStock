@@ -1,44 +1,50 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
+// GET /api/vehiculos/[id]
 export async function GET(
   request: NextRequest,
-  { params } : { params : { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params;
+
   try {
     const vehiculo = await prisma.vehiculo.findUnique({
-      where: { id: params.id}
-    })
+      where: { id },
+    });
 
-    return NextResponse.json(vehiculo)
+    return NextResponse.json(vehiculo);
   } catch {
     return NextResponse.json(
-      { error: 'Error al obtener el gasto' },
+      { error: "Error al obtener el vehículo" },
       { status: 500 }
-    )
+    );
   }
 }
 
+// PUT /api/vehiculos/[id]
 export async function PUT(
   request: NextRequest,
-  { params } : { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
-  try {
-    const { versiones, seguros, gastos, ...rest} = await request.json()
+  const { id } = await context.params;
 
-    // obtener vehiculo actual
+  try {
+    const { versiones, seguros, gastos, ...rest } = await request.json();
+
+    // Obtener vehículo actual
     const vehiculoActual = await prisma.vehiculo.findUnique({
-      where: { id: params.id}
-    })
+      where: { id },
+    });
 
     if (!vehiculoActual) {
       return NextResponse.json(
         { error: "Vehículo no encontrado" },
         { status: 404 }
-      )
+      );
     }
 
-    // guardar una copia 
+    // Guardar una copia
     await prisma.versionVehiculo.create({
       data: {
         vehiculoId: vehiculoActual.id,
@@ -51,19 +57,19 @@ export async function PUT(
         ubicacion: vehiculoActual.ubicacion,
         proyecto: vehiculoActual.proyecto,
         version: vehiculoActual.versionActual,
-      }
-    })
+      },
+    });
 
     const updatedVehiculo = await prisma.vehiculo.update({
-      where: { id: params.id },
-      data: rest
-    })
+      where: { id },
+      data: rest,
+    });
 
-    return NextResponse.json(updatedVehiculo)
+    return NextResponse.json(updatedVehiculo);
   } catch {
     return NextResponse.json(
-      { error: 'Error al actualizar el vehiculo' },
+      { error: "Error al actualizar el vehículo" },
       { status: 500 }
-    )
+    );
   }
 }

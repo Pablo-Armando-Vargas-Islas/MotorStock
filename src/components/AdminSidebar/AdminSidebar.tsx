@@ -36,7 +36,7 @@ export function AdminSidebar() {
   const { user, status } = useAuth();
   if (status === "loading" || !user) return null;
 
-  const menuItems: { title: string; url: string; icon: React.FC }[] = [];
+  const menuItems: { title: string; url: string; icon: React.ComponentType<{ className?: string }> }[] = [];
 
   // — Datos Generales: si puede ver alguno
   if (

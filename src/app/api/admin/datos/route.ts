@@ -8,7 +8,7 @@ export async function GET(req: Request) {
   const limit = parseInt(searchParams.get("limit") || "30", 10);
 
   const where = placa
-    ? { placa: { contains: placa, mode: "insensitive" } }
+    ? { placa: { contains: placa, mode: "insensitive" as const } }
     : {};
 
   // 1️⃣ contamos el total

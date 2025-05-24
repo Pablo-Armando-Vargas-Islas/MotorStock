@@ -4,7 +4,22 @@
 import React from "react";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 
-export function FacturasSubTable({ facturas }) {
+interface Factura {
+  id: string | number;
+  uuid: string;
+  fechaEmision: string;
+  subTotal: number;
+  total: number;
+  moneda: string;
+  formaPago: string;
+  // añade aquí más campos si es necesario
+}
+
+interface FacturasSubTableProps {
+  facturas: Factura[];
+}
+
+export function FacturasSubTable({ facturas }: FacturasSubTableProps) {
   return (
     <div className="p-4">
       <h3 className="font-medium mb-2">Facturas</h3>

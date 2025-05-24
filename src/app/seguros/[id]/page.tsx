@@ -33,8 +33,6 @@ export default function EditarSeguroPage({ params }: { params: Promise<{ id: str
       fechaInicio: new Date(),
       fechaVencimiento: new Date(),
       comentario: "",
-      esActual: true,
-      version: 1
     }
   });
 
